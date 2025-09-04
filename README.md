@@ -1,4 +1,4 @@
-# Inicio
+# Lukas: Manipulador 2R dibuja treboles
 
 ## Introducción
 - Objetivos
