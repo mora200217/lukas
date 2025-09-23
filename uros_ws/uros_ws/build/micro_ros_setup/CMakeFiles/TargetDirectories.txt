@@ -1,0 +1,9 @@
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/uninstall.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/micro_ros_setup_uninstall.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/test.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/edit_cache.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/rebuild_cache.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/list_install_components.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/install.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/install/local.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/uros_ws/build/micro_ros_setup/CMakeFiles/install/strip.dir
