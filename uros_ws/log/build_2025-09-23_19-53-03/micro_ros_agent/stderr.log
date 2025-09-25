@@ -1,0 +1,614 @@
+CMake Deprecation Warning at CMakeLists.txt:15 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+Cloning into 'xrceagent'...
+HEAD is now at 57d0862 Release v2.4.2
+Cloning into 'spdlog'...
+HEAD is now at eb322062 Bump version to 1.9.2
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/src/fmt.cpp:10:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format-inl.h:22:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/locale:202:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__locale:23:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string:625:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string_view:213:
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__fwd/string_view.h:22:41: warning: 'char_traits<fmt::detail::char8_type>' is deprecated: char_traits<T> for T not equal to char, wchar_t, char8_t, char16_t or char32_t is non-standard and is provided for a temporary period. It will be removed in LLVM 19, so please migrate off of it. [-Wdeprecated-declarations]
+   22 | template <class _CharT, class _Traits = char_traits<_CharT> >
+      |                                         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:380:26: note: in instantiation of default argument for 'basic_string_view<fmt::detail::char8_type>' required here
+  380 | template <typename Char> using std_string_view = std::basic_string_view<Char>;
+      |                          ^~~~~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:476:50: note: in instantiation of template type alias 'std_string_view' requested here
+  476 |                                       S, detail::std_string_view<Char>>::value)>
+      |                                                  ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format.h:545:57: note: in instantiation of template class 'fmt::basic_string_view<fmt::detail::char8_type>' requested here
+  545 | inline auto compute_width(basic_string_view<char8_type> s) -> size_t {
+      |                                                         ^
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__string/char_traits.h:81:8: note: 'char_traits<fmt::detail::char8_type>' has been explicitly marked deprecated here
+   81 | struct _LIBCPP_DEPRECATED_(
+      |        ^
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__config:975:53: note: expanded from macro '_LIBCPP_DEPRECATED_'
+  975 | #      define _LIBCPP_DEPRECATED_(m) __attribute__((__deprecated__(m)))
+      |                                                     ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/src/color_sinks.cpp:8:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/mutex:192:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__condition_variable/condition_variable.h:17:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__mutex/unique_lock.h:17:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/system_error.h:14:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/error_category.h:15:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string:625:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string_view:213:
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__fwd/string_view.h:22:41: warning: 'char_traits<fmt::detail::char8_type>' is deprecated: char_traits<T> for T not equal to char, wchar_t, char8_t, char16_t or char32_t is non-standard and is provided for a temporary period. It will be removed in LLVM 19, so please migrate off of it. [-Wdeprecated-declarations]
+   22 | template <class _CharT, class _Traits = char_traits<_CharT> >
+      |                                         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:380:26: note: in instantiation of default argument for 'basic_string_view<fmt::detail::char8_type>' required here
+  380 | template <typename Char> using std_string_view = std::basic_string_view<Char>;
+      |                          ^~~~~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:476:50: note: in instantiation of template type alias 'std_string_view' requested here
+  476 |                                       S, detail::std_string_view<Char>>::value)>
+      |                                                  ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format.h:545:57: note: in instantiation of template class 'fmt::basic_string_view<fmt::detail::char8_type>' requested here
+  545 | inline auto compute_width(basic_string_view<char8_type> s) -> size_t {
+      |                                                         ^
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__string/char_traits.h:81:8: note: 'char_traits<fmt::detail::char8_type>' has been explicitly marked deprecated here
+   81 | struct _LIBCPP_DEPRECATED_(
+      |        ^
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__config:975:53: note: expanded from macro '_LIBCPP_DEPRECATED_'
+  975 | #      define _LIBCPP_DEPRECATED_(m) __attribute__((__deprecated__(m)))
+      |                                                     ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/src/stdout_sinks.cpp:8:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/mutex:192:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__condition_variable/condition_variable.h:17:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__mutex/unique_lock.h:17:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/system_error.h:14:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/error_category.h:15:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string:625:
+In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string_view:213:
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__fwd/string_view.h:22:41: warning: 'char_traits<fmt::detail::char8_type>' is deprecated: char_traits<T> for T not equal to char, wchar_t, char8_t, char16_t or char32_t is non-standard and is provided for a temporary period. It will be removed in LLVM 19, so please migrate off of it. [-Wdeprecated-declarations]
+   22 | template <class _CharT, class _Traits = char_traits<_CharT> >
+      |                                         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:380:26: note: in instantiation of default argument for 'basic_string_view<fmt::detail::char8_type>' required here
+  380 | template <typename Char> using std_string_view = std::basic_string_view<Char>;
+      |                          ^~~~~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:476:50: note: in instantiation of template type alias 'std_string_view' requested here
+  476 |                                       S, detail::std_string_view<Char>>::value)>
+      |                                                  ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format.h:545:57: note: in instantiation of template class 'fmt::basic_string_view<fmt::detail::char8_type>' requested here
+  545 | inline auto compute_width(basic_string_view<char8_type> s) -> size_t {
+      |                                                         ^
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__string/char_traits.h:81:8: note: 'char_traits<fmt::detail::char8_type>' has been explicitly marked deprecated here
+   81 | struct _LIBCPP_DEPRECATED_(
+      |        ^
+/Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__config:975:53: note: expanded from macro '_LIBCPP_DEPRECATED_'
+  975 | #      define _LIBCPP_DEPRECATED_(m) __attribute__((__deprecated__(m)))
+      |                                                     ^
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:33:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:44:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   37 | class UDPv4Agent : public Server<IPv4EndPoint>
+      |                  final
+   38 | {
+   39 | public:
+   40 |     UDPv4Agent(
+   41 |             uint16_t port,
+   42 |             Middleware::Kind middleware_kind);
+   43 | 
+   44 |     ~UDPv4Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:37:7: note: mark 'eprosima::uxr::UDPv4Agent' as 'final' to silence this warning
+   37 | class UDPv4Agent : public Server<IPv4EndPoint>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:34:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:41:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class UDPv6Agent : public Server<IPv6EndPoint>
+      |                  final
+   35 | {
+   36 | public:
+   37 |     UDPv6Agent(
+   38 |             uint16_t port,
+   39 |             Middleware::Kind middleware_kind);
+   40 | 
+   41 |     ~UDPv6Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:34:7: note: mark 'eprosima::uxr::UDPv6Agent' as 'final' to silence this warning
+   34 | class UDPv6Agent : public Server<IPv6EndPoint>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:35:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+      |                  final
+   42 | {
+   43 | public:
+   44 |     TCPv4Agent(
+   45 |             uint16_t agent_port,
+   46 |             Middleware::Kind middleware_kind);
+   47 | 
+   48 |     ~TCPv4Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv4Agent' as 'final' to silence this warning
+   41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:36:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+      |                  final
+   42 | {
+   43 | public:
+   44 |     TCPv6Agent(
+   45 |             uint16_t agent_port,
+   46 |             Middleware::Kind middleware_kind);
+   47 | 
+   48 |     ~TCPv6Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv6Agent' as 'final' to silence this warning
+   41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:40:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/serial/baud_rate_table_linux.h:156:58: warning: format specifies type 'int' but the argument has type 'speed_t' (aka 'unsigned long') [-Wformat]
+  156 |         printf("Warning: Custom baud rate set to: %d\n", custom_baud_rate);
+      |                                                   ~~     ^~~~~~~~~~~~~~~~
+      |                                                   %lu
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Agent.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:21:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class FastMiddleware : public Middleware
+      |                      final
+   35 | {
+   36 | public:
+   37 |     FastMiddleware();
+   38 |     ~FastMiddleware() final = default;
+      |                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+   34 | class FastMiddleware : public Middleware
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/client/ProxyClient.cpp:26:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class FastMiddleware : public Middleware
+      |                      final
+   35 | {
+   36 | public:
+   37 |     FastMiddleware();
+   38 |     ~FastMiddleware() final = default;
+      |                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+   34 | class FastMiddleware : public Middleware
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Agent.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:22:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   31 | class FastDDSMiddleware : public Middleware
+      |                         final
+   32 | {
+   33 | public:
+   34 |     FastDDSMiddleware();
+   35 |     FastDDSMiddleware(bool intraprocess_enabled);
+   36 |     ~FastDDSMiddleware() final = default;
+      |                          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+   31 | class FastDDSMiddleware : public Middleware
+      |       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   51 |     bool create_participant_by_bin(
+      |          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+   71 |     virtual bool create_participant_by_bin(
+      |                  ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Agent.cpp:217:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+  217 |     , callback_factory_(callback_factory_.getInstance())
+      |                         ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/client/ProxyClient.cpp:27:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   31 | class FastDDSMiddleware : public Middleware
+      |                         final
+   32 | {
+   33 | public:
+   34 |     FastDDSMiddleware();
+   35 |     FastDDSMiddleware(bool intraprocess_enabled);
+   36 |     ~FastDDSMiddleware() final = default;
+      |                          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+   31 | class FastDDSMiddleware : public Middleware
+      |       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   51 |     bool create_participant_by_bin(
+      |          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+   71 |     virtual bool create_participant_by_bin(
+      |                  ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:17:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:21:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class FastMiddleware : public Middleware
+      |                      final
+   35 | {
+   36 | public:
+   37 |     FastMiddleware();
+   38 |     ~FastMiddleware() final = default;
+      |                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+   34 | class FastMiddleware : public Middleware
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:17:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:22:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   31 | class FastDDSMiddleware : public Middleware
+      |                         final
+   32 | {
+   33 | public:
+   34 |     FastDDSMiddleware();
+   35 |     FastDDSMiddleware(bool intraprocess_enabled);
+   36 |     ~FastDDSMiddleware() final = default;
+      |                          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+   31 | class FastDDSMiddleware : public Middleware
+      |       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   51 |     bool create_participant_by_bin(
+      |          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+   71 |     virtual bool create_participant_by_bin(
+      |                  ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:23:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+   23 |     : callback_factory_(callback_factory_.getInstance())
+      |                         ^
+4 warnings generated.
+3 warnings generated.
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:33:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:44:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   37 | class UDPv4Agent : public Server<IPv4EndPoint>
+      |                  final
+   38 | {
+   39 | public:
+   40 |     UDPv4Agent(
+   41 |             uint16_t port,
+   42 |             Middleware::Kind middleware_kind);
+   43 | 
+   44 |     ~UDPv4Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:37:7: note: mark 'eprosima::uxr::UDPv4Agent' as 'final' to silence this warning
+   37 | class UDPv4Agent : public Server<IPv4EndPoint>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:34:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:41:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class UDPv6Agent : public Server<IPv6EndPoint>
+      |                  final
+   35 | {
+   36 | public:
+   37 |     UDPv6Agent(
+   38 |             uint16_t port,
+   39 |             Middleware::Kind middleware_kind);
+   40 | 
+   41 |     ~UDPv6Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:34:7: note: mark 'eprosima::uxr::UDPv6Agent' as 'final' to silence this warning
+   34 | class UDPv6Agent : public Server<IPv6EndPoint>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:35:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+      |                  final
+   42 | {
+   43 | public:
+   44 |     TCPv4Agent(
+   45 |             uint16_t agent_port,
+   46 |             Middleware::Kind middleware_kind);
+   47 | 
+   48 |     ~TCPv4Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv4Agent' as 'final' to silence this warning
+   41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:36:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+      |                  final
+   42 | {
+   43 | public:
+   44 |     TCPv6Agent(
+   45 |             uint16_t agent_port,
+   46 |             Middleware::Kind middleware_kind);
+   47 | 
+   48 |     ~TCPv6Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv6Agent' as 'final' to silence this warning
+   41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:40:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/serial/baud_rate_table_linux.h:156:58: warning: format specifies type 'int' but the argument has type 'speed_t' (aka 'unsigned long') [-Wformat]
+  156 |         printf("Warning: Custom baud rate set to: %d\n", custom_baud_rate);
+      |                                                   ~~     ^~~~~~~~~~~~~~~~
+      |                                                   %lu
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/custom/CustomAgent.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/custom/CustomAgent.hpp:112:37: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 |     UXR_AGENT_EXPORT ~CustomAgent() final;
+      |                                     ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/custom/CustomAgent.hpp:41:7: note: mark 'eprosima::uxr::CustomAgent' as 'final' to silence this warning
+   41 | class CustomAgent : public Server<CustomEndPoint>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/udp/UDPv4AgentLinux.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:44:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   37 | class UDPv4Agent : public Server<IPv4EndPoint>
+      |                  final
+   38 | {
+   39 | public:
+   40 |     UDPv4Agent(
+   41 |             uint16_t port,
+   42 |             Middleware::Kind middleware_kind);
+   43 | 
+   44 |     ~UDPv4Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:37:7: note: mark 'eprosima::uxr::UDPv4Agent' as 'final' to silence this warning
+   37 | class UDPv4Agent : public Server<IPv4EndPoint>
+      |       ^
+5 warnings generated.
+9 warnings generated.
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/udp/UDPv6AgentLinux.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:41:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class UDPv6Agent : public Server<IPv6EndPoint>
+      |                  final
+   35 | {
+   36 | public:
+   37 |     UDPv6Agent(
+   38 |             uint16_t port,
+   39 |             Middleware::Kind middleware_kind);
+   40 | 
+   41 |     ~UDPv6Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:34:7: note: mark 'eprosima::uxr::UDPv6Agent' as 'final' to silence this warning
+   34 | class UDPv6Agent : public Server<IPv6EndPoint>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/tcp/TCPv4AgentLinux.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+      |                  final
+   42 | {
+   43 | public:
+   44 |     TCPv4Agent(
+   45 |             uint16_t agent_port,
+   46 |             Middleware::Kind middleware_kind);
+   47 | 
+   48 |     ~TCPv4Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv4Agent' as 'final' to silence this warning
+   41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/tcp/TCPv6AgentLinux.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+      |                  final
+   42 | {
+   43 | public:
+   44 |     TCPv6Agent(
+   45 |             uint16_t agent_port,
+   46 |             Middleware::Kind middleware_kind);
+   47 | 
+   48 |     ~TCPv6Agent() final;
+      |                   ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv6Agent' as 'final' to silence this warning
+   41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+      |       ^
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/serial/PseudoTerminalAgentLinux.cpp:16:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/serial/baud_rate_table_linux.h:156:58: warning: format specifies type 'int' but the argument has type 'speed_t' (aka 'unsigned long') [-Wformat]
+  156 |         printf("Warning: Custom baud rate set to: %d\n", custom_baud_rate);
+      |                                                   ~~     ^~~~~~~~~~~~~~~~
+      |                                                   %lu
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fast/FastMiddleware.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class FastMiddleware : public Middleware
+      |                      final
+   35 | {
+   36 | public:
+   37 |     FastMiddleware();
+   38 |     ~FastMiddleware() final = default;
+      |                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+   34 | class FastMiddleware : public Middleware
+      |       ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fast/FastMiddleware.cpp:16:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:22:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   31 | class FastDDSMiddleware : public Middleware
+      |                         final
+   32 | {
+   33 | public:
+   34 |     FastDDSMiddleware();
+   35 |     FastDDSMiddleware(bool intraprocess_enabled);
+   36 |     ~FastDDSMiddleware() final = default;
+      |                          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+   31 | class FastDDSMiddleware : public Middleware
+      |       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   51 |     bool create_participant_by_bin(
+      |          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+   71 |     virtual bool create_participant_by_bin(
+      |                  ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fast/FastMiddleware.cpp:36:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+   36 |     , callback_factory_(callback_factory_.getInstance())
+      |                         ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:15:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   31 | class FastDDSMiddleware : public Middleware
+      |                         final
+   32 | {
+   33 | public:
+   34 |     FastDDSMiddleware();
+   35 |     FastDDSMiddleware(bool intraprocess_enabled);
+   36 |     ~FastDDSMiddleware() final = default;
+      |                          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+   31 | class FastDDSMiddleware : public Middleware
+      |       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   51 |     bool create_participant_by_bin(
+      |          ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+   71 |     virtual bool create_participant_by_bin(
+      |                  ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:23:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:21:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+   34 | class FastMiddleware : public Middleware
+      |                      final
+   35 | {
+   36 | public:
+   37 |     FastMiddleware();
+   38 |     ~FastMiddleware() final = default;
+      |                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+   34 | class FastMiddleware : public Middleware
+      |       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:39:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+   39 |     , callback_factory_(callback_factory_.getInstance())
+      |                         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:53:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+   53 |     , callback_factory_(callback_factory_.getInstance())
+      |                         ^
+4 warnings generated.
+5 warnings generated.
+CMake Deprecation Warning at CMakeLists.txt:15 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/Agent.cpp:18:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/include/agent/Agent.hpp:18:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/ArgumentParser.hpp:24:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/Server.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/SessionManager.hpp:18:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/logger/Logger.hpp:23:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/spdlog.h:12:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:111: error: no member named 'basic_runtime' in namespace 'fmt'
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                                                          ~~~~~^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:125: error: 'Char' does not refer to a value
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                                                                             ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:124:25: note: declared here
+  124 | template<class T, class Char = char>
+      |                         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:130: error: expected '(' for function-style cast or type construction
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:133: error: expected class name
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                                                                                     ^
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/main.cpp:15:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/include/agent/Agent.hpp:18:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/AgentInstance.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/ArgumentParser.hpp:24:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/Server.hpp:20:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/SessionManager.hpp:18:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/logger/Logger.hpp:23:
+In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/spdlog.h:12:
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:111: error: no member named 'basic_runtime' in namespace 'fmt'
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                                                          ~~~~~^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:125: error: 'Char' does not refer to a value
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                                                                             ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:124:25: note: declared here
+  124 | template<class T, class Char = char>
+      |                         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:130: error: expected '(' for function-style cast or type construction
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:133: error: expected class name
+  127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+      |                                                                                                                                     ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:137:123: error: no member named 'value' in 'spdlog::is_convertible_to_basic_format_string<const fmt::basic_string_view<char> &>'
+  137 | struct is_convertible_to_any_format_string : std::integral_constant<bool, is_convertible_to_basic_format_string<T, char>::value ||
+      |                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:106:48: note: in instantiation of template class 'spdlog::is_convertible_to_any_format_string<const fmt::basic_string_view<char> &>' requested here
+  106 |     template<class T, typename std::enable_if<!is_convertible_to_any_format_string<const T &>::value, int>::type = 0>
+      |                                                ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:107:10: note: while substituting prior template arguments into non-type template parameter [with T = string_view_t]
+  107 |     void log(source_loc loc, level::level_enum lvl, const T &msg)
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:102:9: note: while substituting deduced template arguments into function template 'log' [with T = string_view_t, $1 = (no value)]
+  102 |         log(loc, lvl, string_view_t{msg});
+      |         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:137:123: error: no member named 'value' in 'spdlog::is_convertible_to_basic_format_string<const fmt::basic_string_view<char> &>'
+  137 | struct is_convertible_to_any_format_string : std::integral_constant<bool, is_convertible_to_basic_format_string<T, char>::value ||
+      |                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:106:48: note: in instantiation of template class 'spdlog::is_convertible_to_any_format_string<const fmt::basic_string_view<char> &>' requested here
+  106 |     template<class T, typename std::enable_if<!is_convertible_to_any_format_string<const T &>::value, int>::type = 0>
+      |                                                ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:107:10: note: while substituting prior template arguments into non-type template parameter [with T = string_view_t]
+  107 |     void log(source_loc loc, level::level_enum lvl, const T &msg)
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:102:9: note: while substituting deduced template arguments into function template 'log' [with T = string_view_t, $1 = (no value)]
+  102 |         log(loc, lvl, string_view_t{msg});
+      |         ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:190:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+  190 |                 entity_message.name = std::move(std::string(writer_names_and_types.names.data[i]));
+      |                                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:190:39: note: remove std::move call here
+  190 |                 entity_message.name = std::move(std::string(writer_names_and_types.names.data[i]));
+      |                                       ^~~~~~~~~~                                                 ~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:215:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+  215 |                 entity_message.name = std::move(std::string(reader_names_and_types.names.data[i]));
+      |                                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:215:39: note: remove std::move call here
+  215 |                 entity_message.name = std::move(std::string(reader_names_and_types.names.data[i]));
+      |                                       ^~~~~~~~~~                                                 ~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:241:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+  241 |                 entity_message.name = std::move(std::string(service_server_names_and_types.names.data[i]));
+      |                                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:241:39: note: remove std::move call here
+  241 |                 entity_message.name = std::move(std::string(service_server_names_and_types.names.data[i]));
+      |                                       ^~~~~~~~~~                                                         ~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:266:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+  266 |                 entity_message.name = std::move(std::string(service_client_names_and_types.names.data[i]));
+      |                                       ^
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:266:39: note: remove std::move call here
+  266 |                 entity_message.name = std::move(std::string(service_client_names_and_types.names.data[i]));
+      |                                       ^~~~~~~~~~                                                         ~
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/Agent.cpp:27:32: warning: reference 'xrce_dds_agent_instance_' is not yet bound to a value when used here [-Wuninitialized]
+   27 |     : xrce_dds_agent_instance_(xrce_dds_agent_instance_.getInstance())
+      |                                ^
+5 errors generated.
+make[5]: *** [CMakeFiles/micro_ros_agent.dir/build.make:79: CMakeFiles/micro_ros_agent.dir/src/main.cpp.o] Error 1
+make[5]: *** Waiting for unfinished jobs....
+1 warning and 5 errors generated.
+make[5]: *** [CMakeFiles/micro_ros_agent.dir/build.make:93: CMakeFiles/micro_ros_agent.dir/src/agent/Agent.cpp.o] Error 1
+4 warnings generated.
+make[4]: *** [CMakeFiles/Makefile2:153: CMakeFiles/micro_ros_agent.dir/all] Error 2
+make[3]: *** [Makefile:146: all] Error 2
+make[2]: *** [CMakeFiles/micro_ros_agent.dir/build.make:86: micro_ros_agent-prefix/src/micro_ros_agent-stamp/micro_ros_agent-build] Error 2
+make[1]: *** [CMakeFiles/Makefile2:122: CMakeFiles/micro_ros_agent.dir/all] Error 2
+make: *** [Makefile:91: all] Error 2

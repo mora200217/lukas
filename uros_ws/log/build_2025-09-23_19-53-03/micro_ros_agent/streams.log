@@ -1,0 +1,1153 @@
+[0.015s] Invoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent
+[0.031s] CMake Deprecation Warning at CMakeLists.txt:15 (cmake_minimum_required):
+[0.031s]   Compatibility with CMake < 3.10 will be removed from a future version of
+[0.031s]   CMake.
+[0.031s] 
+[0.031s]   Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+[0.031s]   to tell CMake that the project requires at least <min> but has been updated
+[0.031s]   to work with policies introduced by <max> or earlier.
+[0.031s] 
+[0.031s] 
+[0.031s] Not searching for unused variables given on the command line.
+[0.153s] -- The C compiler identification is Clang 18.1.8
+[0.168s] -- Detecting C compiler ABI info
+[0.312s] -- Detecting C compiler ABI info - done
+[0.316s] -- Check for working C compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang - skipped
+[0.316s] -- Detecting C compile features
+[0.316s] -- Detecting C compile features - done
+[0.446s] -- The CXX compiler identification is Clang 18.1.8
+[0.452s] -- Detecting CXX compiler ABI info
+[0.599s] -- Detecting CXX compiler ABI info - done
+[0.603s] -- Check for working CXX compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang++ - skipped
+[0.603s] -- Detecting CXX compile features
+[0.603s] -- Detecting CXX compile features - done
+[0.648s] -- Configuring done (0.6s)
+[0.657s] -- Generating done (0.0s)
+[0.657s] -- Build files have been written to: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent
+[0.659s] Invoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent' returned '0': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent
+[0.661s] Invoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent -- -j10 -l10
+[0.731s] [  6%] Creating directories for 'xrceagent'
+[0.767s] [ 12%] Performing download step (git clone) for 'xrceagent'
+[0.793s] Cloning into 'xrceagent'...
+[2.837s] HEAD is now at 57d0862 Release v2.4.2
+[2.928s] [ 18%] Performing update step for 'xrceagent'
+[2.958s] -- Already at requested tag: v2.4.2
+[2.969s] [ 25%] No patch step for 'xrceagent'
+[3.002s] [ 31%] Performing configure step for 'xrceagent'
+[3.015s] loading initial cache file /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/tmp/xrceagent-cache-.cmake
+[3.131s] -- The C compiler identification is Clang 18.1.8
+[3.144s] -- Detecting C compiler ABI info
+[3.277s] -- Detecting C compiler ABI info - done
+[3.280s] -- Check for working C compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang - skipped
+[3.281s] -- Detecting C compile features
+[3.281s] -- Detecting C compile features - done
+[3.416s] -- The CXX compiler identification is Clang 18.1.8
+[3.422s] -- Detecting CXX compiler ABI info
+[3.553s] -- Detecting CXX compiler ABI info - done
+[3.557s] -- Check for working CXX compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang++ - skipped
+[3.557s] -- Detecting CXX compile features
+[3.558s] -- Detecting CXX compile features - done
+[3.597s] -- Configuring done (0.6s)
+[3.605s] -- Generating done (0.0s)
+[3.605s] -- Build files have been written to: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build
+[3.630s] [ 37%] Performing build step for 'xrceagent'
+[3.680s] [  6%] Creating directories for 'spdlog'
+[3.708s] [ 12%] Performing download step (git clone) for 'spdlog'
+[3.733s] Cloning into 'spdlog'...
+[9.329s] HEAD is now at eb322062 Bump version to 1.9.2
+[9.414s] [ 18%] Performing update step for 'spdlog'
+[9.445s] -- Already at requested tag: v1.9.2
+[9.458s] [ 25%] No patch step for 'spdlog'
+[9.488s] [ 31%] Performing configure step for 'spdlog'
+[9.500s] loading initial cache file /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/tmp/spdlog-cache-.cmake
+[9.634s] -- The CXX compiler identification is Clang 18.1.8
+[9.661s] -- Detecting CXX compiler ABI info
+[9.792s] -- Detecting CXX compiler ABI info - done
+[9.796s] -- Check for working CXX compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang++ - skipped
+[9.797s] -- Detecting CXX compile features
+[9.797s] -- Detecting CXX compile features - done
+[9.798s] -- Build spdlog: 1.9.2
+[9.801s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[9.939s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[9.940s] -- Found Threads: TRUE
+[9.940s] -- Build type: Release
+[9.940s] -- Generating example(s)
+[9.940s] -- Generating install
+[9.948s] -- Configuring done (0.4s)
+[9.958s] -- Generating done (0.0s)
+[9.958s] -- Build files have been written to: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog-build
+[9.982s] [ 37%] Performing build step for 'spdlog'
+[10.035s] [ 10%] Building CXX object CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o
+[10.035s] [ 20%] Building CXX object CMakeFiles/spdlog.dir/src/spdlog.cpp.o
+[10.036s] [ 30%] Building CXX object CMakeFiles/spdlog.dir/src/color_sinks.cpp.o
+[10.039s] [ 40%] Building CXX object CMakeFiles/spdlog.dir/src/async.cpp.o
+[10.039s] [ 50%] Building CXX object CMakeFiles/spdlog.dir/src/fmt.cpp.o
+[10.040s] [ 60%] Building CXX object CMakeFiles/spdlog.dir/src/file_sinks.cpp.o
+[10.041s] [ 70%] Building CXX object CMakeFiles/spdlog.dir/src/cfg.cpp.o
+[10.414s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/src/fmt.cpp:10:
+[10.414s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format-inl.h:22:
+[10.414s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/locale:202:
+[10.414s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__locale:23:
+[10.414s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string:625:
+[10.414s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string_view:213:
+[10.414s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__fwd/string_view.h:22:41: warning: 'char_traits<fmt::detail::char8_type>' is deprecated: char_traits<T> for T not equal to char, wchar_t, char8_t, char16_t or char32_t is non-standard and is provided for a temporary period. It will be removed in LLVM 19, so please migrate off of it. [-Wdeprecated-declarations]
+[10.414s]    22 | template <class _CharT, class _Traits = char_traits<_CharT> >
+[10.414s]       |                                         ^
+[10.414s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:380:26: note: in instantiation of default argument for 'basic_string_view<fmt::detail::char8_type>' required here
+[10.414s]   380 | template <typename Char> using std_string_view = std::basic_string_view<Char>;
+[10.414s]       |                          ^~~~~
+[10.415s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:476:50: note: in instantiation of template type alias 'std_string_view' requested here
+[10.415s]   476 |                                       S, detail::std_string_view<Char>>::value)>
+[10.415s]       |                                                  ^
+[10.415s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format.h:545:57: note: in instantiation of template class 'fmt::basic_string_view<fmt::detail::char8_type>' requested here
+[10.415s]   545 | inline auto compute_width(basic_string_view<char8_type> s) -> size_t {
+[10.415s]       |                                                         ^
+[10.415s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__string/char_traits.h:81:8: note: 'char_traits<fmt::detail::char8_type>' has been explicitly marked deprecated here
+[10.415s]    81 | struct _LIBCPP_DEPRECATED_(
+[10.415s]       |        ^
+[10.415s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__config:975:53: note: expanded from macro '_LIBCPP_DEPRECATED_'
+[10.416s]   975 | #      define _LIBCPP_DEPRECATED_(m) __attribute__((__deprecated__(m)))
+[10.416s]       |                                                     ^
+[10.440s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/src/color_sinks.cpp:8:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/mutex:192:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__condition_variable/condition_variable.h:17:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__mutex/unique_lock.h:17:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/system_error.h:14:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/error_category.h:15:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string:625:
+[10.440s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string_view:213:
+[10.440s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__fwd/string_view.h:22:41: warning: 'char_traits<fmt::detail::char8_type>' is deprecated: char_traits<T> for T not equal to char, wchar_t, char8_t, char16_t or char32_t is non-standard and is provided for a temporary period. It will be removed in LLVM 19, so please migrate off of it. [-Wdeprecated-declarations]
+[10.441s]    22 | template <class _CharT, class _Traits = char_traits<_CharT> >
+[10.441s]       |                                         ^
+[10.441s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:380:26: note: in instantiation of default argument for 'basic_string_view<fmt::detail::char8_type>' required here
+[10.441s]   380 | template <typename Char> using std_string_view = std::basic_string_view<Char>;
+[10.441s]       |                          ^~~~~
+[10.441s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:476:50: note: in instantiation of template type alias 'std_string_view' requested here
+[10.441s]   476 |                                       S, detail::std_string_view<Char>>::value)>
+[10.441s]       |                                                  ^
+[10.441s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format.h:545:57: note: in instantiation of template class 'fmt::basic_string_view<fmt::detail::char8_type>' requested here
+[10.441s]   545 | inline auto compute_width(basic_string_view<char8_type> s) -> size_t {
+[10.441s]       |                                                         ^
+[10.441s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__string/char_traits.h:81:8: note: 'char_traits<fmt::detail::char8_type>' has been explicitly marked deprecated here
+[10.441s]    81 | struct _LIBCPP_DEPRECATED_(
+[10.441s]       |        ^
+[10.441s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__config:975:53: note: expanded from macro '_LIBCPP_DEPRECATED_'
+[10.441s]   975 | #      define _LIBCPP_DEPRECATED_(m) __attribute__((__deprecated__(m)))
+[10.441s]       |                                                     ^
+[10.460s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/src/stdout_sinks.cpp:8:
+[10.460s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/mutex:192:
+[10.460s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__condition_variable/condition_variable.h:17:
+[10.460s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__mutex/unique_lock.h:17:
+[10.460s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/system_error.h:14:
+[10.460s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__system_error/error_category.h:15:
+[10.460s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string:625:
+[10.461s] In file included from /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/string_view:213:
+[10.461s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__fwd/string_view.h:22:41: warning: 'char_traits<fmt::detail::char8_type>' is deprecated: char_traits<T> for T not equal to char, wchar_t, char8_t, char16_t or char32_t is non-standard and is provided for a temporary period. It will be removed in LLVM 19, so please migrate off of it. [-Wdeprecated-declarations]
+[10.461s]    22 | template <class _CharT, class _Traits = char_traits<_CharT> >
+[10.461s]       |                                         ^
+[10.461s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:380:26: note: in instantiation of default argument for 'basic_string_view<fmt::detail::char8_type>' required here
+[10.461s]   380 | template <typename Char> using std_string_view = std::basic_string_view<Char>;
+[10.461s]       |                          ^~~~~
+[10.461s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/core.h:476:50: note: in instantiation of template type alias 'std_string_view' requested here
+[10.461s]   476 |                                       S, detail::std_string_view<Char>>::value)>
+[10.461s]       |                                                  ^
+[10.461s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog/include/spdlog/fmt/bundled/format.h:545:57: note: in instantiation of template class 'fmt::basic_string_view<fmt::detail::char8_type>' requested here
+[10.461s]   545 | inline auto compute_width(basic_string_view<char8_type> s) -> size_t {
+[10.461s]       |                                                         ^
+[10.461s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__string/char_traits.h:81:8: note: 'char_traits<fmt::detail::char8_type>' has been explicitly marked deprecated here
+[10.461s]    81 | struct _LIBCPP_DEPRECATED_(
+[10.461s]       |        ^
+[10.461s] /Users/amoralesma/conda/envs/humble/bin/../include/c++/v1/__config:975:53: note: expanded from macro '_LIBCPP_DEPRECATED_'
+[10.461s]   975 | #      define _LIBCPP_DEPRECATED_(m) __attribute__((__deprecated__(m)))
+[10.461s]       |                                                     ^
+[10.873s] 1 warning generated.
+[10.905s] 1 warning generated.
+[11.432s] 1 warning generated.
+[12.446s] [ 80%] Linking CXX static library libspdlog.a
+[12.493s] [ 80%] Built target spdlog
+[12.519s] [ 90%] Building CXX object example/CMakeFiles/example.dir/example.cpp.o
+[13.784s] [100%] Linking CXX executable example
+[13.844s] [100%] Built target example
+[13.876s] [ 43%] Performing install step for 'spdlog'
+[13.956s] [ 80%] Built target spdlog
+[13.992s] [100%] Built target example
+[14.013s] Install the project...
+[14.021s] -- Install configuration: "Release"
+[14.021s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/pattern_formatter-inl.h
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fwd.h
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/version.h
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/spdlog.h
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/xchar.h
+[14.022s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/chrono.h
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bin_to_hex.h
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/fmt.h
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/compile.h
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/ostr.h
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/logger-inl.h
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks
+[14.023s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/qt_sinks.h
+[14.024s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/ansicolor_sink-inl.h
+[14.024s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/hourly_file_sink.h
+[14.024s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/stdout_sinks.h
+[14.024s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/basic_file_sink.h
+[14.024s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/rotating_file_sink.h
+[14.025s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/daily_file_sink.h
+[14.025s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/ringbuffer_sink.h
+[14.025s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/ansicolor_sink.h
+[14.025s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/systemd_sink.h
+[14.025s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/base_sink.h
+[14.026s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/stdout_color_sinks.h
+[14.026s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/dist_sink.h
+[14.026s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/msvc_sink.h
+[14.026s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/tcp_sink.h
+[14.026s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/mongo_sink.h
+[14.027s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/sink-inl.h
+[14.027s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/wincolor_sink-inl.h
+[14.027s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/android_sink.h
+[14.027s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/stdout_sinks-inl.h
+[14.027s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/sink.h
+[14.028s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/syslog_sink.h
+[14.028s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/dup_filter_sink.h
+[14.028s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/win_eventlog_sink.h
+[14.028s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/stdout_color_sinks-inl.h
+[14.028s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/ostream_sink.h
+[14.029s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/rotating_file_sink-inl.h
+[14.029s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/basic_file_sink-inl.h
+[14.029s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/null_sink.h
+[14.029s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/base_sink-inl.h
+[14.029s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/sinks/wincolor_sink.h
+[14.030s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/formatter.h
+[14.030s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/common-inl.h
+[14.030s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details
+[14.030s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/log_msg_buffer-inl.h
+[14.030s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/log_msg-inl.h
+[14.031s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/file_helper.h
+[14.031s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/periodic_worker-inl.h
+[14.031s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/periodic_worker.h
+[14.031s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/mpmc_blocking_q.h
+[14.031s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/os.h
+[14.031s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/thread_pool-inl.h
+[14.032s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/fmt_helper.h
+[14.032s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/null_mutex.h
+[14.032s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/registry.h
+[14.032s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/backtracer.h
+[14.033s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/registry-inl.h
+[14.033s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/thread_pool.h
+[14.033s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/circular_q.h
+[14.033s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/synchronous_factory.h
+[14.033s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/os-inl.h
+[14.033s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/log_msg.h
+[14.034s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/backtracer-inl.h
+[14.034s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/file_helper-inl.h
+[14.034s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/log_msg_buffer.h
+[14.034s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/tcp_client.h
+[14.034s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/console_globals.h
+[14.035s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/windows_include.h
+[14.035s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/details/tcp_client-windows.h
+[14.035s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/async_logger.h
+[14.035s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/cfg
+[14.035s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/cfg/env.h
+[14.036s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/cfg/argv.h
+[14.036s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/cfg/helpers-inl.h
+[14.036s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/cfg/helpers.h
+[14.037s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/tweakme.h
+[14.037s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/async.h
+[14.037s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/common.h
+[14.038s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/async_logger-inl.h
+[14.038s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/stopwatch.h
+[14.038s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/pattern_formatter.h
+[14.039s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/logger.h
+[14.039s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/spdlog-inl.h
+[14.040s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/lib/libspdlog.a
+[14.053s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled/
+[14.053s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//ostream.h
+[14.053s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//format-inl.h
+[14.054s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//ranges.h
+[14.054s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//xchar.h
+[14.054s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//core.h
+[14.054s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//locale.h
+[14.054s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//chrono.h
+[14.054s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//os.h
+[14.055s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//color.h
+[14.055s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//args.h
+[14.055s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//printf.h
+[14.055s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//compile.h
+[14.055s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/include/spdlog/fmt/bundled//format.h
+[14.055s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/lib/pkgconfig/spdlog.pc
+[14.056s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/lib/cmake/spdlog/spdlogConfigTargets.cmake
+[14.056s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/lib/cmake/spdlog/spdlogConfigTargets-release.cmake
+[14.056s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/lib/cmake/spdlog/spdlogConfig.cmake
+[14.057s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/temp_install/spdlog-1.9.2/lib/cmake/spdlog/spdlogConfigVersion.cmake
+[14.080s] [ 50%] Completed 'spdlog'
+[14.117s] [ 50%] Built target spdlog
+[14.143s] [ 56%] Creating directories for 'uagent'
+[14.172s] [ 62%] No download step for 'uagent'
+[14.199s] [ 68%] No update step for 'uagent'
+[14.227s] [ 75%] No patch step for 'uagent'
+[14.254s] [ 81%] Performing configure step for 'uagent'
+[14.265s] loading initial cache file /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/uagent-prefix/tmp/uagent-cache-.cmake
+[14.295s] -- Setting build type to 'Release' as none was specified.
+[14.330s] -- Found TinyXML2: /Users/amoralesma/conda/envs/humble/lib/cmake/tinyxml2
+[14.968s] -- Found OpenSSL: /Users/amoralesma/conda/envs/humble/lib/libcrypto.dylib (found version "3.5.0")
+[14.977s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[15.114s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[15.114s] -- Found Threads: TRUE
+[15.118s] -- Configuring done (0.9s)
+[15.129s] -- Generating done (0.0s)
+[15.129s] -- Build files have been written to: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build
+[15.150s] [ 87%] Performing build step for 'uagent'
+[15.206s] [  2%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/client/ProxyClient.cpp.o
+[15.206s] [  4%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/datawriter/DataWriter.cpp.o
+[15.208s] [  7%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/participant/Participant.cpp.o
+[15.210s] [  9%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/publisher/Publisher.cpp.o
+[15.211s] [ 12%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/processor/Processor.cpp.o
+[15.211s] [ 19%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/Agent.cpp.o
+[15.211s] [ 21%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/Root.cpp.o
+[15.212s] [ 19%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/subscriber/Subscriber.cpp.o
+[15.214s] [ 21%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/topic/Topic.cpp.o
+[15.214s] [ 24%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/AgentInstance.cpp.o
+[15.971s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+[15.971s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+[15.971s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:33:
+[15.971s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:44:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[15.971s]    37 | class UDPv4Agent : public Server<IPv4EndPoint>
+[15.971s]       |                  final
+[15.971s]    38 | {
+[15.971s]    39 | public:
+[15.971s]    40 |     UDPv4Agent(
+[15.971s]    41 |             uint16_t port,
+[15.971s]    42 |             Middleware::Kind middleware_kind);
+[15.971s]    43 | 
+[15.971s]    44 |     ~UDPv4Agent() final;
+[15.971s]       |                   ^
+[15.971s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:37:7: note: mark 'eprosima::uxr::UDPv4Agent' as 'final' to silence this warning
+[15.971s]    37 | class UDPv4Agent : public Server<IPv4EndPoint>
+[15.971s]       |       ^
+[15.984s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+[15.984s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+[15.984s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:34:
+[15.985s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:41:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[15.985s]    34 | class UDPv6Agent : public Server<IPv6EndPoint>
+[15.985s]       |                  final
+[15.985s]    35 | {
+[15.985s]    36 | public:
+[15.985s]    37 |     UDPv6Agent(
+[15.985s]    38 |             uint16_t port,
+[15.985s]    39 |             Middleware::Kind middleware_kind);
+[15.985s]    40 | 
+[15.989s]    41 |     ~UDPv6Agent() final;
+[15.989s]       |                   ^
+[15.989s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:34:7: note: mark 'eprosima::uxr::UDPv6Agent' as 'final' to silence this warning
+[15.989s]    34 | class UDPv6Agent : public Server<IPv6EndPoint>
+[15.989s]       |       ^
+[16.007s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+[16.007s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+[16.007s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:35:
+[16.007s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.007s]    41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+[16.007s]       |                  final
+[16.008s]    42 | {
+[16.008s]    43 | public:
+[16.008s]    44 |     TCPv4Agent(
+[16.008s]    45 |             uint16_t agent_port,
+[16.008s]    46 |             Middleware::Kind middleware_kind);
+[16.008s]    47 | 
+[16.008s]    48 |     ~TCPv4Agent() final;
+[16.008s]       |                   ^
+[16.008s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv4Agent' as 'final' to silence this warning
+[16.008s]    41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+[16.008s]       |       ^
+[16.011s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+[16.011s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+[16.011s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:36:
+[16.011s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.011s]    41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+[16.011s]       |                  final
+[16.011s]    42 | {
+[16.011s]    43 | public:
+[16.011s]    44 |     TCPv6Agent(
+[16.012s]    45 |             uint16_t agent_port,
+[16.012s]    46 |             Middleware::Kind middleware_kind);
+[16.012s]    47 | 
+[16.012s]    48 |     ~TCPv6Agent() final;
+[16.012s]       |                   ^
+[16.012s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv6Agent' as 'final' to silence this warning
+[16.012s]    41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+[16.012s]       |       ^
+[16.073s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:16:
+[16.073s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/AgentInstance.hpp:20:
+[16.073s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:40:
+[16.073s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/serial/baud_rate_table_linux.h:156:58: warning: format specifies type 'int' but the argument has type 'speed_t' (aka 'unsigned long') [-Wformat]
+[16.073s]   156 |         printf("Warning: Custom baud rate set to: %d\n", custom_baud_rate);
+[16.073s]       |                                                   ~~     ^~~~~~~~~~~~~~~~
+[16.074s]       |                                                   %lu
+[16.283s] [ 26%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/datareader/DataReader.cpp.o
+[16.326s] [ 29%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/requester/Requester.cpp.o
+[16.341s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Agent.cpp:19:
+[16.341s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:21:
+[16.341s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.341s]    34 | class FastMiddleware : public Middleware
+[16.341s]       |                      final
+[16.341s]    35 | {
+[16.341s]    36 | public:
+[16.341s]    37 |     FastMiddleware();
+[16.341s]    38 |     ~FastMiddleware() final = default;
+[16.341s]       |                       ^
+[16.341s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+[16.341s]    34 | class FastMiddleware : public Middleware
+[16.342s]       |       ^
+[16.354s] [ 31%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/replier/Replier.cpp.o
+[16.422s] [ 34%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/object/XRCEObject.cpp.o
+[16.422s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/client/ProxyClient.cpp:26:
+[16.422s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.422s]    34 | class FastMiddleware : public Middleware
+[16.423s]       |                      final
+[16.423s]    35 | {
+[16.423s]    36 | public:
+[16.423s]    37 |     FastMiddleware();
+[16.423s]    38 |     ~FastMiddleware() final = default;
+[16.423s]       |                       ^
+[16.423s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+[16.423s]    34 | class FastMiddleware : public Middleware
+[16.423s]       |       ^
+[16.462s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Agent.cpp:19:
+[16.462s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:22:
+[16.462s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.462s]    31 | class FastDDSMiddleware : public Middleware
+[16.462s]       |                         final
+[16.463s]    32 | {
+[16.463s]    33 | public:
+[16.463s]    34 |     FastDDSMiddleware();
+[16.463s]    35 |     FastDDSMiddleware(bool intraprocess_enabled);
+[16.463s]    36 |     ~FastDDSMiddleware() final = default;
+[16.463s]       |                          ^
+[16.463s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+[16.463s]    31 | class FastDDSMiddleware : public Middleware
+[16.463s]       |       ^
+[16.464s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+[16.464s]    51 |     bool create_participant_by_bin(
+[16.464s]       |          ^
+[16.464s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+[16.464s]    71 |     virtual bool create_participant_by_bin(
+[16.464s]       |                  ^
+[16.495s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Agent.cpp:217:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+[16.495s]   217 |     , callback_factory_(callback_factory_.getInstance())
+[16.495s]       |                         ^
+[16.565s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/client/ProxyClient.cpp:27:
+[16.565s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.565s]    31 | class FastDDSMiddleware : public Middleware
+[16.565s]       |                         final
+[16.565s]    32 | {
+[16.565s]    33 | public:
+[16.565s]    34 |     FastDDSMiddleware();
+[16.565s]    35 |     FastDDSMiddleware(bool intraprocess_enabled);
+[16.565s]    36 |     ~FastDDSMiddleware() final = default;
+[16.565s]       |                          ^
+[16.565s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+[16.565s]    31 | class FastDDSMiddleware : public Middleware
+[16.565s]       |       ^
+[16.565s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+[16.566s]    51 |     bool create_participant_by_bin(
+[16.566s]       |          ^
+[16.566s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+[16.566s]    71 |     virtual bool create_participant_by_bin(
+[16.566s]       |                  ^
+[16.576s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:17:
+[16.576s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:21:
+[16.577s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.577s]    34 | class FastMiddleware : public Middleware
+[16.577s]       |                      final
+[16.577s]    35 | {
+[16.577s]    36 | public:
+[16.577s]    37 |     FastMiddleware();
+[16.577s]    38 |     ~FastMiddleware() final = default;
+[16.577s]       |                       ^
+[16.577s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+[16.577s]    34 | class FastMiddleware : public Middleware
+[16.577s]       |       ^
+[16.718s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:17:
+[16.718s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:22:
+[16.718s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[16.718s]    31 | class FastDDSMiddleware : public Middleware
+[16.718s]       |                         final
+[16.719s]    32 | {
+[16.719s]    33 | public:
+[16.719s]    34 |     FastDDSMiddleware();
+[16.719s]    35 |     FastDDSMiddleware(bool intraprocess_enabled);
+[16.725s]    36 |     ~FastDDSMiddleware() final = default;
+[16.725s]       |                          ^
+[16.725s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+[16.725s]    31 | class FastDDSMiddleware : public Middleware
+[16.725s]       |       ^
+[16.725s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+[16.725s]    51 |     bool create_participant_by_bin(
+[16.725s]       |          ^
+[16.725s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+[16.725s]    71 |     virtual bool create_participant_by_bin(
+[16.725s]       |                  ^
+[16.763s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/AgentInstance.cpp:23:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+[16.763s]    23 |     : callback_factory_(callback_factory_.getInstance())
+[16.763s]       |                         ^
+[17.160s] [ 36%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/XRCETypes.cpp.o
+[17.446s] [ 39%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/MessageHeader.cpp.o
+[18.060s] 4 warnings generated.
+[18.088s] [ 41%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/SubMessageHeader.cpp.o
+[18.273s] [ 43%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/message/InputMessage.cpp.o
+[18.691s] [ 46%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/message/OutputMessage.cpp.o
+[18.792s] [ 48%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/utils/ArgumentParser.cpp.o
+[18.810s] [ 51%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/Server.cpp.o
+[18.838s] [ 53%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/stream_framing/StreamFramingProtocol.cpp.o
+[18.930s] [ 56%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/custom/CustomAgent.cpp.o
+[19.133s] 3 warnings generated.
+[19.169s] [ 58%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/udp/UDPv4AgentLinux.cpp.o
+[19.444s] [ 60%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/udp/UDPv6AgentLinux.cpp.o
+[19.445s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+[19.445s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:33:
+[19.445s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:44:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[19.445s]    37 | class UDPv4Agent : public Server<IPv4EndPoint>
+[19.445s]       |                  final
+[19.445s]    38 | {
+[19.445s]    39 | public:
+[19.445s]    40 |     UDPv4Agent(
+[19.445s]    41 |             uint16_t port,
+[19.445s]    42 |             Middleware::Kind middleware_kind);
+[19.445s]    43 | 
+[19.446s]    44 |     ~UDPv4Agent() final;
+[19.446s]       |                   ^
+[19.446s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:37:7: note: mark 'eprosima::uxr::UDPv4Agent' as 'final' to silence this warning
+[19.446s]    37 | class UDPv4Agent : public Server<IPv4EndPoint>
+[19.446s]       |       ^
+[19.456s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+[19.456s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:34:
+[19.456s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:41:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[19.457s]    34 | class UDPv6Agent : public Server<IPv6EndPoint>
+[19.457s]       |                  final
+[19.457s]    35 | {
+[19.457s]    36 | public:
+[19.457s]    37 |     UDPv6Agent(
+[19.457s]    38 |             uint16_t port,
+[19.457s]    39 |             Middleware::Kind middleware_kind);
+[19.457s]    40 | 
+[19.457s]    41 |     ~UDPv6Agent() final;
+[19.457s]       |                   ^
+[19.457s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:34:7: note: mark 'eprosima::uxr::UDPv6Agent' as 'final' to silence this warning
+[19.457s]    34 | class UDPv6Agent : public Server<IPv6EndPoint>
+[19.457s]       |       ^
+[19.479s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+[19.479s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:35:
+[19.479s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[19.479s]    41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+[19.480s]       |                  final
+[19.480s]    42 | {
+[19.480s]    43 | public:
+[19.480s]    44 |     TCPv4Agent(
+[19.480s]    45 |             uint16_t agent_port,
+[19.480s]    46 |             Middleware::Kind middleware_kind);
+[19.480s]    47 | 
+[19.480s]    48 |     ~TCPv4Agent() final;
+[19.480s]       |                   ^
+[19.480s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv4Agent' as 'final' to silence this warning
+[19.480s]    41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+[19.480s]       |       ^
+[19.481s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+[19.481s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:36:
+[19.481s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[19.481s]    41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+[19.482s]       |                  final
+[19.482s]    42 | {
+[19.482s]    43 | public:
+[19.482s]    44 |     TCPv6Agent(
+[19.482s]    45 |             uint16_t agent_port,
+[19.482s]    46 |             Middleware::Kind middleware_kind);
+[19.482s]    47 | 
+[19.482s]    48 |     ~TCPv6Agent() final;
+[19.482s]       |                   ^
+[19.482s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv6Agent' as 'final' to silence this warning
+[19.482s]    41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+[19.482s]       |       ^
+[19.528s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/utils/ArgumentParser.cpp:19:
+[19.528s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/utils/ArgumentParser.hpp:40:
+[19.528s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/serial/baud_rate_table_linux.h:156:58: warning: format specifies type 'int' but the argument has type 'speed_t' (aka 'unsigned long') [-Wformat]
+[19.528s]   156 |         printf("Warning: Custom baud rate set to: %d\n", custom_baud_rate);
+[19.528s]       |                                                   ~~     ^~~~~~~~~~~~~~~~
+[19.528s]       |                                                   %lu
+[19.584s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/custom/CustomAgent.cpp:15:
+[19.584s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/custom/CustomAgent.hpp:112:37: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[19.584s]    41 |     UXR_AGENT_EXPORT ~CustomAgent() final;
+[19.584s]       |                                     ^
+[19.584s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/custom/CustomAgent.hpp:41:7: note: mark 'eprosima::uxr::CustomAgent' as 'final' to silence this warning
+[19.584s]    41 | class CustomAgent : public Server<CustomEndPoint>
+[19.584s]       |       ^
+[19.814s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/udp/UDPv4AgentLinux.cpp:15:
+[19.814s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:44:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[19.814s]    37 | class UDPv4Agent : public Server<IPv4EndPoint>
+[19.814s]       |                  final
+[19.814s]    38 | {
+[19.814s]    39 | public:
+[19.814s]    40 |     UDPv4Agent(
+[19.814s]    41 |             uint16_t port,
+[19.814s]    42 |             Middleware::Kind middleware_kind);
+[19.814s]    43 | 
+[19.814s]    44 |     ~UDPv4Agent() final;
+[19.814s]       |                   ^
+[19.814s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp:37:7: note: mark 'eprosima::uxr::UDPv4Agent' as 'final' to silence this warning
+[19.814s]    37 | class UDPv4Agent : public Server<IPv4EndPoint>
+[19.815s]       |       ^
+[20.024s] 5 warnings generated.
+[20.050s] [ 63%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/tcp/TCPv4AgentLinux.cpp.o
+[20.060s] 9 warnings generated.
+[20.089s] [ 65%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/tcp/TCPv6AgentLinux.cpp.o
+[20.128s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/udp/UDPv6AgentLinux.cpp:15:
+[20.128s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:41:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[20.128s]    34 | class UDPv6Agent : public Server<IPv6EndPoint>
+[20.128s]       |                  final
+[20.129s]    35 | {
+[20.129s]    36 | public:
+[20.129s]    37 |     UDPv6Agent(
+[20.129s]    38 |             uint16_t port,
+[20.129s]    39 |             Middleware::Kind middleware_kind);
+[20.129s]    40 | 
+[20.129s]    41 |     ~UDPv6Agent() final;
+[20.129s]       |                   ^
+[20.133s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp:34:7: note: mark 'eprosima::uxr::UDPv6Agent' as 'final' to silence this warning
+[20.133s]    34 | class UDPv6Agent : public Server<IPv6EndPoint>
+[20.133s]       |       ^
+[20.179s] [ 68%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/SerialAgentLinux.cpp.o
+[20.295s] [ 70%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/TermiosAgentLinux.cpp.o
+[20.539s] [ 73%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/MultiSerialAgentLinux.cpp.o
+[20.790s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/tcp/TCPv4AgentLinux.cpp:15:
+[20.791s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[20.792s]    41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+[20.792s]       |                  final
+[20.792s]    42 | {
+[20.792s]    43 | public:
+[20.792s]    44 |     TCPv4Agent(
+[20.792s]    45 |             uint16_t agent_port,
+[20.792s]    46 |             Middleware::Kind middleware_kind);
+[20.792s]    47 | 
+[20.792s]    48 |     ~TCPv4Agent() final;
+[20.792s]       |                   ^
+[20.792s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv4Agent' as 'final' to silence this warning
+[20.792s]    41 | class TCPv4Agent : public Server<IPv4EndPoint>, public TCPServerBase<TCPv4ConnectionLinux>
+[20.792s]       |       ^
+[20.918s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/tcp/TCPv6AgentLinux.cpp:15:
+[20.919s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:48:19: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[20.919s]    41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+[20.919s]       |                  final
+[20.919s]    42 | {
+[20.919s]    43 | public:
+[20.919s]    44 |     TCPv6Agent(
+[20.919s]    45 |             uint16_t agent_port,
+[20.919s]    46 |             Middleware::Kind middleware_kind);
+[20.919s]    47 | 
+[20.919s]    48 |     ~TCPv6Agent() final;
+[20.919s]       |                   ^
+[20.919s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp:41:7: note: mark 'eprosima::uxr::TCPv6Agent' as 'final' to silence this warning
+[20.919s]    41 | class TCPv6Agent : public Server<IPv6EndPoint>, public TCPServerBase<TCPv6ConnectionLinux>
+[20.919s]       |       ^
+[21.274s] 1 warning generated.
+[21.302s] [ 75%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/MultiTermiosAgentLinux.cpp.o
+[21.383s] 1 warning generated.
+[21.412s] [ 78%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/serial/PseudoTerminalAgentLinux.cpp.o
+[21.642s] [ 80%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/discovery/DiscoveryServerLinux.cpp.o
+[21.702s] 1 warning generated.
+[21.744s] [ 82%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/transport/discovery/DiscoveryServer.cpp.o
+[22.041s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/transport/serial/PseudoTerminalAgentLinux.cpp:16:
+[22.041s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/serial/baud_rate_table_linux.h:156:58: warning: format specifies type 'int' but the argument has type 'speed_t' (aka 'unsigned long') [-Wformat]
+[22.041s]   156 |         printf("Warning: Custom baud rate set to: %d\n", custom_baud_rate);
+[22.041s]       |                                                   ~~     ^~~~~~~~~~~~~~~~
+[22.041s]       |                                                   %lu
+[22.228s] [ 85%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/types/TopicPubSubType.cpp.o
+[22.260s] [ 87%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/xmlobjects/xmlobjects.cpp.o
+[22.525s] [ 90%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fast/FastEntities.cpp.o
+[22.621s] 1 warning generated.
+[22.652s] [ 92%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fast/FastMiddleware.cpp.o
+[22.760s] 1 warning generated.
+[22.786s] [ 95%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fastdds/FastDDSEntities.cpp.o
+[22.877s] [ 97%] Building CXX object CMakeFiles/microxrcedds_agent.dir/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp.o
+[23.246s] 1 warning generated.
+[23.483s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fast/FastMiddleware.cpp:15:
+[23.483s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[23.483s]    34 | class FastMiddleware : public Middleware
+[23.483s]       |                      final
+[23.483s]    35 | {
+[23.483s]    36 | public:
+[23.483s]    37 |     FastMiddleware();
+[23.483s]    38 |     ~FastMiddleware() final = default;
+[23.483s]       |                       ^
+[23.483s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+[23.483s]    34 | class FastMiddleware : public Middleware
+[23.484s]       |       ^
+[23.588s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fast/FastMiddleware.cpp:16:
+[23.588s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:22:
+[23.588s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[23.588s]    31 | class FastDDSMiddleware : public Middleware
+[23.588s]       |                         final
+[23.588s]    32 | {
+[23.588s]    33 | public:
+[23.588s]    34 |     FastDDSMiddleware();
+[23.589s]    35 |     FastDDSMiddleware(bool intraprocess_enabled);
+[23.589s]    36 |     ~FastDDSMiddleware() final = default;
+[23.589s]       |                          ^
+[23.589s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+[23.589s]    31 | class FastDDSMiddleware : public Middleware
+[23.589s]       |       ^
+[23.589s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+[23.589s]    51 |     bool create_participant_by_bin(
+[23.589s]       |          ^
+[23.589s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+[23.589s]    71 |     virtual bool create_participant_by_bin(
+[23.589s]       |                  ^
+[23.648s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fast/FastMiddleware.cpp:36:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+[23.648s]    36 |     , callback_factory_(callback_factory_.getInstance())
+[23.648s]       |                         ^
+[23.689s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:15:
+[23.689s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:36:26: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[23.689s]    31 | class FastDDSMiddleware : public Middleware
+[23.689s]       |                         final
+[23.689s]    32 | {
+[23.689s]    33 | public:
+[23.690s]    34 |     FastDDSMiddleware();
+[23.690s]    35 |     FastDDSMiddleware(bool intraprocess_enabled);
+[23.690s]    36 |     ~FastDDSMiddleware() final = default;
+[23.690s]       |                          ^
+[23.690s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:31:7: note: mark 'eprosima::uxr::FastDDSMiddleware' as 'final' to silence this warning
+[23.690s]    31 | class FastDDSMiddleware : public Middleware
+[23.690s]       |       ^
+[23.690s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp:51:10: warning: 'create_participant_by_bin' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+[23.690s]    51 |     bool create_participant_by_bin(
+[23.690s]       |          ^
+[23.690s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/Middleware.hpp:71:18: note: overridden virtual function is here
+[23.690s]    71 |     virtual bool create_participant_by_bin(
+[23.690s]       |                  ^
+[23.810s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:23:
+[23.810s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/utils/Callbacks.hpp:21:
+[23.810s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:38:23: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+[23.810s]    34 | class FastMiddleware : public Middleware
+[23.810s]       |                      final
+[23.810s]    35 | {
+[23.810s]    36 | public:
+[23.810s]    37 |     FastMiddleware();
+[23.810s]    38 |     ~FastMiddleware() final = default;
+[23.810s]       |                       ^
+[23.810s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/middleware/fast/FastMiddleware.hpp:34:7: note: mark 'eprosima::uxr::FastMiddleware' as 'final' to silence this warning
+[23.810s]    34 | class FastMiddleware : public Middleware
+[23.810s]       |       ^
+[23.835s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:39:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+[23.835s]    39 |     , callback_factory_(callback_factory_.getInstance())
+[23.835s]       |                         ^
+[23.835s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp:53:25: warning: reference 'callback_factory_' is not yet bound to a value when used here [-Wuninitialized]
+[23.835s]    53 |     , callback_factory_(callback_factory_.getInstance())
+[23.835s]       |                         ^
+[24.894s] 4 warnings generated.
+[25.649s] 5 warnings generated.
+[25.667s] [100%] Linking CXX shared library libmicroxrcedds_agent.dylib
+[25.765s] [100%] Built target microxrcedds_agent
+[25.795s] No install step for 'uagent'
+[25.823s] Completed 'uagent'
+[25.859s] Built target uagent
+[25.891s] [ 43%] Performing install step for 'xrceagent'
+[26.093s] [100%] Built target microxrcedds_agent
+[26.117s] Install the project...
+[26.126s] -- Install configuration: "Release"
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.2.4.2.dylib
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.2.4.dylib
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.dylib
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/reader
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/reader/Reader.hpp
+[26.126s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fast
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fast/FastMiddleware.hpp
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fast/FastEntities.hpp
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/utils
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/utils/Callbacks.hpp
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fastdds
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fastdds/FastDDSMiddleware.hpp
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/fastdds/FastDDSEntities.hpp
+[26.127s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/Middleware.hpp
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/ced
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/ced/CedMiddleware.hpp
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/middleware/ced/CedEntities.hpp
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/types
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/types/TopicPubSubType.hpp
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/types/SubMessageHeader.hpp
+[26.128s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/types/MessageHeader.hpp
+[26.129s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/types/XRCETypes.hpp
+[26.129s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/types/Optional.hpp
+[26.129s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport
+[26.129s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/TransportRc.hpp
+[26.129s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/can
+[26.129s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/can/CanAgentLinux.hpp
+[26.130s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/SessionManager.hpp
+[26.130s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/stream_framing
+[26.130s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/stream_framing/StreamFramingProtocol.hpp
+[26.130s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/util
+[26.130s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/util/InterfaceLinux.hpp
+[26.130s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/util/InterfaceWindows.hpp
+[26.131s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp
+[26.131s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv4AgentWindows.hpp
+[26.131s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv4AgentLinux.hpp
+[26.131s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv6AgentWindows.hpp
+[26.131s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/udp/UDPv6AgentLinux.hpp
+[26.131s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/Server.hpp
+[26.132s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery
+[26.132s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery/DiscoveryServerLinux.hpp
+[26.132s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery/DiscoveryServerWindows.hpp
+[26.132s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/discovery/DiscoveryServer.hpp
+[26.132s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp
+[26.132s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv6AgentWindows.hpp
+[26.133s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPConnection.hpp
+[26.133s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv6AgentLinux.hpp
+[26.133s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPServerBase.hpp
+[26.133s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv4AgentLinux.hpp
+[26.133s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/tcp/TCPv4AgentWindows.hpp
+[26.134s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint
+[26.134s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/CustomEndPoint.hpp
+[26.134s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/IPv4EndPoint.hpp
+[26.134s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/SerialEndPoint.hpp
+[26.134s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/MultiSerialEndPoint.hpp
+[26.135s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/IPv6EndPoint.hpp
+[26.135s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/endpoint/CanEndPoint.hpp
+[26.135s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/p2p
+[26.135s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/p2p/AgentDiscovererLinux.hpp
+[26.135s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/p2p/AgentDiscoverer.hpp
+[26.136s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/custom
+[26.136s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/custom/CustomAgent.hpp
+[26.136s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial
+[26.136s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/baud_rate_table_linux.h
+[26.136s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/SerialAgentLinux.hpp
+[26.137s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/MultiTermiosAgentLinux.hpp
+[26.137s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/PseudoTerminalAgentLinux.hpp
+[26.137s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/MultiSerialAgentLinux.hpp
+[26.137s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/serial/TermiosAgentLinux.hpp
+[26.138s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/logger
+[26.138s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/logger/Logger.hpp
+[26.138s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/Agent.hpp
+[26.138s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/replier
+[26.138s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/replier/Replier.hpp
+[26.139s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/publisher
+[26.139s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/publisher/Publisher.hpp
+[26.139s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/participant
+[26.139s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/participant/Participant.hpp
+[26.139s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/visibility.hpp
+[26.140s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/processor
+[26.140s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/processor/Processor.hpp
+[26.140s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/requester
+[26.140s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/requester/Requester.hpp
+[26.141s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/datareader
+[26.141s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/datareader/DataReader.hpp
+[26.141s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/scheduler
+[26.141s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/scheduler/PacketScheduler.hpp
+[26.142s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/scheduler/Scheduler.hpp
+[26.142s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/message
+[26.142s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/message/OutputMessage.hpp
+[26.142s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/message/InputMessage.hpp
+[26.143s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/message/Packet.hpp
+[26.143s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/AgentInstance.hpp
+[26.143s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils
+[26.143s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Conversion.hpp
+[26.144s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Functions.hpp
+[26.144s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Time.hpp
+[26.144s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/TokenBucket.hpp
+[26.144s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/ArgumentParser.hpp
+[26.145s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/SeqNum.hpp
+[26.145s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/Color.hpp
+[26.145s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/SharedMutex.hpp
+[26.145s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/SharedMutexPriority.hpp
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/topic
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/topic/Topic.hpp
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/object
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/object/XRCEObject.hpp
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/Root.hpp
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/p2p
+[26.146s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/p2p/InternalClient.hpp
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/p2p/InternalClientManager.hpp
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/subscriber
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/subscriber/Subscriber.hpp
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/datawriter
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/datawriter/DataWriter.hpp
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/ProxyClient.hpp
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session
+[26.147s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/Session.hpp
+[26.148s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/stream
+[26.148s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/stream/OutputStream.hpp
+[26.148s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/stream/InputStream.hpp
+[26.148s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/client/session/SessionInfo.hpp
+[26.148s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentTargets.cmake
+[26.149s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentTargets-release.cmake
+[26.149s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/config.hpp
+[26.149s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/LICENSE
+[26.149s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentConfig.cmake
+[26.149s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/microxrcedds_agent/cmake/microxrcedds_agentConfigVersion.cmake
+[26.150s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent
+[26.150s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/pattern_formatter-inl.h
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fwd.h
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/version.h
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/spdlog.h
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt
+[26.150s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/xchar.h
+[26.151s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/chrono.h
+[26.151s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bin_to_hex.h
+[26.151s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled
+[26.151s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/ostream.h
+[26.151s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/format-inl.h
+[26.152s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/ranges.h
+[26.152s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/xchar.h
+[26.152s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/core.h
+[26.152s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/locale.h
+[26.152s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/chrono.h
+[26.152s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/os.h
+[26.153s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/color.h
+[26.153s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/args.h
+[26.153s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/printf.h
+[26.154s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/compile.h
+[26.154s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/bundled/format.h
+[26.155s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/fmt.h
+[26.155s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/compile.h
+[26.155s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/fmt/ostr.h
+[26.155s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger-inl.h
+[26.156s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks
+[26.156s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/qt_sinks.h
+[26.156s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/ansicolor_sink-inl.h
+[26.156s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/hourly_file_sink.h
+[26.157s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/stdout_sinks.h
+[26.157s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/basic_file_sink.h
+[26.157s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/rotating_file_sink.h
+[26.157s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/daily_file_sink.h
+[26.158s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/ringbuffer_sink.h
+[26.158s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/ansicolor_sink.h
+[26.158s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/systemd_sink.h
+[26.158s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/base_sink.h
+[26.159s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/stdout_color_sinks.h
+[26.159s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/dist_sink.h
+[26.159s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/msvc_sink.h
+[26.160s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/tcp_sink.h
+[26.160s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/mongo_sink.h
+[26.160s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/sink-inl.h
+[26.161s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/wincolor_sink-inl.h
+[26.161s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/android_sink.h
+[26.161s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/stdout_sinks-inl.h
+[26.161s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/sink.h
+[26.162s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/syslog_sink.h
+[26.162s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/dup_filter_sink.h
+[26.162s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/win_eventlog_sink.h
+[26.163s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/stdout_color_sinks-inl.h
+[26.163s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/ostream_sink.h
+[26.163s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/rotating_file_sink-inl.h
+[26.164s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/basic_file_sink-inl.h
+[26.164s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/null_sink.h
+[26.164s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/base_sink-inl.h
+[26.164s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/sinks/wincolor_sink.h
+[26.164s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/formatter.h
+[26.164s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common-inl.h
+[26.165s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details
+[26.165s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/log_msg_buffer-inl.h
+[26.165s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/log_msg-inl.h
+[26.165s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/file_helper.h
+[26.165s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/periodic_worker-inl.h
+[26.165s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/periodic_worker.h
+[26.166s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/mpmc_blocking_q.h
+[26.166s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/os.h
+[26.166s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/thread_pool-inl.h
+[26.166s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/fmt_helper.h
+[26.166s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/null_mutex.h
+[26.166s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/registry.h
+[26.167s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/backtracer.h
+[26.167s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/registry-inl.h
+[26.167s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/thread_pool.h
+[26.167s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/circular_q.h
+[26.167s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/synchronous_factory.h
+[26.167s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/os-inl.h
+[26.168s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/log_msg.h
+[26.168s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/backtracer-inl.h
+[26.168s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/file_helper-inl.h
+[26.168s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/log_msg_buffer.h
+[26.168s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/tcp_client.h
+[26.169s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/console_globals.h
+[26.169s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/windows_include.h
+[26.169s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/details/tcp_client-windows.h
+[26.169s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/async_logger.h
+[26.169s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/cfg
+[26.169s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/cfg/env.h
+[26.170s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/cfg/argv.h
+[26.170s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/cfg/helpers-inl.h
+[26.170s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/cfg/helpers.h
+[26.170s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/tweakme.h
+[26.170s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/async.h
+[26.170s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h
+[26.171s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/async_logger-inl.h
+[26.171s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/stopwatch.h
+[26.171s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/pattern_formatter.h
+[26.172s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h
+[26.172s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/spdlog-inl.h
+[26.172s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib
+[26.172s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/pkgconfig
+[26.172s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/pkgconfig/spdlog.pc
+[26.173s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/cmake
+[26.173s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/cmake/spdlog
+[26.173s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/cmake/spdlog/spdlogConfig.cmake
+[26.173s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/cmake/spdlog/spdlogConfigTargets-release.cmake
+[26.173s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/cmake/spdlog/spdlogConfigTargets.cmake
+[26.174s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/cmake/spdlog/spdlogConfigVersion.cmake
+[26.174s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/libspdlog.a
+[26.199s] [ 50%] Completed 'xrceagent'
+[26.287s] [ 50%] Built target xrceagent
+[26.318s] [ 56%] Creating directories for 'micro_ros_agent'
+[26.350s] [ 62%] No download step for 'micro_ros_agent'
+[26.385s] [ 68%] No update step for 'micro_ros_agent'
+[26.417s] [ 75%] No patch step for 'micro_ros_agent'
+[26.448s] [ 81%] Performing configure step for 'micro_ros_agent'
+[26.460s] loading initial cache file /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/micro_ros_agent-prefix/tmp/micro_ros_agent-cache-.cmake
+[26.464s] CMake Deprecation Warning at CMakeLists.txt:15 (cmake_minimum_required):
+[26.464s]   Compatibility with CMake < 3.10 will be removed from a future version of
+[26.464s]   CMake.
+[26.464s] 
+[26.464s]   Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+[26.464s]   to tell CMake that the project requires at least <min> but has been updated
+[26.464s]   to work with policies introduced by <max> or earlier.
+[26.464s] 
+[26.464s] 
+[26.502s] -- Found ament_cmake: 1.3.11 (/Users/amoralesma/conda/envs/humble/share/ament_cmake/cmake)
+[26.597s] -- Found Python3: /Users/amoralesma/conda/envs/humble/bin/python3 (found version "3.11.12") found components: Interpreter
+[27.321s] -- Found OpenSSL: /Users/amoralesma/conda/envs/humble/lib/libcrypto.dylib (found version "3.5.0")
+[27.329s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[27.475s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[27.475s] -- Found Threads: TRUE
+[27.493s] -- Found rosidl_cmake: 3.1.6 (/Users/amoralesma/conda/envs/humble/share/rosidl_cmake/cmake)
+[27.502s] -- Found rosidl_adapter: 3.1.6 (/Users/amoralesma/conda/envs/humble/share/rosidl_adapter/cmake)
+[27.538s] -- Found fastrtps_cmake_module: 2.2.2 (/Users/amoralesma/conda/envs/humble/share/fastrtps_cmake_module/cmake)
+[27.548s] -- Found rmw_dds_common: 1.6.0 (/Users/amoralesma/conda/envs/humble/share/rmw_dds_common/cmake)
+[27.635s] -- Found rosidl_generator_c: 3.1.6 (/Users/amoralesma/conda/envs/humble/share/rosidl_generator_c/cmake)
+[27.659s] -- Found rosidl_generator_cpp: 3.1.6 (/Users/amoralesma/conda/envs/humble/share/rosidl_generator_cpp/cmake)
+[27.674s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[27.702s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[27.742s] -- Found rmw_fastrtps_shared_cpp: 6.2.7 (/Users/amoralesma/conda/envs/humble/share/rmw_fastrtps_shared_cpp/cmake)
+[27.861s] -- Found FastRTPS: /Users/amoralesma/conda/envs/humble/include
+[27.870s] -- Found ament_lint_auto: 0.12.11 (/Users/amoralesma/conda/envs/humble/share/ament_lint_auto/cmake)
+[27.881s] -- Found ament_cmake_gtest: 1.3.11 (/Users/amoralesma/conda/envs/humble/share/ament_cmake_gtest/cmake)
+[27.887s] -- Found micro_ros_msgs: 3.0.1 (/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake)
+[27.951s] -- Configuring done (1.5s)
+[27.974s] -- Generating done (0.0s)
+[27.974s] -- Build files have been written to: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent
+[27.998s] [ 87%] Performing build step for 'micro_ros_agent'
+[28.061s] [ 16%] Building CXX object CMakeFiles/micro_ros_agent.dir/src/agent/graph_manager/graph_typesupport.cpp.o
+[28.061s] [ 33%] Building CXX object CMakeFiles/micro_ros_agent.dir/src/main.cpp.o
+[28.062s] [ 50%] Building CXX object CMakeFiles/micro_ros_agent.dir/src/agent/graph_manager/graph_manager.cpp.o
+[28.062s] [ 66%] Building CXX object CMakeFiles/micro_ros_agent.dir/src/agent/Agent.cpp.o
+[28.063s] [ 83%] Building CXX object CMakeFiles/micro_ros_agent.dir/src/agent/utils/demangle.cpp.o
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/Agent.cpp:18:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/include/agent/Agent.hpp:18:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/AgentInstance.hpp:20:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/ArgumentParser.hpp:24:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/Server.hpp:20:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/SessionManager.hpp:18:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/logger/Logger.hpp:23:
+[28.492s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/spdlog.h:12:
+[28.492s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:111: error: no member named 'basic_runtime' in namespace 'fmt'
+[28.492s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.493s]       |                                                                                                          ~~~~~^
+[28.493s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:125: error: 'Char' does not refer to a value
+[28.493s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.493s]       |                                                                                                                             ^
+[28.493s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:124:25: note: declared here
+[28.493s]   124 | template<class T, class Char = char>
+[28.493s]       |                         ^
+[28.493s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:130: error: expected '(' for function-style cast or type construction
+[28.493s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.493s]       |                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[28.493s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:133: error: expected class name
+[28.493s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.493s]       |                                                                                                                                     ^
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/main.cpp:15:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/include/agent/Agent.hpp:18:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/AgentInstance.hpp:20:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/utils/ArgumentParser.hpp:24:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/Server.hpp:20:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/transport/SessionManager.hpp:18:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/uxr/agent/logger/Logger.hpp:23:
+[28.505s] In file included from /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/spdlog.h:12:
+[28.505s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:111: error: no member named 'basic_runtime' in namespace 'fmt'
+[28.505s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.505s]       |                                                                                                          ~~~~~^
+[28.505s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:125: error: 'Char' does not refer to a value
+[28.505s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.505s]       |                                                                                                                             ^
+[28.505s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:124:25: note: declared here
+[28.505s]   124 | template<class T, class Char = char>
+[28.505s]       |                         ^
+[28.505s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:130: error: expected '(' for function-style cast or type construction
+[28.506s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.506s]       |                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[28.506s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:127:133: error: expected class name
+[28.506s]   127 |           std::is_convertible<T, fmt::basic_string_view<Char>>::value || std::is_same<remove_cvref_t<T>, fmt::basic_runtime<Char>>::value>
+[28.506s]       |                                                                                                                                     ^
+[28.510s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:137:123: error: no member named 'value' in 'spdlog::is_convertible_to_basic_format_string<const fmt::basic_string_view<char> &>'
+[28.511s]   137 | struct is_convertible_to_any_format_string : std::integral_constant<bool, is_convertible_to_basic_format_string<T, char>::value ||
+[28.511s]       |                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[28.511s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:106:48: note: in instantiation of template class 'spdlog::is_convertible_to_any_format_string<const fmt::basic_string_view<char> &>' requested here
+[28.511s]   106 |     template<class T, typename std::enable_if<!is_convertible_to_any_format_string<const T &>::value, int>::type = 0>
+[28.511s]       |                                                ^
+[28.511s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:107:10: note: while substituting prior template arguments into non-type template parameter [with T = string_view_t]
+[28.511s]   107 |     void log(source_loc loc, level::level_enum lvl, const T &msg)
+[28.511s]       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[28.511s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:102:9: note: while substituting deduced template arguments into function template 'log' [with T = string_view_t, $1 = (no value)]
+[28.511s]   102 |         log(loc, lvl, string_view_t{msg});
+[28.511s]       |         ^
+[28.524s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/common.h:137:123: error: no member named 'value' in 'spdlog::is_convertible_to_basic_format_string<const fmt::basic_string_view<char> &>'
+[28.524s]   137 | struct is_convertible_to_any_format_string : std::integral_constant<bool, is_convertible_to_basic_format_string<T, char>::value ||
+[28.525s]       |                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[28.525s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:106:48: note: in instantiation of template class 'spdlog::is_convertible_to_any_format_string<const fmt::basic_string_view<char> &>' requested here
+[28.525s]   106 |     template<class T, typename std::enable_if<!is_convertible_to_any_format_string<const T &>::value, int>::type = 0>
+[28.525s]       |                                                ^
+[28.525s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:107:10: note: while substituting prior template arguments into non-type template parameter [with T = string_view_t]
+[28.525s]   107 |     void log(source_loc loc, level::level_enum lvl, const T &msg)
+[28.525s]       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[28.525s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/include/spdlog/logger.h:102:9: note: while substituting deduced template arguments into function template 'log' [with T = string_view_t, $1 = (no value)]
+[28.525s]   102 |         log(loc, lvl, string_view_t{msg});
+[28.525s]       |         ^
+[28.720s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:190:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+[28.721s]   190 |                 entity_message.name = std::move(std::string(writer_names_and_types.names.data[i]));
+[28.721s]       |                                       ^
+[28.721s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:190:39: note: remove std::move call here
+[28.721s]   190 |                 entity_message.name = std::move(std::string(writer_names_and_types.names.data[i]));
+[28.721s]       |                                       ^~~~~~~~~~                                                 ~
+[28.721s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:215:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+[28.721s]   215 |                 entity_message.name = std::move(std::string(reader_names_and_types.names.data[i]));
+[28.721s]       |                                       ^
+[28.721s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:215:39: note: remove std::move call here
+[28.721s]   215 |                 entity_message.name = std::move(std::string(reader_names_and_types.names.data[i]));
+[28.722s]       |                                       ^~~~~~~~~~                                                 ~
+[28.722s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:241:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+[28.722s]   241 |                 entity_message.name = std::move(std::string(service_server_names_and_types.names.data[i]));
+[28.722s]       |                                       ^
+[28.722s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:241:39: note: remove std::move call here
+[28.722s]   241 |                 entity_message.name = std::move(std::string(service_server_names_and_types.names.data[i]));
+[28.722s]       |                                       ^~~~~~~~~~                                                         ~
+[28.722s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:266:39: warning: moving a temporary object prevents copy elision [-Wpessimizing-move]
+[28.722s]   266 |                 entity_message.name = std::move(std::string(service_client_names_and_types.names.data[i]));
+[28.722s]       |                                       ^
+[28.722s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/graph_manager/graph_manager.cpp:266:39: note: remove std::move call here
+[28.722s]   266 |                 entity_message.name = std::move(std::string(service_client_names_and_types.names.data[i]));
+[28.722s]       |                                       ^~~~~~~~~~                                                         ~
+[29.015s] /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent/src/agent/Agent.cpp:27:32: warning: reference 'xrce_dds_agent_instance_' is not yet bound to a value when used here [-Wuninitialized]
+[29.016s]    27 |     : xrce_dds_agent_instance_(xrce_dds_agent_instance_.getInstance())
+[29.016s]       |                                ^
+[29.382s] 5 errors generated.
+[29.386s] make[5]: *** [CMakeFiles/micro_ros_agent.dir/build.make:79: CMakeFiles/micro_ros_agent.dir/src/main.cpp.o] Error 1
+[29.386s] make[5]: *** Waiting for unfinished jobs....
+[29.488s] 1 warning and 5 errors generated.
+[29.493s] make[5]: *** [CMakeFiles/micro_ros_agent.dir/build.make:93: CMakeFiles/micro_ros_agent.dir/src/agent/Agent.cpp.o] Error 1
+[29.798s] 4 warnings generated.
+[29.803s] make[4]: *** [CMakeFiles/Makefile2:153: CMakeFiles/micro_ros_agent.dir/all] Error 2
+[29.804s] make[3]: *** [Makefile:146: all] Error 2
+[29.804s] make[2]: *** [CMakeFiles/micro_ros_agent.dir/build.make:86: micro_ros_agent-prefix/src/micro_ros_agent-stamp/micro_ros_agent-build] Error 2
+[29.804s] make[1]: *** [CMakeFiles/Makefile2:122: CMakeFiles/micro_ros_agent.dir/all] Error 2
+[29.804s] make: *** [Makefile:91: all] Error 2
+[29.806s] Invoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent' returned '2': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent -- -j10 -l10

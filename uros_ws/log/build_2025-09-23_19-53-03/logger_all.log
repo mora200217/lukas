@@ -1,0 +1,282 @@
+[0.105s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/Users/amoralesma/conda/envs/humble/bin/colcon', 'build', '--packages-up-to', 'micro_ros_agent', '--cmake-args', '-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli'][0m
+[0.105s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=10, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=['micro_ros_agent'], packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=['-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli'], cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x103b93490>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x103b92d90>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x103b92d90>>)[0m
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.134s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[0.149s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extensions ['ignore', 'ignore_ament_install']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extension 'ignore'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extension 'ignore_ament_install'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extensions ['colcon_pkg']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extension 'colcon_pkg'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extensions ['colcon_meta']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extension 'colcon_meta'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extensions ['ros']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro_ros_setup) by extension 'ros'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/micro_ros_setup' with type 'ros.ament_cmake' and name 'micro_ros_setup'[0m
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'ignore'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'ignore_ament_install'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extensions ['colcon_pkg']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'colcon_pkg'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extensions ['colcon_meta']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'colcon_meta'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extensions ['ros']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'ros'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extensions ['cmake', 'python']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'cmake'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'python'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extensions ['python_setup_py']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros) by extension 'python_setup_py'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'ignore'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'ignore_ament_install'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extensions ['colcon_pkg']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'colcon_pkg'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extensions ['colcon_meta']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'colcon_meta'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extensions ['ros']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'ros'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extensions ['cmake', 'python']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'cmake'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'python'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extensions ['python_setup_py']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent) by extension 'python_setup_py'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extension 'ignore'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extension 'ignore_ament_install'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extensions ['colcon_pkg']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extension 'colcon_pkg'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extensions ['colcon_meta']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extension 'colcon_meta'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extensions ['ros']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/micro_ros_agent) by extension 'ros'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/uros/micro-ROS-Agent/micro_ros_agent' with type 'ros.ament_cmake' and name 'micro_ros_agent'[0m
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'ignore'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'ignore_ament_install'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extensions ['colcon_pkg']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'colcon_pkg'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extensions ['colcon_meta']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'colcon_meta'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extensions ['ros']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'ros'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extensions ['cmake', 'python']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'cmake'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'python'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extensions ['python_setup_py']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap) by extension 'python_setup_py'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'ignore'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'ignore_ament_install'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extensions ['colcon_pkg']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'colcon_pkg'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extensions ['colcon_meta']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'colcon_meta'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extensions ['ros']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'ros'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extensions ['cmake', 'python']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'cmake'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'python'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extensions ['python_setup_py']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/hooks) by extension 'python_setup_py'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'ignore'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'ignore_ament_install'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extensions ['colcon_pkg']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'colcon_pkg'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extensions ['colcon_meta']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'colcon_meta'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extensions ['ros']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'ros'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extensions ['cmake', 'python']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'cmake'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'python'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extensions ['python_setup_py']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro-ROS-Agent/snap/local) by extension 'python_setup_py'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extension 'ignore'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extension 'ignore_ament_install'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extensions ['colcon_pkg']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extension 'colcon_pkg'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extensions ['colcon_meta']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extension 'colcon_meta'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extensions ['ros']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/uros/micro_ros_msgs) by extension 'ros'
+[0.154s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/uros/micro_ros_msgs' with type 'ros.ament_cmake' and name 'micro_ros_msgs'[0m
+[0.154s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.154s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.154s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.154s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.154s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.165s] [34mcolcon.colcon_core.package_selection[0m [1;30mINFO[0m Skipping package 'micro_ros_setup' in 'src/micro_ros_setup'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'cmake_args' from command line to '['-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli']'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'cmake_target' from command line to 'None'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.165s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'micro_ros_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs', 'merge_install': False, 'path': '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs', 'symlink_install': False, 'test_result_base': None}[0m
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_args' from command line to '['-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli']'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_target' from command line to 'None'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_clean_cache' from command line to 'False'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_clean_first' from command line to 'False'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_force_configure' from command line to 'False'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'ament_cmake_args' from command line to 'None'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'catkin_cmake_args' from command line to 'None'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.166s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'micro_ros_agent' with the following arguments: {'ament_cmake_args': None, 'build_base': '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DUAGENT_BUILD_EXECUTABLE=OFF', '-DUAGENT_P2P_PROFILE=OFF', '--no-warn-unused-cli'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent', 'merge_install': False, 'path': '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent', 'symlink_install': False, 'test_result_base': None}[0m
+[0.166s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.166s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.166s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs' with build type 'ament_cmake'
+[0.166s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs'
+[0.168s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.168s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.168s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.179s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs[0m
+[2.744s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs' returned '0': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs[0m
+[2.746s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs -- -j10 -l10[0m
+[5.139s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs' returned '0': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs -- -j10 -l10[0m
+[5.411s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --install /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs[0m
+[5.557s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(micro_ros_msgs)
+[5.557s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs' returned '0': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --install /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs[0m
+[5.560s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs' for CMake module files
+[5.560s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs' for CMake config files
+[5.560s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_msgs', 'cmake_prefix_path')
+[5.560s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/cmake_prefix_path.ps1'
+[5.561s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/cmake_prefix_path.dsv'
+[5.562s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/cmake_prefix_path.sh'
+[5.562s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib'
+[5.562s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_msgs', 'dyld_library_path')
+[5.562s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/dyld_library_path.ps1'
+[5.562s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/dyld_library_path.dsv'
+[5.563s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/dyld_library_path.sh'
+[5.563s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/bin'
+[5.563s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/pkgconfig/micro_ros_msgs.pc'
+[5.563s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages'
+[5.563s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_msgs', 'pythonpath')
+[5.563s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/pythonpath.ps1'
+[5.563s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/pythonpath.dsv'
+[5.563s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/pythonpath.sh'
+[5.564s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/bin'
+[5.564s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.ps1'
+[5.564s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.dsv'
+[5.565s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.sh'
+[5.565s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.bash'
+[5.565s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.zsh'
+[5.566s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/colcon-core/packages/micro_ros_msgs)
+[5.832s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(micro_ros_msgs)
+[5.832s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs' for CMake module files
+[5.832s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs' for CMake config files
+[5.833s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_msgs', 'cmake_prefix_path')
+[5.833s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/cmake_prefix_path.ps1'
+[5.833s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/cmake_prefix_path.dsv'
+[5.833s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/cmake_prefix_path.sh'
+[5.834s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib'
+[5.834s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_msgs', 'dyld_library_path')
+[5.834s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/dyld_library_path.ps1'
+[5.834s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/dyld_library_path.dsv'
+[5.834s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/dyld_library_path.sh'
+[5.834s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/bin'
+[5.834s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/pkgconfig/micro_ros_msgs.pc'
+[5.835s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages'
+[5.835s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_msgs', 'pythonpath')
+[5.835s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/pythonpath.ps1'
+[5.835s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/pythonpath.dsv'
+[5.835s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/hook/pythonpath.sh'
+[5.835s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/bin'
+[5.835s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.ps1'
+[5.836s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.dsv'
+[5.836s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.sh'
+[5.836s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.bash'
+[5.836s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.zsh'
+[5.836s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/colcon-core/packages/micro_ros_msgs)
+[5.837s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent' with build type 'ament_cmake'
+[5.837s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent'
+[5.837s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.837s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[5.853s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent[0m
+[6.497s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent' returned '0': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro-ROS-Agent/micro_ros_agent -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent[0m
+[6.499s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent -- -j10 -l10[0m
+[35.643s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent' returned '2': AMENT_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs:/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_setup:/Users/amoralesma/conda/envs/humble CONDA_PROMPT_MODIFIER=(humble) DYLD_LIBRARY_PATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib PYTHONPATH=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent -- -j10 -l10[0m
+[35.722s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(micro_ros_agent)
+[35.722s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent' for CMake module files
+[35.722s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent' for CMake config files
+[35.723s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_agent', 'cmake_prefix_path')
+[35.723s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.ps1'
+[35.724s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.dsv'
+[35.724s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.sh'
+[35.725s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib'
+[35.725s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_agent', 'dyld_library_path')
+[35.725s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/hook/dyld_library_path.ps1'
+[35.725s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/hook/dyld_library_path.dsv'
+[35.725s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/hook/dyld_library_path.sh'
+[35.725s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/bin'
+[35.725s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/pkgconfig/micro_ros_agent.pc'
+[35.726s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/lib/python3.11/site-packages'
+[35.726s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/bin'
+[35.726s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.ps1'
+[35.726s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv'
+[35.727s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.sh'
+[35.727s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.bash'
+[35.727s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/micro_ros_agent/package.zsh'
+[35.727s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_agent/share/colcon-core/packages/micro_ros_agent)
+[35.728s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[35.728s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[35.728s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '2'[0m
+[35.728s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[35.729s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[35.729s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/local_setup.ps1'
+[35.730s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/_local_setup_util_ps1.py'
+[35.730s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/setup.ps1'
+[35.731s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/local_setup.sh'
+[35.731s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/_local_setup_util_sh.py'
+[35.732s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/setup.sh'
+[35.732s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/local_setup.bash'
+[35.732s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/setup.bash'
+[35.733s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/local_setup.zsh'
+[35.733s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/setup.zsh'

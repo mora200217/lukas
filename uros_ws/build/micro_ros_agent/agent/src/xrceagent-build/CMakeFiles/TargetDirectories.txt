@@ -1,0 +1,7 @@
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/microxrcedds_agent.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/edit_cache.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/rebuild_cache.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/list_install_components.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/install.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/install/local.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/CMakeFiles/install/strip.dir

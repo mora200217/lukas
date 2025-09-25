@@ -1,0 +1,303 @@
+[0.012s] Invoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs
+[0.056s] CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.056s]   Compatibility with CMake < 3.10 will be removed from a future version of
+[0.056s]   CMake.
+[0.056s] 
+[0.056s]   Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+[0.056s]   to tell CMake that the project requires at least <min> but has been updated
+[0.056s]   to work with policies introduced by <max> or earlier.
+[0.056s] 
+[0.056s] 
+[0.056s] Not searching for unused variables given on the command line.
+[0.422s] -- The C compiler identification is Clang 18.1.8
+[0.595s] -- The CXX compiler identification is Clang 18.1.8
+[0.624s] -- Detecting C compiler ABI info
+[0.765s] -- Detecting C compiler ABI info - done
+[0.768s] -- Check for working C compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang - skipped
+[0.768s] -- Detecting C compile features
+[0.770s] -- Detecting C compile features - done
+[0.775s] -- Detecting CXX compiler ABI info
+[0.901s] -- Detecting CXX compiler ABI info - done
+[0.905s] -- Check for working CXX compiler: /Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-clang++ - skipped
+[0.905s] -- Detecting CXX compile features
+[0.905s] -- Detecting CXX compile features - done
+[0.927s] -- Found ament_cmake: 1.3.11 (/Users/amoralesma/conda/envs/humble/share/ament_cmake/cmake)
+[1.008s] -- Found Python3: /Users/amoralesma/conda/envs/humble/bin/python3 (found version "3.11.12") found components: Interpreter
+[1.168s] -- Found rosidl_default_generators: 1.2.0 (/Users/amoralesma/conda/envs/humble/share/rosidl_default_generators/cmake)
+[1.178s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.203s] -- Found rosidl_adapter: 3.1.6 (/Users/amoralesma/conda/envs/humble/share/rosidl_adapter/cmake)
+[1.296s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.373s] -- Found ament_lint_auto: 0.12.11 (/Users/amoralesma/conda/envs/humble/share/ament_lint_auto/cmake)
+[1.659s] -- Found ament_cmake_ros: 0.10.0 (/Users/amoralesma/conda/envs/humble/share/ament_cmake_ros/cmake)
+[1.879s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.141s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.151s] -- Found python_cmake_module: 0.10.0 (/Users/amoralesma/conda/envs/humble/share/python_cmake_module/cmake)
+[2.151s] CMake Warning (dev) at /Users/amoralesma/conda/envs/humble/share/python_cmake_module/cmake/Modules/FindPythonExtra.cmake:52 (find_package):
+[2.151s]   Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+[2.151s]   are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+[2.151s]   the cmake_policy command to set the policy and suppress this warning.
+[2.151s] 
+[2.151s] Call Stack (most recent call first):
+[2.151s]   /Users/amoralesma/conda/envs/humble/share/rosidl_generator_py/cmake/rosidl_generator_py_generate_interfaces.cmake:21 (find_package)
+[2.151s]   /Users/amoralesma/conda/envs/humble/share/ament_cmake_core/cmake/core/ament_execute_extensions.cmake:48 (include)
+[2.151s]   /Users/amoralesma/conda/envs/humble/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:286 (ament_execute_extensions)
+[2.151s]   CMakeLists.txt:27 (rosidl_generate_interfaces)
+[2.151s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[2.151s] 
+[2.159s] -- Found PythonInterp: /Users/amoralesma/conda/envs/humble/bin/python3 (found suitable version "3.11.12", minimum required is "3.6")
+[2.172s] -- Using PythonExtra_INCLUDE_DIRS: /Users/amoralesma/conda/envs/humble/include/python3.11;/Users/amoralesma/conda/envs/humble/include/python3.11
+[2.197s] -- Using PythonExtra_LIBRARIES: /Users/amoralesma/conda/envs/humble/lib/libpython3.11.dylib
+[2.209s] -- Found PythonExtra: .so
+[2.487s] -- Found Python3: /Users/amoralesma/conda/envs/humble/include/python3.11 (found version "3.11.12") found components: Development NumPy Interpreter Development.Module Development.Embed
+[2.509s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.515s] -- Added test 'lint_cmake' to check CMake code style
+[2.519s] -- Added test 'xmllint' to check XML markup files
+[2.525s] -- Configuring done (2.5s)
+[2.574s] -- Generating done (0.0s)
+[2.574s] -- Build files have been written to: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs
+[2.577s] Invoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs' returned '0': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/src/uros/micro_ros_msgs -DUAGENT_BUILD_EXECUTABLE=OFF -DUAGENT_P2P_PROFILE=OFF --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs
+[2.579s] Invoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs -- -j10 -l10
+[2.625s] [  2%] Generating C code for ROS interfaces
+[2.638s] [  4%] Generating C++ code for ROS interfaces
+[2.648s] [  4%] Built target ament_cmake_python_copy_micro_ros_msgs
+[2.782s] running egg_info
+[2.798s] creating micro_ros_msgs.egg-info
+[2.799s] writing micro_ros_msgs.egg-info/PKG-INFO
+[2.802s] writing dependency_links to micro_ros_msgs.egg-info/dependency_links.txt
+[2.802s] writing top-level names to micro_ros_msgs.egg-info/top_level.txt
+[2.802s] writing manifest file 'micro_ros_msgs.egg-info/SOURCES.txt'
+[2.829s] reading manifest file 'micro_ros_msgs.egg-info/SOURCES.txt'
+[2.829s] writing manifest file 'micro_ros_msgs.egg-info/SOURCES.txt'
+[2.837s] [  4%] Built target micro_ros_msgs__cpp
+[2.842s] [  8%] Building C object CMakeFiles/micro_ros_msgs__rosidl_generator_c.dir/rosidl_generator_c/micro_ros_msgs/msg/detail/graph__functions.c.o
+[2.842s] [  8%] Building C object CMakeFiles/micro_ros_msgs__rosidl_generator_c.dir/rosidl_generator_c/micro_ros_msgs/msg/detail/node__functions.c.o
+[2.846s] [ 10%] Building C object CMakeFiles/micro_ros_msgs__rosidl_generator_c.dir/rosidl_generator_c/micro_ros_msgs/msg/detail/entity__functions.c.o
+[2.857s] [ 12%] Generating C++ type support for eProsima Fast-RTPS
+[2.858s] [ 14%] Generating C++ introspection for ROS interfaces
+[2.860s] [ 14%] Built target ament_cmake_python_build_micro_ros_msgs_egg
+[2.862s] [ 17%] Generating C++ type support dispatch for ROS interfaces
+[2.964s] [ 19%] Linking C shared library libmicro_ros_msgs__rosidl_generator_c.dylib
+[3.046s] [ 19%] Built target micro_ros_msgs__rosidl_generator_c
+[3.052s] [ 21%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/micro_ros_msgs/msg/node__type_support.cpp.o
+[3.059s] [ 23%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/micro_ros_msgs/msg/detail/node__type_support.cpp.o
+[3.060s] [ 25%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/micro_ros_msgs/msg/detail/entity__type_support.cpp.o
+[3.060s] [ 27%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/micro_ros_msgs/msg/graph__type_support.cpp.o
+[3.063s] [ 29%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/micro_ros_msgs/msg/detail/graph__type_support.cpp.o
+[3.065s] [ 31%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/micro_ros_msgs/msg/entity__type_support.cpp.o
+[3.077s] [ 34%] Generating C introspection for ROS interfaces
+[3.080s] [ 36%] Generating C type support dispatch for ROS interfaces
+[3.082s] [ 38%] Generating C type support for eProsima Fast-RTPS
+[3.103s] [ 40%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/micro_ros_msgs/msg/detail/dds_fastrtps/graph__type_support.cpp.o
+[3.401s] [ 42%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/micro_ros_msgs/msg/graph__type_support.cpp.o
+[3.486s] [ 44%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/micro_ros_msgs/msg/node__type_support.cpp.o
+[3.520s] [ 46%] Building C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/micro_ros_msgs/msg/detail/graph__type_support.c.o
+[3.533s] [ 48%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/micro_ros_msgs/msg/detail/graph__type_support_c.cpp.o
+[3.558s] [ 51%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/micro_ros_msgs/msg/entity__type_support.cpp.o
+[3.610s] [ 53%] Building C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/micro_ros_msgs/msg/detail/node__type_support.c.o
+[3.643s] [ 55%] Linking CXX shared library libmicro_ros_msgs__rosidl_typesupport_c.dylib
+[3.690s] [ 57%] Building C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/micro_ros_msgs/msg/detail/entity__type_support.c.o
+[3.698s] [ 59%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/micro_ros_msgs/msg/detail/node__type_support_c.cpp.o
+[3.701s] [ 61%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/micro_ros_msgs/msg/detail/entity__type_support_c.cpp.o
+[3.729s] [ 63%] Linking CXX shared library libmicro_ros_msgs__rosidl_typesupport_cpp.dylib
+[3.737s] [ 63%] Built target micro_ros_msgs__rosidl_typesupport_c
+[3.763s] [ 68%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/micro_ros_msgs/msg/detail/dds_fastrtps/node__type_support.cpp.o
+[3.764s] [ 68%] Linking C shared library libmicro_ros_msgs__rosidl_typesupport_introspection_c.dylib
+[3.815s] [ 70%] Building CXX object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/micro_ros_msgs/msg/detail/dds_fastrtps/entity__type_support.cpp.o
+[3.838s] [ 70%] Built target micro_ros_msgs__rosidl_typesupport_cpp
+[3.870s] [ 70%] Built target micro_ros_msgs__rosidl_typesupport_introspection_c
+[3.948s] [ 72%] Linking CXX shared library libmicro_ros_msgs__rosidl_typesupport_introspection_cpp.dylib
+[4.031s] [ 72%] Built target micro_ros_msgs__rosidl_typesupport_introspection_cpp
+[4.246s] [ 74%] Linking CXX shared library libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.dylib
+[4.307s] [ 74%] Built target micro_ros_msgs__rosidl_typesupport_fastrtps_c
+[4.318s] [ 76%] Linking CXX shared library libmicro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dylib
+[4.371s] [ 76%] Built target micro_ros_msgs__rosidl_typesupport_fastrtps_cpp
+[4.397s] [ 76%] Built target micro_ros_msgs
+[4.425s] [ 78%] Generating Python code for ROS interfaces
+[4.610s] [ 78%] Built target micro_ros_msgs__py
+[4.638s] [ 82%] Building C object CMakeFiles/micro_ros_msgs__rosidl_generator_py.dir/rosidl_generator_py/micro_ros_msgs/msg/_node_s.c.o
+[4.638s] [ 82%] Building C object CMakeFiles/micro_ros_msgs__rosidl_generator_py.dir/rosidl_generator_py/micro_ros_msgs/msg/_graph_s.c.o
+[4.638s] [ 85%] Building C object CMakeFiles/micro_ros_msgs__rosidl_generator_py.dir/rosidl_generator_py/micro_ros_msgs/msg/_entity_s.c.o
+[4.742s] [ 87%] Linking C shared library rosidl_generator_py/micro_ros_msgs/libmicro_ros_msgs__rosidl_generator_py.dylib
+[4.798s] [ 87%] Built target micro_ros_msgs__rosidl_generator_py
+[4.828s] [ 89%] Building C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o
+[4.828s] [ 93%] Building C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_introspection_c.c.o
+[4.828s] [ 93%] Building C object CMakeFiles/micro_ros_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_c.c.o
+[4.901s] [ 95%] Linking C shared library rosidl_generator_py/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-311-darwin.so
+[4.901s] [ 97%] Linking C shared library rosidl_generator_py/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-311-darwin.so
+[4.901s] [100%] Linking C shared library rosidl_generator_py/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-311-darwin.so
+[4.959s] [100%] Built target micro_ros_msgs__rosidl_typesupport_c__pyext
+[4.959s] [100%] Built target micro_ros_msgs__rosidl_typesupport_introspection_c__pyext
+[4.960s] [100%] Built target micro_ros_msgs__rosidl_typesupport_fastrtps_c__pyext
+[4.972s] Invoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs' returned '0': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --build /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs -- -j10 -l10
+[5.244s] Invoking command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --install /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs
+[5.254s] -- Install configuration: ""
+[5.255s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/rosidl_interfaces/micro_ros_msgs
+[5.256s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs
+[5.256s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg
+[5.256s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_generator_c__visibility_control.h
+[5.257s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/node.h
+[5.257s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/graph.h
+[5.257s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail
+[5.257s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__struct.h
+[5.257s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__struct.h
+[5.258s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__functions.h
+[5.258s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__functions.c
+[5.258s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.h
+[5.258s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__functions.h
+[5.258s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.h
+[5.258s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__functions.c
+[5.259s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.h
+[5.259s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__struct.h
+[5.259s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__functions.h
+[5.259s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__functions.c
+[5.259s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/entity.h
+[5.260s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_c.dylib
+[5.260s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs
+[5.260s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg
+[5.260s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail
+[5.260s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_fastrtps_c.h
+[5.260s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_fastrtps_c.h
+[5.260s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_fastrtps_c.h
+[5.260s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[5.261s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.dylib
+[5.265s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.dylib
+[5.266s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_c.dylib'
+[5.281s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs
+[5.281s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg
+[5.281s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail
+[5.281s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_introspection_c.h
+[5.281s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.c
+[5.282s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_introspection_c.h
+[5.282s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.c
+[5.282s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_introspection_c.h
+[5.282s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.c
+[5.282s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[5.282s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_c.dylib
+[5.284s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_c.dylib
+[5.285s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_c.dylib'
+[5.293s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_c.dylib
+[5.295s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_c.dylib
+[5.295s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_c.dylib'
+[5.303s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs
+[5.303s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg
+[5.303s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail
+[5.303s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__struct.hpp
+[5.303s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__builder.hpp
+[5.304s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.hpp
+[5.304s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__struct.hpp
+[5.304s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__struct.hpp
+[5.304s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.hpp
+[5.304s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__builder.hpp
+[5.305s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__traits.hpp
+[5.305s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__builder.hpp
+[5.305s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__traits.hpp
+[5.305s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__traits.hpp
+[5.306s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.hpp
+[5.306s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/graph.hpp
+[5.306s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/node.hpp
+[5.306s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[5.307s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/entity.hpp
+[5.307s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs
+[5.307s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg
+[5.307s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[5.308s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail
+[5.308s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_fastrtps_cpp.hpp
+[5.308s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_fastrtps_cpp.hpp
+[5.308s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/dds_fastrtps
+[5.309s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_fastrtps_cpp.hpp
+[5.309s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_fastrtps_cpp.dylib
+[5.309s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs
+[5.309s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg
+[5.309s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail
+[5.309s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__type_support.cpp
+[5.309s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__type_support.cpp
+[5.310s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/entity__rosidl_typesupport_introspection_cpp.hpp
+[5.310s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/node__rosidl_typesupport_introspection_cpp.hpp
+[5.311s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__type_support.cpp
+[5.311s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/include/micro_ros_msgs/micro_ros_msgs/msg/detail/graph__rosidl_typesupport_introspection_cpp.hpp
+[5.311s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_introspection_cpp.dylib
+[5.312s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_typesupport_cpp.dylib
+[5.312s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/pythonpath.sh
+[5.312s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/pythonpath.dsv
+[5.312s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs-3.0.1-py3.11.egg-info
+[5.313s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs-3.0.1-py3.11.egg-info/PKG-INFO
+[5.313s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs-3.0.1-py3.11.egg-info/SOURCES.txt
+[5.313s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs-3.0.1-py3.11.egg-info/top_level.txt
+[5.313s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs-3.0.1-py3.11.egg-info/dependency_links.txt
+[5.313s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs
+[5.314s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-311-darwin.so
+[5.314s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg
+[5.314s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/_node.py
+[5.314s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/_graph.py
+[5.315s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/_graph_s.c
+[5.315s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/_entity.py
+[5.315s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/__init__.py
+[5.315s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/_entity_s.c
+[5.316s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/msg/_node_s.c
+[5.316s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/libmicro_ros_msgs__rosidl_generator_py.dylib
+[5.316s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/__init__.py
+[5.316s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_c.c
+[5.317s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[5.317s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-311-darwin.so
+[5.317s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-311-darwin.so
+[5.317s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/_micro_ros_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[5.336s] Listing 'lib/python3.11/site-packages/micro_ros_msgs'...
+[5.336s] Can't list 'lib/python3.11/site-packages/micro_ros_msgs'
+[5.339s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-311-darwin.so
+[5.340s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-311-darwin.so
+[5.341s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_fastrtps_c.cpython-311-darwin.so'
+[5.349s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-311-darwin.so
+[5.350s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-311-darwin.so
+[5.350s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_introspection_c.cpython-311-darwin.so'
+[5.358s] -- Up-to-date: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-311-darwin.so
+[5.360s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-311-darwin.so
+[5.360s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/python3.11/site-packages/micro_ros_msgs/micro_ros_msgs_s__rosidl_typesupport_c.cpython-311-darwin.so'
+[5.368s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_py.dylib
+[5.370s] /Users/amoralesma/conda/envs/humble/bin/install_name_tool: warning: changes being made to the file will invalidate the code signature in: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_py.dylib
+[5.370s] [cctools-port]: generating fake signature for '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/lib/libmicro_ros_msgs__rosidl_generator_py.dylib'
+[5.378s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Graph.idl
+[5.378s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Node.idl
+[5.378s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Entity.idl
+[5.378s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Graph.msg
+[5.378s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Node.msg
+[5.378s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/msg/Entity.msg
+[5.379s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/package_run_dependencies/micro_ros_msgs
+[5.379s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/parent_prefix_path/micro_ros_msgs
+[5.379s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/ament_prefix_path.sh
+[5.379s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/ament_prefix_path.dsv
+[5.379s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/path.sh
+[5.380s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/environment/path.dsv
+[5.380s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.bash
+[5.380s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.sh
+[5.380s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.zsh
+[5.380s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/local_setup.dsv
+[5.381s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.dsv
+[5.381s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/ament_index/resource_index/packages/micro_ros_msgs
+[5.381s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_cExport.cmake
+[5.381s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_cExport-noconfig.cmake
+[5.382s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[5.382s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[5.382s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cExport.cmake
+[5.383s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[5.383s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cExport.cmake
+[5.383s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[5.383s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_cppExport.cmake
+[5.384s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[5.384s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[5.384s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[5.385s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[5.385s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cppExport.cmake
+[5.385s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[5.386s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_pyExport.cmake
+[5.386s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/export_micro_ros_msgs__rosidl_generator_pyExport-noconfig.cmake
+[5.386s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/rosidl_cmake-extras.cmake
+[5.387s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[5.387s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[5.387s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[5.388s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[5.388s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[5.388s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[5.389s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgsConfig.cmake
+[5.389s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/cmake/micro_ros_msgsConfig-version.cmake
+[5.389s] -- Installing: /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/install/micro_ros_msgs/share/micro_ros_msgs/package.xml
+[5.391s] Invoked command in '/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs' returned '0': CONDA_PROMPT_MODIFIER=(humble) SHLVL=3 _=/Users/amoralesma/conda/envs/humble/bin/env __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x2 /Users/amoralesma/conda/envs/humble/bin/cmake --install /Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs

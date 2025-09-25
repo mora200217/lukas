@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog-build/cmake_install.cmake",
+		"/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/agent/src/xrceagent-build/spdlog/src/spdlog-build/example/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

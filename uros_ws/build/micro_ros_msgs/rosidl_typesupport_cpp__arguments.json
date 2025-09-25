@@ -1,0 +1,21 @@
+{
+  "package_name": "micro_ros_msgs",
+  "output_dir": "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_typesupport_cpp/micro_ros_msgs",
+  "template_dir": "/Users/amoralesma/conda/envs/humble/share/rosidl_typesupport_cpp/resource",
+  "idl_tuples": [
+    "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_adapter/micro_ros_msgs:msg/Graph.idl",
+    "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_adapter/micro_ros_msgs:msg/Node.idl",
+    "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_adapter/micro_ros_msgs:msg/Entity.idl"
+  ],
+  "target_dependencies": [
+    "/Users/amoralesma/conda/envs/humble/lib/rosidl_typesupport_cpp/rosidl_typesupport_cpp",
+    "/Users/amoralesma/conda/envs/humble/lib/python3.11/site-packages/rosidl_typesupport_cpp/__init__.py",
+    "/Users/amoralesma/conda/envs/humble/share/rosidl_typesupport_cpp/resource/action__type_support.cpp.em",
+    "/Users/amoralesma/conda/envs/humble/share/rosidl_typesupport_cpp/resource/idl__type_support.cpp.em",
+    "/Users/amoralesma/conda/envs/humble/share/rosidl_typesupport_cpp/resource/msg__type_support.cpp.em",
+    "/Users/amoralesma/conda/envs/humble/share/rosidl_typesupport_cpp/resource/srv__type_support.cpp.em",
+    "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_adapter/micro_ros_msgs/msg/Graph.idl",
+    "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_adapter/micro_ros_msgs/msg/Node.idl",
+    "/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/rosidl_adapter/micro_ros_msgs/msg/Entity.idl"
+  ]
+}

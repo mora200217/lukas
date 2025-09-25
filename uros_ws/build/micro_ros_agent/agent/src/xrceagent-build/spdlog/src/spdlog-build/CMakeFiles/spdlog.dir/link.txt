@@ -1,0 +1,2 @@
+/Users/amoralesma/conda/envs/humble/bin/arm64-apple-darwin20.0.0-ar qc libspdlog.a CMakeFiles/spdlog.dir/src/spdlog.cpp.o CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o CMakeFiles/spdlog.dir/src/color_sinks.cpp.o CMakeFiles/spdlog.dir/src/file_sinks.cpp.o CMakeFiles/spdlog.dir/src/async.cpp.o CMakeFiles/spdlog.dir/src/cfg.cpp.o CMakeFiles/spdlog.dir/src/fmt.cpp.o
+/Users/amoralesma/conda/envs/humble/bin/llvm-ranlib libspdlog.a

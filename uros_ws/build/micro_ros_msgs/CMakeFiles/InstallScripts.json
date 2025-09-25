@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/cmake_install.cmake",
+		"/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_msgs/micro_ros_msgs__py/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,10 @@
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/uninstall.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/micro_ros_agent_uninstall.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/micro_ros_agent.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/test.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/edit_cache.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/rebuild_cache.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/list_install_components.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/install.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/install/local.dir
+/Users/amoralesma/Documents/UN/servos/servos-proyecto/uros_ws/build/micro_ros_agent/CMakeFiles/install/strip.dir
