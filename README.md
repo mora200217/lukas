@@ -1,4 +1,5 @@
-# Lukas: Manipulador 2R dibuja treboles
+# Lukas: Linked Unit for Kinematic Artistic Sketching
+Manipulador 2R dibuja treboles
 
 ## Introducción
 - Objetivos
