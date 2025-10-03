@@ -1,7 +1,7 @@
 using GLMakie
 GLMakie.activate!()
 using Observables
- using Printf
+using Printf
 using CSV
 using DataFrames
 using Dates
@@ -31,8 +31,6 @@ c  = Observable(0.0)       # rotación (rad)
 ω  = Observable(0.8)       # velocidad angular del cursor (rad/s)
 
 # animación / controles
-playing    = Observable(true)
-looping    = Observable(true)
 draw_speed = Observable(0.6)   # velocidad de "revelado" (unidades 1/s)
 progress   = Observable(0.0)   # 0..1 progreso del trazo
 θt         = Observable(0.0)   # ángulo del cursor - INICIALIZADO EN 0
@@ -114,6 +112,20 @@ end
 xycurrent = lift(θt, rcur) do θt_val, rcur_val
     [Point2f(rcur_val * cos(θt_val), rcur_val * sin(θt_val))]
 end
+
+# ---------- Expresión matemática de r(θ) ----------
+# Observable para la expresión matemática formateada
+math_expression = lift(n, a, d, rm, s, c) do n_val, a_val, d_val, rm_val, s_val, c_val
+    # Calcular el valor máximo para normalización
+    f_vals = trebol_function(θg, n_val, a_val, d_val, c_val)
+    f_max = maximum(f_vals)
+    
+    if f_max ≈ 0.0
+        return "r(θ) = $(round(s_val * rm_val; digits=3))"
+    else
+        return @sprintf "r(θ) = %.2f × [1 + %.3f × cos(%d(θ - %.3f - π)) - %.4f × cos(%d(θ - %.3f - π))] / %.3f" s_val*rm_val a_val n_val c_val d_val 2*n_val c_val f_max
+    end
+end 
 
 # ---------- Funciones para exportar ----------
 function export_parameters()
@@ -236,11 +248,18 @@ on(xygrid) do points
 end
 
 # ---------- Ecuación del Trébol ----------
-equation_text = "Ecuación del Trébol:\nr(θ) = s × rm × [1 + a × cos(n(θ - c - π)) - d × cos(2n(θ - c))] / max"
-equation_label = Label(graph_panel[2, 1], equation_text,
-    fontsize = 14,
+# Título de la ecuación
+equation_title = Label(graph_panel[2, 1], "ECUACIÓN MATEMÁTICA ACTUAL:",
+    fontsize = 16,
     color = :black,
     font = :bold,
+    tellwidth = false)
+
+# Expresión matemática actualizada
+equation_label = Label(graph_panel[3, 1], math_expression,
+    fontsize = 14,
+    color = RGBf(0.1, 0.1, 0.5),
+    font = :italic,
     tellwidth = false)
 
 # ---------- Panel de Control Mejorado ----------
@@ -319,13 +338,6 @@ btn_export_params = Button(export_buttons_layout[1, 1], label = "Exportar Parám
 btn_export_traj = Button(export_buttons_layout[1, 2], label = "Exportar Trayectoria")
 btn_export_all = Button(export_buttons_layout[2, 1:2], label = "Exportar Todo")
 
-# Botones de control de animación - CORREGIDOS
-button_layout = GridLayout(control_panel[17, 1:2])
-btn_play = Button(button_layout[1, 1], label = "Pausar")
-btn_reset = Button(button_layout[1, 2], label = "Reiniciar")
-t_loop   = Toggle(button_layout[1, 3], active = looping[])
-loop_label = Label(button_layout[1, 4], "Bucle: ON")
-
 # ---------- Actualizaciones en Tiempo Real ----------
 function update_labels()
     n_label.text[] = "Número de hojas (n): $(Int(n[]))"
@@ -336,8 +348,6 @@ function update_labels()
     c_label.text[] = "Rotación (c): $(round(c[]; digits=3)) rad"
     ω_label.text[] = "Velocidad (ω): $(round(ω[]; digits=2)) rad/s"
     draw_label.text[] = "Velocidad dibujo: $(round(draw_speed[]; digits=2))"
-    btn_play.label[] = playing[] ? "Pausar" : "Reproducir"
-    loop_label.text[] = looping[] ? "Bucle: ON" : "Bucle: OFF"
     points_value_label.text[] = "$(trajectory_points[])"
 end
 
@@ -350,8 +360,6 @@ on(s) do _; update_labels() end
 on(c) do _; update_labels() end
 on(ω) do _; update_labels() end
 on(draw_speed) do _; update_labels() end
-on(playing) do _; update_labels() end
-on(looping) do _; update_labels() end
 on(trajectory_points) do _; update_labels() end
 
 # ---------- Enlaces widgets -> observables ----------
@@ -383,40 +391,6 @@ on(s_points.value) do v
     trajectory_points[] = Int(round(v))
 end
 
-# Funciones para los botones de control - CORREGIDAS
-function toggle_animation()
-    playing[] = !playing[]
-    update_labels()
-end
-
-function reset_animation()
-    progress[] = 0.0
-    θt[] = 0.0  # REINICIAR A θ=0
-    if !playing[]
-        playing[] = true  # Si estaba pausado, reanudar
-    end
-    update_labels()
-end
-
-function toggle_loop()
-    looping[] = !looping[]
-    update_labels()
-end
-
-# Conectar los botones a las funciones - CORREGIDO
-on(btn_play.clicks) do _
-    toggle_animation()
-end
-
-on(btn_reset.clicks) do _
-    reset_animation()
-end
-
-on(t_loop.active) do val
-    looping[] = val
-    update_labels()
-end
-
 # Botones de exportación
 on(btn_export_params.clicks) do _
     export_parameters()
@@ -434,7 +408,6 @@ end
 colgap!(main_layout, 30)
 rowgap!(control_panel, 12)
 colgap!(control_panel, 10)
-rowgap!(button_layout, 5)
 rowgap!(export_buttons_layout, 5)
 
 # ---------- Animación ----------
@@ -450,24 +423,16 @@ animation_running = true
     dt = now - last_t
     last_t = now
 
-    if playing[]
-        # Actualizar ángulo del cursor
-        θt[] = (θt[] + ω[] * dt) % (2π)
-        
-        # Avanzar progreso del trazo
-        p = progress[]
-        pnew = p + dt * draw_speed[]
-        if pnew >= 1.0
-            if looping[]
-                pnew = 0.0
-            else
-                pnew = 1.0
-                playing[] = false  # Detener la animación al completar sin bucle
-                update_labels()
-            end
-        end
-        progress[] = pnew
+    # Actualizar ángulo del cursor
+    θt[] = (θt[] + ω[] * dt) % (2π)
+    
+    # Avanzar progreso del trazo
+    p = progress[]
+    pnew = p + dt * draw_speed[]
+    if pnew >= 1.0
+        pnew = 0.0  # Reiniciar automáticamente
     end
+    progress[] = pnew
 end
 
 # Bloquear si no es interactivo
