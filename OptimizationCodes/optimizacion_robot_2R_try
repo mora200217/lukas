@@ -83,7 +83,7 @@ function optimizar_robot(x_init, y_init; verbose=false)
     set_start_value(L2, 0.15)
         
     # Restricción de diferencia |L1-L2|
-    @constraint(model, abs(L2/L1) <= 0.75) # Cambio de prueba 
+    @constraint(model, abs(L2/L1) <=0.75) # Cambio de prueba 
     
     
     # Función objetivo
