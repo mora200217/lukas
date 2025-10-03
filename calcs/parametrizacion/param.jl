@@ -28,10 +28,8 @@ d0 = Observable(0.007)     # estilización trébol
 rm = Observable(10.0)      # radio máximo objetivo
 s  = Observable(1.0)       # escala global (0.75..1.25)
 c  = Observable(0.0)       # rotación (rad)
-ω  = Observable(0.8)       # velocidad angular del cursor (rad/s)
 
-# animación / controles
-draw_speed = Observable(0.6)   # velocidad de "revelado" (unidades 1/s)
+# animación
 progress   = Observable(0.0)   # 0..1 progreso del trazo
 θt         = Observable(0.0)   # ángulo del cursor - INICIALIZADO EN 0
 
@@ -125,12 +123,16 @@ math_expression = lift(n, a, d, rm, s, c) do n_val, a_val, d_val, rm_val, s_val,
     else
         return @sprintf "r(θ) = %.2f × [1 + %.3f × cos(%d(θ - %.3f - π)) - %.4f × cos(%d(θ - %.3f - π))] / %.3f" s_val*rm_val a_val n_val c_val d_val 2*n_val c_val f_max
     end
-end 
+end
 
 # ---------- Funciones para exportar ----------
 function export_parameters()
     timestamp = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS")
     filename = "Data/param_$(timestamp).csv"
+    
+    # Calcular f_max para exportación
+    f_vals = trebol_function(θg, n[], a[], d[], c[])
+    f_max = maximum(f_vals)
     
     params_dict = Dict(
         "n" => n[],
@@ -139,14 +141,14 @@ function export_parameters()
         "rm" => rm[],
         "s" => s[],
         "c" => c[],
-        "omega" => ω[],
-        "timestamp" => timestamp
+        "f_max" => f_max
     )
     
     df = DataFrame(params_dict)
     CSV.write(filename, df)
     
     println("Parámetros exportados a: $filename")
+    println("f_max exportado: $f_max")
     return filename
 end
 
@@ -300,8 +302,8 @@ s_s    = Slider(control_panel[8, 2], range = 0.5:0.01:1.5, startvalue = s[])
 s_label = Label(control_panel[8, 1], "Factor escala (s): $(round(s[]; digits=2))", 
       tellwidth = false)
 
-# Grupo 3: Rotación y Movimiento
-Label(control_panel[9, 1:2], "ROTACIÓN Y MOVIMIENTO", 
+# Grupo 3: Rotación
+Label(control_panel[9, 1:2], "ROTACIÓN", 
       fontsize = 16, 
       color = RGBf(0.2, 0.4, 0.6))
 
@@ -309,31 +311,18 @@ s_c    = Slider(control_panel[10, 2], range = -π:0.01:π, startvalue = c[])
 c_label = Label(control_panel[10, 1], "Rotación (c): $(round(c[]; digits=3)) rad", 
       tellwidth = false)
 
-s_ω    = Slider(control_panel[11, 2], range = 0.0:0.05:3.0, startvalue = ω[])
-ω_label = Label(control_panel[11, 1], "Velocidad (ω): $(round(ω[]; digits=2)) rad/s", 
-      tellwidth = false)
-
-# Grupo 4: Animación
-Label(control_panel[12, 1:2], "CONTROL DE ANIMACIÓN", 
-      fontsize = 16, 
-      color = RGBf(0.2, 0.4, 0.6))
-
-s_draw = Slider(control_panel[13, 2], range = 0.01:0.01:3.0, startvalue = draw_speed[])
-draw_label = Label(control_panel[13, 1], "Velocidad dibujo: $(round(draw_speed[]; digits=2))", 
-      tellwidth = false)
-
-# Grupo 5: Exportación
-Label(control_panel[14, 1:2], "EXPORTACIÓN", 
+# Grupo 4: Exportación
+Label(control_panel[11, 1:2], "EXPORTACIÓN", 
       fontsize = 16, 
       color = RGBf(0.2, 0.4, 0.6))
 
 # Slider para número de puntos de trayectoria
-points_label = Label(control_panel[15, 1], "Puntos trayectoria:", tellwidth = false)
-s_points = Slider(control_panel[15, 2], range = 100:100:10000, startvalue = trajectory_points[])
-points_value_label = Label(control_panel[15, 3], "$(trajectory_points[])", tellwidth = false)
+points_label = Label(control_panel[12, 1], "Puntos trayectoria:", tellwidth = false)
+s_points = Slider(control_panel[12, 2], range = 100:100:10000, startvalue = trajectory_points[])
+points_value_label = Label(control_panel[12, 3], "$(trajectory_points[])", tellwidth = false)
 
 # Botones de exportación
-export_buttons_layout = GridLayout(control_panel[16, 1:2])
+export_buttons_layout = GridLayout(control_panel[13, 1:2])
 btn_export_params = Button(export_buttons_layout[1, 1], label = "Exportar Parámetros")
 btn_export_traj = Button(export_buttons_layout[1, 2], label = "Exportar Trayectoria")
 btn_export_all = Button(export_buttons_layout[2, 1:2], label = "Exportar Todo")
@@ -346,8 +335,6 @@ function update_labels()
     rm_label.text[] = "Radio máximo (rm): $(round(rm[]; digits=1))"
     s_label.text[] = "Factor escala (s): $(round(s[]; digits=2))"
     c_label.text[] = "Rotación (c): $(round(c[]; digits=3)) rad"
-    ω_label.text[] = "Velocidad (ω): $(round(ω[]; digits=2)) rad/s"
-    draw_label.text[] = "Velocidad dibujo: $(round(draw_speed[]; digits=2))"
     points_value_label.text[] = "$(trajectory_points[])"
 end
 
@@ -358,8 +345,6 @@ on(d0) do _; update_labels() end
 on(rm) do _; update_labels() end
 on(s) do _; update_labels() end
 on(c) do _; update_labels() end
-on(ω) do _; update_labels() end
-on(draw_speed) do _; update_labels() end
 on(trajectory_points) do _; update_labels() end
 
 # ---------- Enlaces widgets -> observables ----------
@@ -380,12 +365,6 @@ on(s_s.value) do v
 end
 on(s_c.value) do v
     c[] = v
-end
-on(s_ω.value) do v
-    ω[] = v
-end
-on(s_draw.value) do v
-    draw_speed[] = v
 end
 on(s_points.value) do v
     trajectory_points[] = Int(round(v))
@@ -414,8 +393,9 @@ rowgap!(export_buttons_layout, 5)
 screen = display(fig)
 last_t = time()
 
-# Variable para controlar el estado de la animación
-animation_running = true
+# Velocidades fijas (sin controles)
+angular_speed = 1.0  # rad/s
+draw_speed = 0.8     # unidades/s
 
 @async while isopen(screen)
     sleep(1/120)
@@ -424,11 +404,11 @@ animation_running = true
     last_t = now
 
     # Actualizar ángulo del cursor
-    θt[] = (θt[] + ω[] * dt) % (2π)
+    θt[] = (θt[] + angular_speed * dt) % (2π)
     
     # Avanzar progreso del trazo
     p = progress[]
-    pnew = p + dt * draw_speed[]
+    pnew = p + dt * draw_speed
     if pnew >= 1.0
         pnew = 0.0  # Reiniciar automáticamente
     end
