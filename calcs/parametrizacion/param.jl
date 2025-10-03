@@ -1,7 +1,7 @@
 using GLMakie
 GLMakie.activate!()
 using Observables
-using Printf
+ using Printf
 using CSV
 using DataFrames
 using Dates
@@ -12,16 +12,13 @@ if !isdir("Data")
 end
 
 # ---------- Configuración de tema visual ----------
-# Aplicar tema light primero y luego personalizaciones específicas
 set_theme!(theme_light())
-
-# Personalizaciones individuales del tema
 update_theme!(
     fontsize = 14,
     Label = (textcolor = :black,),
     Slider = (color_active = RGBf(0.2, 0.6, 0.8), color_inactive = RGBf(0.7, 0.7, 0.7)),
-    Button = (buttoncolor = RGBf(0.2, 0.6, 0.8), textcolor = :white),
-    Toggle = (buttoncolor = RGBf(0.2, 0.6, 0.8),)
+    Button = (buttoncolor = RGBf(0.2, 0.6, 0.8), labelcolor = :white),
+    Toggle = (buttoncolor = RGBf(0.2, 0.6, 0.8), labelcolor = :white)
 )
 
 # ---------- Parámetros / Observables ----------
@@ -38,9 +35,12 @@ playing    = Observable(true)
 looping    = Observable(true)
 draw_speed = Observable(0.6)   # velocidad de "revelado" (unidades 1/s)
 progress   = Observable(0.0)   # 0..1 progreso del trazo
-θt         = Observable(0.0)   # ángulo del cursor
+θt         = Observable(0.0)   # ángulo del cursor - INICIALIZADO EN 0
 
-# malla angular
+# Puntos para trayectoria exportada
+trajectory_points = Observable(2001)  # número de puntos para exportación
+
+# malla angular para visualización
 θg = range(0, 2π; length=2001)
 
 # ---------- Funciones auxiliares: a(n), d(n) ----------
@@ -54,8 +54,8 @@ end
 
 # Función base del trébol
 function trebol_function(θ, n_val, a_val, d_val, c_val)
-    return 1 .+ a_val .* cos.(n_val .* (θ .- c_val .- π)) .- d_val .* cos.(2n_val .* (θ .- c_val))
-end
+    return 1 .+ a_val .* cos.(n_val .* (θ .- c_val .- pi)) .- d_val .* cos.(2n_val .* (θ .- c_val .- pi))
+end 
 
 # ---------- r(θ) normalizado para que max = s*rm ----------
 rgrid = lift(n, a, d, rm, s, c) do n_val, a_val, d_val, rm_val, s_val, c_val
@@ -110,17 +110,16 @@ xypartial = lift(rpartial, θpartial) do rg, θv
     points
 end
 
-# Punto actual como vector de Point2
+# Punto actual como vector de Point2 - CORREGIDO: usa θt que inicia en 0
 xycurrent = lift(θt, rcur) do θt_val, rcur_val
     [Point2f(rcur_val * cos(θt_val), rcur_val * sin(θt_val))]
 end
 
-# ---------- Función para exportar parámetros ----------
+# ---------- Funciones para exportar ----------
 function export_parameters()
     timestamp = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS")
     filename = "Data/param_$(timestamp).csv"
     
-    # Crear datos para exportar
     params_dict = Dict(
         "n" => n[],
         "a0" => a0[],
@@ -132,12 +131,57 @@ function export_parameters()
         "timestamp" => timestamp
     )
     
-    # Crear DataFrame y exportar
     df = DataFrame(params_dict)
     CSV.write(filename, df)
     
     println("Parámetros exportados a: $filename")
     return filename
+end
+
+function export_trajectory()
+    timestamp = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS")
+    filename = "Data/trajectory_$(timestamp).csv"
+    
+    # Crear malla angular con el número de puntos especificado
+    num_points = trajectory_points[]
+    θ_export = range(0, 2π; length=num_points)
+    
+    # Calcular la trayectoria completa
+    f_vals = trebol_function(θ_export, n[], a[], d[], c[])
+    f_max = maximum(f_vals)
+    
+    if f_max ≈ 0.0
+        r_export = fill(s[] * rm[], length(θ_export))
+    else
+        r_export = s[] * rm[] .* (f_vals ./ f_max)
+    end
+    
+    # Convertir a coordenadas cartesianas
+    x_export = r_export .* cos.(θ_export.-pi)
+    y_export = r_export .* sin.(θ_export.-pi)
+    
+    # Crear DataFrame con la trayectoria
+    trajectory_data = DataFrame(
+        theta = θ_export,
+        x = x_export,
+        y = y_export,
+        r = r_export
+    )
+    
+    CSV.write(filename, trajectory_data)
+    
+    println("Trayectoria exportada a: $filename")
+    println("Número de puntos: $num_points")
+    return filename
+end
+
+function export_all()
+    param_file = export_parameters()
+    traj_file = export_trajectory()
+    println("Exportación completa:")
+    println("  - Parámetros: $param_file")
+    println("  - Trayectoria: $traj_file")
+    return (param_file, traj_file)
 end
 
 # ---------- Crear Figura con Layout Mejorado ----------
@@ -159,7 +203,7 @@ ax = Axis(
     graph_panel[1, 1], 
     xlabel = "Coordenada X",
     ylabel = "Coordenada Y", 
-    title = "TRÉBOL ESTILIZADO - RADIO MÁXIMO FIJO = rm × s",
+    title = "TRÉBOL ESTILIZADO",
     titlesize = 20,
     xlabelsize = 16,
     ylabelsize = 16,
@@ -190,6 +234,14 @@ on(xygrid) do points
     xlims!(ax, minimum(xs) - padding, maximum(xs) + padding)
     ylims!(ax, minimum(ys) - padding, maximum(ys) + padding)
 end
+
+# ---------- Ecuación del Trébol ----------
+equation_text = "Ecuación del Trébol:\nr(θ) = s × rm × [1 + a × cos(n(θ - c - π)) - d × cos(2n(θ - c))] / max"
+equation_label = Label(graph_panel[2, 1], equation_text,
+    fontsize = 14,
+    color = :black,
+    font = :bold,
+    tellwidth = false)
 
 # ---------- Panel de Control Mejorado ----------
 
@@ -251,20 +303,30 @@ s_draw = Slider(control_panel[13, 2], range = 0.01:0.01:3.0, startvalue = draw_s
 draw_label = Label(control_panel[13, 1], "Velocidad dibujo: $(round(draw_speed[]; digits=2))", 
       tellwidth = false)
 
-# Botones en una disposición horizontal
-button_layout = GridLayout(control_panel[14, 1:2])
-btn_play = Button(button_layout[1, 1], label = playing[] ? "Pausar" : "Reproducir")
+# Grupo 5: Exportación
+Label(control_panel[14, 1:2], "EXPORTACIÓN", 
+      fontsize = 16, 
+      color = RGBf(0.2, 0.4, 0.6))
+
+# Slider para número de puntos de trayectoria
+points_label = Label(control_panel[15, 1], "Puntos trayectoria:", tellwidth = false)
+s_points = Slider(control_panel[15, 2], range = 100:100:10000, startvalue = trajectory_points[])
+points_value_label = Label(control_panel[15, 3], "$(trajectory_points[])", tellwidth = false)
+
+# Botones de exportación
+export_buttons_layout = GridLayout(control_panel[16, 1:2])
+btn_export_params = Button(export_buttons_layout[1, 1], label = "Exportar Parámetros")
+btn_export_traj = Button(export_buttons_layout[1, 2], label = "Exportar Trayectoria")
+btn_export_all = Button(export_buttons_layout[2, 1:2], label = "Exportar Todo")
+
+# Botones de control de animación - CORREGIDOS
+button_layout = GridLayout(control_panel[17, 1:2])
+btn_play = Button(button_layout[1, 1], label = "Pausar")
 btn_reset = Button(button_layout[1, 2], label = "Reiniciar")
 t_loop   = Toggle(button_layout[1, 3], active = looping[])
-loop_label = Label(button_layout[1, 4], looping[] ? "Bucle: ON" : "Bucle: OFF")
+loop_label = Label(button_layout[1, 4], "Bucle: ON")
 
-# Botón de exportación
-export_layout = GridLayout(control_panel[15, 1:2])
-btn_export = Button(export_layout[1, 1:2], label = "Exportar Parámetros")
-
-# ---------- Actualizaciones en Tiempo Real de las Etiquetas ----------
-
-# Función para actualizar etiquetas
+# ---------- Actualizaciones en Tiempo Real ----------
 function update_labels()
     n_label.text[] = "Número de hojas (n): $(Int(n[]))"
     a0_label.text[] = "Forma base (a₀): $(round(a0[]; digits=3))"
@@ -276,6 +338,7 @@ function update_labels()
     draw_label.text[] = "Velocidad dibujo: $(round(draw_speed[]; digits=2))"
     btn_play.label[] = playing[] ? "Pausar" : "Reproducir"
     loop_label.text[] = looping[] ? "Bucle: ON" : "Bucle: OFF"
+    points_value_label.text[] = "$(trajectory_points[])"
 end
 
 # Conectar actualizaciones
@@ -289,6 +352,7 @@ on(ω) do _; update_labels() end
 on(draw_speed) do _; update_labels() end
 on(playing) do _; update_labels() end
 on(looping) do _; update_labels() end
+on(trajectory_points) do _; update_labels() end
 
 # ---------- Enlaces widgets -> observables ----------
 on(s_n.value) do v
@@ -315,34 +379,70 @@ end
 on(s_draw.value) do v
     draw_speed[] = v
 end
+on(s_points.value) do v
+    trajectory_points[] = Int(round(v))
+end
 
-on(btn_play.clicks) do _
+# Funciones para los botones de control - CORREGIDAS
+function toggle_animation()
     playing[] = !playing[]
+    update_labels()
+end
+
+function reset_animation()
+    progress[] = 0.0
+    θt[] = 0.0  # REINICIAR A θ=0
+    if !playing[]
+        playing[] = true  # Si estaba pausado, reanudar
+    end
+    update_labels()
+end
+
+function toggle_loop()
+    looping[] = !looping[]
+    update_labels()
+end
+
+# Conectar los botones a las funciones - CORREGIDO
+on(btn_play.clicks) do _
+    toggle_animation()
 end
 
 on(btn_reset.clicks) do _
-    progress[] = 0.0
+    reset_animation()
 end
 
 on(t_loop.active) do val
     looping[] = val
+    update_labels()
 end
 
-# Exportar parámetros cuando se presiona el botón
-on(btn_export.clicks) do _
+# Botones de exportación
+on(btn_export_params.clicks) do _
     export_parameters()
 end
 
-# Ajustar espaciado y márgenes
+on(btn_export_traj.clicks) do _
+    export_trajectory()
+end
+
+on(btn_export_all.clicks) do _
+    export_all()
+end
+
+# Ajustar espaciado
 colgap!(main_layout, 30)
-rowgap!(control_panel, 15)
+rowgap!(control_panel, 12)
 colgap!(control_panel, 10)
 rowgap!(button_layout, 5)
-rowgap!(export_layout, 10)
+rowgap!(export_buttons_layout, 5)
 
 # ---------- Animación ----------
 screen = display(fig)
 last_t = time()
+
+# Variable para controlar el estado de la animación
+animation_running = true
 
 @async while isopen(screen)
     sleep(1/120)
@@ -362,6 +462,8 @@ last_t = time()
                 pnew = 0.0
             else
                 pnew = 1.0
+                playing[] = false  # Detener la animación al completar sin bucle
+                update_labels()
             end
         end
         progress[] = pnew
