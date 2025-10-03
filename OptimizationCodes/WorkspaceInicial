@@ -1,24 +1,31 @@
 using Plots, LinearAlgebra, Measures
 # using Pkg; Pkg.add(["Plots","FFMPEG"]); using FFMPEG  # si hace falta
 
-# --- Parámetros del robot y escena (tus mismos) ---
-L1, L2 = 16.0, 12.0
-xc, yc = -5.0, 10.0
-R  = L1 + L2
-r  = abs(L1 - L2)
-xtc, ytc = 10.0, 10.0
-Rtrebol = 10.0
+# --- Parámetros del robot y escena  ---
+L1, L2 = 16.0, 12.0         # longitudes de los eslabones
+xc, yc = -5.0, 10.0         # base del robot
+R  = L1 + L2                # alcance máximo
+r  = abs(L1 - L2)           # alcance mínimo
+xtc, ytc = 10.0, 10.0       # centro del trébol
+Rtrebol = 10.0              # radio del círculo del trébol
 
-B = [xc, yc]
+B = [xc, yc]                # vector base del robot
 
 # Utilidades IK
 function ik2r_both(B, P, L1, L2)
-    d = P .- B
-    D = norm(d)
+    # B: Coordenadas base robot
+    # P: Coordenadas objetivo
+
+    d = P .- B      # vector base → objetivo
+    D = norm(d)     # distancia base → objetivo
+
+    # Comprobar si es alcanzable
     if D < abs(L1 - L2) - 1e-9 || D > (L1 + L2) + 1e-9
         return nothing, nothing
     end
-    a  = atan(d[2], d[1])
+
+    
+    a  = atan(d[2], d[1]) 
     c2 = clamp((D^2 - L1^2 - L2^2) / (2L1*L2), -1.0, 1.0)
     s2 = sqrt(1 - c2^2)
 
