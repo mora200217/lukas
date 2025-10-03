@@ -16,7 +16,7 @@ println("=" ^ 70)
 
 x_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
 y_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
-R_trebol = 0.10  # m (10 cm de radio)
+R_trebol = 0.13  # m (10 cm de radio)
 
 println("\n--- Trébol de referencia ---")
 println("Centro: ($(x_trebol_center*100), $(y_trebol_center*100)) cm")
@@ -79,7 +79,7 @@ function optimizar_robot(x_init, y_init; verbose=false)
     set_start_value(L2, 0.15)
     
     # Restricción de diferencia |L1-L2|
-    @constraint(model, diff_L >= L1 - L2)
+    # @constraint(model, diff_L >= L1 - L2)
     @constraint(model, diff_L >= L2 - L1)
     
     # Función objetivo
@@ -107,7 +107,7 @@ function optimizar_robot(x_init, y_init; verbose=false)
     @constraint(model, L1 + L2 >= d_base_center + R_trebol + margen_seguridad)
     
     # Alcanzar punto más cercano
-    @constraint(model, L1 - L2 <= d_base_center - R_trebol)
+    # @constraint(model, L1 - L2 <= d_base_center - R_trebol)
     @constraint(model, L2 - L1 <= d_base_center - R_trebol)
     
     # Resolver
