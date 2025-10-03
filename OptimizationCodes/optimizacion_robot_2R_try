@@ -1,0 +1,355 @@
+# ====================================================================
+# OPTIMIZACIÓN SIMULTÁNEA: POSICIÓN BASE + LONGITUDES ESLABONES
+# Centro en (10,10)cm + Margen de seguridad
+# ====================================================================
+
+using JuMP
+using Ipopt
+using Plots
+
+println("=" ^ 70)
+println("OPTIMIZACIÓN SIMULTÁNEA: BASE + ESLABONES")
+println("Centro trébol: (10,10)cm | Con margen de seguridad")
+println("=" ^ 70)
+
+# ============ PARÁMETROS DEL TRÉBOL ============
+
+x_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
+y_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
+R_trebol = 0.10  # m (10 cm de radio)
+
+println("\n--- Trébol de referencia ---")
+println("Centro: ($(x_trebol_center*100), $(y_trebol_center*100)) cm")
+println("Radio: $(R_trebol*100) cm")
+println("Trébol se extiende:")
+println("  X: $(round((x_trebol_center-R_trebol)*100, digits=1)) a $(round((x_trebol_center+R_trebol)*100, digits=1)) cm")
+println("  Y: $(round((y_trebol_center-R_trebol)*100, digits=1)) a $(round((y_trebol_center+R_trebol)*100, digits=1)) cm")
+
+# Límites físicos
+L_min = 0.05  # 5 cm
+L_max = 0.60  # 60 cm
+
+# Pesos función objetivo
+w_masa = 1.0
+w_balance = 0.3
+
+# Resitrcciones 
+Diff_L_max = 0.2 
+
+
+# ============ MARGEN DE SEGURIDAD ============
+
+# Margen para evitar extensión completa (en metros)
+margen_seguridad = 0.03  # 3 cm de margen ← NUEVO
+println("\n--- Margen de seguridad ---")
+println("Margen: $(margen_seguridad*100) cm")
+println("(El robot NO llegará totalmente estirado al punto más lejano)")
+
+# ============ RESTRICCIONES ESPECÍFICAS ============
+
+# Base debe estar AL MENOS 10 cm a la izquierda del centro
+x_base_max = x_trebol_center - 0.15  # 10cm - 10cm = 0cm máximo
+
+# Base debe estar POR DEBAJO del centro
+y_base_max = y_trebol_center  # 10cm máximo
+
+println("\n--- Restricciones de posición de la base ---")
+println("x_base ≤ $(x_base_max*100) cm (mínimo 10cm a la izquierda del centro)")
+println("y_base ≤ $(y_base_max*100) cm (por debajo del centro)")
+
+# ============ FUNCIÓN DE OPTIMIZACIÓN ============
+
+function optimizar_robot(x_init, y_init; verbose=false)
+    """
+    Optimiza posición de base y longitudes de eslabones
+    """
+    
+    model = Model(Ipopt.Optimizer)
+    if !verbose
+        set_silent(model)
+    end
+    
+    # Variables de decisión
+    @variable(model, x_base)
+    @variable(model, y_base)
+    @variable(model, L_min <= L1 <= L_max)
+    @variable(model, L_min <= L2 <= L_max)
+    @variable(model, diff_L >= 0)
+    
+    # Valores iniciales
+    set_start_value(x_base, x_init)
+    set_start_value(y_base, y_init)
+    set_start_value(L1, 0.15)
+    set_start_value(L2, 0.15)
+        
+    # Restricción de diferencia |L1-L2|
+    @constraint(model, abs(L2/L1) <=0.75) # Cambio de prueba 
+    
+    
+    # Función objetivo
+
+    # Suposiciones 
+    # 1. Las masas son uniformes y dependen de la longitud 
+    # 2. Los centros de masa estan en los centroides 
+    @objective(model, Min, (L1+L2) + 5 * (2 * L1 + L2) - L1*L2)
+    
+    # ---- RESTRICCIONES ESPECÍFICAS DE POSICIÓN ----
+    
+    # 1. Base MÍNIMO 10cm a la izquierda del centro
+    @constraint(model, x_base <= x_base_max)
+    
+    # 2. Base POR DEBAJO del centro
+    @constraint(model, y_base <= y_base_max)
+    
+    # 3. Límites razonables
+    @constraint(model, x_base >= -0.30)  # No más de 40cm a la izquierda del centro
+    @constraint(model, y_base >= -0.20)  # No muy abajo
+    
+    # ---- RESTRICCIONES DE ALCANZABILIDAD CON MARGEN ----
+    
+    @expression(model, d_base_center, 
+                sqrt((x_trebol_center - x_base)^2 + (y_trebol_center - y_base)^2))
+    
+    # Alcanzar punto más lejano CON MARGEN DE SEGURIDAD
+    # L1 + L2 debe ser MAYOR que la distancia necesaria
+    @constraint(model, L1 + L2 >= d_base_center + R_trebol + margen_seguridad)
+    
+    # Alcanzar punto más cercano
+    @constraint(model, L1 - L2 <= d_base_center - R_trebol)
+    @constraint(model, L2 - L1 <= d_base_center - R_trebol)
+    
+    # Resolver
+    optimize!(model)
+    
+    status = termination_status(model)
+    
+    # Retornar resultados
+    if status == MOI.OPTIMAL || status == MOI.LOCALLY_SOLVED
+        return (
+            status = status,
+            x_base = value(x_base),
+            y_base = value(y_base),
+            L1 = value(L1),
+            L2 = value(L2),
+            objetivo = objective_value(model),
+            factible = true
+        )
+    else
+        return (
+            status = status,
+            factible = false
+        )
+    end
+end
+
+# ============ BÚSQUEDA CON MÚLTIPLES INICIALIZACIONES ============
+
+println("\n--- Probando múltiples posiciones iniciales ---")
+
+# Puntos iniciales dentro de la región factible
+# Ahora con centro en (10,10), ajustamos los puntos
+puntos_iniciales = [
+    (0.00, 0.00),    # En el límite x permitido
+    (-0.05, 0.00),   # Más a la izquierda
+    (-0.10, 0.00),   # Aún más a la izquierda
+    (0.00, 0.05),    # Centro x con altura
+    (-0.05, 0.05),   # Diagonal
+    (-0.10, 0.05),   # Más alejado
+    (0.00, 0.10),    # En el límite y
+    (-0.05, 0.10),   # Esquina superior
+    (-0.15, 0.00),   # Lejos a la izquierda
+    (-0.10, -0.05),  # Abajo y a la izquierda
+]
+
+resultados = []
+
+for (i, (x_init, y_init)) in enumerate(puntos_iniciales)
+    print("Intento $i: inicio en ($(round(x_init*100,digits=1)), $(round(y_init*100,digits=1))) cm... ")
+    res = optimizar_robot(x_init, y_init)
+    
+    if res.factible
+        println("✓ Obj=$(round(res.objetivo, digits=4))")
+        push!(resultados, res)
+    else
+        println("✗ No factible")
+    end
+end
+
+# ============ MEJOR SOLUCIÓN ============
+
+if isempty(resultados)
+    println("\n⚠ No se encontraron soluciones factibles")
+    println("Intenta aumentar L_max o reducir el margen de seguridad")
+    exit()
+end
+
+# Ordenar por valor objetivo (menor es mejor)
+sort!(resultados, by = r -> r.objetivo)
+mejor = resultados[1]
+
+println("\n" * "=" ^ 70)
+println("MEJOR SOLUCIÓN ENCONTRADA")
+println("=" ^ 70)
+
+println("\n--- POSICIÓN ÓPTIMA DE LA BASE ---")
+println("x_base = $(round(mejor.x_base*100, digits=2)) cm")
+println("y_base = $(round(mejor.y_base*100, digits=2)) cm")
+
+println("\n--- LONGITUDES ÓPTIMAS ---")
+println("L1 = $(round(mejor.L1*100, digits=2)) cm")
+println("L2 = $(round(mejor.L2*100, digits=2)) cm")
+
+println("\n--- MÉTRICAS ---")
+println("Masa total: $(round((mejor.L1 + mejor.L2)*100, digits=2)) cm")
+println("Diferencia |L1-L2|: $(round(abs(mejor.L1 - mejor.L2)*100, digits=2)) cm")
+println("Relación L1/L2: $(round(mejor.L1/mejor.L2, digits=3))")
+
+d_base = sqrt((x_trebol_center - mejor.x_base)^2 + (y_trebol_center - mejor.y_base)^2)
+d_max_requerida = d_base + R_trebol
+println("Distancia base-centro trébol: $(round(d_base*100, digits=2)) cm")
+println("Distancia al punto más lejano: $(round(d_max_requerida*100, digits=2)) cm")
+
+# Verificar margen
+alcance_disponible = mejor.L1 + mejor.L2
+margen_real = alcance_disponible - d_max_requerida
+println("Margen real obtenido: $(round(margen_real*100, digits=2)) cm")
+
+println("\n--- VERIFICACIÓN DE RESTRICCIONES ---")
+
+# Distancia horizontal desde centro
+dist_horizontal = x_trebol_center - mejor.x_base
+println("Distancia horizontal desde centro: $(round(dist_horizontal*100, digits=2)) cm")
+println("  ¿≥ 10 cm a la izquierda?: ", dist_horizontal >= 0.10 - 0.001 ? "✓" : "✗")
+
+# Posición vertical
+println("y_base = $(round(mejor.y_base*100, digits=2)) cm, centro = $(y_trebol_center*100) cm")
+println("  ¿Por debajo del centro?: ", mejor.y_base <= y_trebol_center + 0.001 ? "✓" : "✗")
+
+println("\nAlcance máximo: $(round((mejor.L1+mejor.L2)*100, digits=2)) cm")
+println("Alcance mínimo: $(round(abs(mejor.L1-mejor.L2)*100, digits=2)) cm")
+println("Punto más lejano requiere: $(round(d_max_requerida*100, digits=2)) cm")
+println("Margen de seguridad: $(round(margen_real*100, digits=2)) cm ✓")
+
+# ============ VISUALIZACIÓN ============
+
+println("\n--- Generando visualización ---")
+
+θ = range(0, 2π, length=100)
+
+# Trébol
+x_trebol = x_trebol_center .+ R_trebol .* cos.(θ)
+y_trebol = y_trebol_center .+ R_trebol .* sin.(θ)
+
+# Workspace
+alcance_max = mejor.L1 + mejor.L2
+alcance_min = abs(mejor.L1 - mejor.L2)
+
+x_max = mejor.x_base .+ alcance_max .* cos.(θ)
+y_max = mejor.y_base .+ alcance_max .* sin.(θ)
+
+x_min = mejor.x_base .+ alcance_min .* cos.(θ)
+y_min = mejor.y_base .+ alcance_min .* sin.(θ)
+
+# Región factible para la base
+x_region = [-0.30, x_base_max, x_base_max, -0.30, -0.30]
+y_region = [-0.20, -0.20, y_base_max, y_base_max, -0.20]
+
+# Líneas de referencia
+x_line_x = [x_base_max, x_base_max]
+y_line_x = [-0.22, 0.22]
+
+x_line_y = [-0.32, 0.25]
+y_line_y = [y_base_max, y_base_max]
+
+# Plot
+p = plot(aspect_ratio=:equal, size=(1000, 1000))
+
+# Región factible
+plot!(p, x_region, y_region,
+      fillalpha=0.1, fillcolor=:green,
+      linewidth=0, label="Región factible base")
+
+# Líneas de restricción
+plot!(p, x_line_x, y_line_x, 
+      label="x_base ≤ $(round(x_base_max*100,digits=1)) cm", 
+      linewidth=2, linestyle=:dash, color=:orange)
+plot!(p, x_line_y, y_line_y,
+      label="y_base ≤ $(round(y_base_max*100,digits=1)) cm",
+      linewidth=2, linestyle=:dash, color=:purple)
+
+# Trébol
+plot!(p, x_trebol, y_trebol, 
+      label="Trébol (centro: 10,10cm)", 
+      linewidth=4, color=:blue)
+
+# Workspace
+plot!(p, x_max, y_max, 
+      label="Alcance máx: $(round(alcance_max*100,digits=1)) cm", 
+      linewidth=2.5, linestyle=:dashdot, color=:red)
+
+if alcance_min > 0.001
+    plot!(p, x_min, y_min, 
+          label="Alcance mín: $(round(alcance_min*100,digits=1)) cm", 
+          linewidth=2.5, linestyle=:dashdot, color=:green)
+end
+
+# Círculo que representa distancia exacta al punto más lejano (sin margen)
+x_exacto = mejor.x_base .+ d_max_requerida .* cos.(θ)
+y_exacto = mejor.y_base .+ d_max_requerida .* sin.(θ)
+plot!(p, x_exacto, y_exacto,
+      label="Distancia exacta (sin margen)",
+      linewidth=1.5, linestyle=:dot, color=:gray, alpha=0.5)
+
+# Puntos importantes
+scatter!(p, [mejor.x_base], [mejor.y_base], 
+         label="Base ÓPTIMA ($(round(mejor.x_base*100,digits=1)), $(round(mejor.y_base*100,digits=1))) cm", 
+         markersize=16, color=:red, markershape=:star5,
+         markerstrokewidth=2, markerstrokecolor=:black)
+
+scatter!(p, [x_trebol_center], [y_trebol_center], 
+         label="Centro trébol (10, 10) cm", 
+         markersize=12, color=:blue, markershape=:circle,
+         markerstrokewidth=2, markerstrokecolor=:white)
+
+# Otras soluciones encontradas
+if length(resultados) > 1
+    x_otras = [r.x_base for r in resultados[2:end]]
+    y_otras = [r.y_base for r in resultados[2:end]]
+    scatter!(p, x_otras, y_otras,
+             label="Otras soluciones locales",
+             markersize=8, color=:gray, alpha=0.5,
+             markershape=:circle)
+end
+
+xlabel!(p, "x [m]")
+ylabel!(p, "y [m]")
+title!(p, "Centro (10,10)cm | Margen $(margen_seguridad*100)cm\nBase: ($(round(mejor.x_base*100,digits=1)),$(round(mejor.y_base*100,digits=1)))cm | L1=$(round(mejor.L1*100,digits=1))cm, L2=$(round(mejor.L2*100,digits=1))cm",
+       fontsize=11)
+grid!(p, true, alpha=0.3)
+xlims!(p, -0.25, 0.25)
+ylims!(p, -0.15, 0.25)
+
+display(p)
+savefig(p, "optimizacion_centro_10_10.png")
+println("✓ Gráfica guardada como 'optimizacion_centro_10_10.png'")
+
+# ============ RESUMEN FINAL ============
+
+println("\n" * "=" ^ 70)
+println("RESUMEN PARA IMPLEMENTACIÓN")
+println("=" ^ 70)
+println("\nCENTRO DEL TRÉBOL:")
+println("  ($(x_trebol_center*100), $(y_trebol_center*100)) cm")
+println("\nPOSICIÓN DE LA BASE:")
+println("  x = $(round(mejor.x_base*100, digits=2)) cm")
+println("  y = $(round(mejor.y_base*100, digits=2)) cm")
+println("  ($(round(dist_horizontal*100, digits=1)) cm a la izquierda del centro)")
+println("  ($(round((y_trebol_center - mejor.y_base)*100, digits=1)) cm abajo del centro)")
+println("\nLONGITUDES DE ESLABONES:")
+println("  L1 = $(round(mejor.L1*100, digits=2)) cm")
+println("  L2 = $(round(mejor.L2*100, digits=2)) cm")
+println("\nMARGEN DE SEGURIDAD:")
+println("  Especificado: $(margen_seguridad*100) cm")
+println("  Obtenido: $(round(margen_real*100, digits=2)) cm")
+println("  El robot NO llegará totalmente estirado ✓")
+println("\n" * "=" ^ 70)
