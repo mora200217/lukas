@@ -83,15 +83,15 @@ function optimizar_robot(x_init, y_init; verbose=false)
     set_start_value(L2, 0.15)
         
     # Restricción de diferencia |L1-L2|
-    # @constraint(model, abs(L2/L1) <= 0.5) # Cambio de prueba 
-    # @constraint(model, diff_LC >= L2 - L1)
+    @constraint(model, abs(L2/L1) <=0.75) # Cambio de prueba 
+    
     
     # Función objetivo
 
     # Suposiciones 
     # 1. Las masas son uniformes y dependen de la longitud 
     # 2. Los centros de masa estan en los centroides 
-    @objective(model, Min, (L1+L2) + 5 * (2 * L1 + L2)+ w_balance*diff_L - L1*L2)
+    @objective(model, Min, (L1+L2) + 5 * (2 * L1 + L2) - L1*L2)
     
     # ---- RESTRICCIONES ESPECÍFICAS DE POSICIÓN ----
     
