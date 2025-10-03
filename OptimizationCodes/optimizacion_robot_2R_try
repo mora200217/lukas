@@ -16,7 +16,7 @@ println("=" ^ 70)
 
 x_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
 y_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
-R_trebol = 0.13  # m (10 cm de radio)
+R_trebol = 0.10  # m (10 cm de radio)
 
 println("\n--- Trébol de referencia ---")
 println("Centro: ($(x_trebol_center*100), $(y_trebol_center*100)) cm")
@@ -32,6 +32,10 @@ L_max = 0.60  # 60 cm
 # Pesos función objetivo
 w_masa = 1.0
 w_balance = 0.3
+
+# Resitrcciones 
+Diff_L_max = 0.2 
+
 
 # ============ MARGEN DE SEGURIDAD ============
 
@@ -77,13 +81,17 @@ function optimizar_robot(x_init, y_init; verbose=false)
     set_start_value(y_base, y_init)
     set_start_value(L1, 0.15)
     set_start_value(L2, 0.15)
-    
+        
     # Restricción de diferencia |L1-L2|
-    # @constraint(model, diff_L >= L1 - L2)
-    @constraint(model, diff_L >= L2 - L1)
+    # @constraint(model, abs(L2/L1) <= 0.5) # Cambio de prueba 
+    # @constraint(model, diff_LC >= L2 - L1)
     
     # Función objetivo
-    @objective(model, Min, w_masa*(L1 + L2) + w_balance*diff_L)
+
+    # Suposiciones 
+    # 1. Las masas son uniformes y dependen de la longitud 
+    # 2. Los centros de masa estan en los centroides 
+    @objective(model, Min, (L1+L2) + 5 * (2 * L1 + L2)+ w_balance*diff_L - L1*L2)
     
     # ---- RESTRICCIONES ESPECÍFICAS DE POSICIÓN ----
     
@@ -107,7 +115,7 @@ function optimizar_robot(x_init, y_init; verbose=false)
     @constraint(model, L1 + L2 >= d_base_center + R_trebol + margen_seguridad)
     
     # Alcanzar punto más cercano
-    # @constraint(model, L1 - L2 <= d_base_center - R_trebol)
+    @constraint(model, L1 - L2 <= d_base_center - R_trebol)
     @constraint(model, L2 - L1 <= d_base_center - R_trebol)
     
     # Resolver
