@@ -2,12 +2,14 @@ using Plots, LinearAlgebra, Measures
 # using Pkg; Pkg.add(["Plots","FFMPEG"]); using FFMPEG  # si hace falta
 
 # --- Parámetros del robot y escena  ---
-L1, L2 = 16.0, 12.0         # longitudes de los eslabones
-xc, yc = -5.0, 10.0         # base del robot
+L1, L2 = 20.0, 15.0         # longitudes de los eslabones
+xc, yc = -8.81, 3.22         # base del robot
 R  = L1 + L2                # alcance máximo
 r  = abs(L1 - L2)           # alcance mínimo
 xtc, ytc = 10.0, 10.0       # centro del trébol
-Rtrebol = 10.0              # radio del círculo del trébol
+Rtrebol = 10              # radio del círculo del trébol
+RtrebolScaled = Rtrebol * 1.3  # círculo del trébol escalado (para visualización)
+Rmax = 15.0                  # radio máximo seguridad
 
 B = [xc, yc]                # vector base del robot
 
@@ -81,6 +83,8 @@ t = range(0, 2π, length=600)
 x  = xc .+ R .* cos.(t);  y  = yc .+ R .* sin.(t)
 x2 = xc .+ r .* cos.(t);  y2 = yc .+ r .* sin.(t)
 xtrebol = xtc .+ Rtrebol .* cos.(t); ytrebol = ytc .+ Rtrebol .* sin.(t)
+xtrebolscaled = xtc .+ RtrebolScaled .* cos.(t); ytrebolscaled = ytc .+ RtrebolScaled .* sin.(t)
+xmax = xtc .+ Rmax .* cos.(t); ymax = ytc .+ Rmax .* sin.(t)
 
 # Cuadrado opcional
 qx, qy = 0.0, 0.0; s = 20.0
@@ -119,13 +123,15 @@ let last_angles = nothing  # para continuidad
 
         # Trébol y cuadrado
         plot!(xtrebol, ytrebol; label="Círculo trébol", color=:forestgreen, linestyle=:dot, linewidth=2)
+        plot!(xtrebolscaled, ytrebolscaled; label="Círculo trébol (escalado)", color=:green, linestyle=:dashdot, linewidth=1)
+        plot!(xmax, ymax; label="Límite máximo", color=:gray70, linestyle=:dashdot, linewidth=1)
         plot!(xq, yq; seriestype=:shape, fillalpha=0.20, fillcolor=:gold, linecolor=:gold, label="Cuadrado")
         plot!(xq, yq; linewidth=2, color=:black, linestyle=:solid, label="")
 
         # Base, brazos, efector
         scatter!([B[1]], [B[2]]; label="Base del robot", markersize=8, marker=:xcross, markercolor=:black)
-        plot!([B[1], E[1]], [B[2], E[2]]; label="Eslabón 1 (16)", color=:dodgerblue, linewidth=4)
-        plot!([E[1], P[1]], [E[2], P[2]]; label="Eslabón 2 (12)", color=:orange, linewidth=4)
+        plot!([B[1], E[1]], [B[2], E[2]]; label="Eslabón 1 (20)", color=:dodgerblue, linewidth=4)
+        plot!([E[1], P[1]], [E[2], P[2]]; label="Eslabón 2 (15)", color=:orange, linewidth=4)
         scatter!([P[1]], [P[2]]; label="Objetivo", marker=:diamond, markersize=8, markercolor=:red)
 
         xlims!(xc - R - 1, xc + R + 1)

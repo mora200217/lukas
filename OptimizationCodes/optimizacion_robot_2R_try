@@ -16,7 +16,7 @@ println("=" ^ 70)
 
 x_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
 y_trebol_center = 0.10  # m (10 cm) ← CAMBIADO
-R_trebol = 0.10  # m (10 cm de radio)
+R_trebol = 0.13  # m (10 cm de radio)
 
 println("\n--- Trébol de referencia ---")
 println("Centro: ($(x_trebol_center*100), $(y_trebol_center*100)) cm")
@@ -40,7 +40,7 @@ Diff_L_max = 0.2
 # ============ MARGEN DE SEGURIDAD ============
 
 # Margen para evitar extensión completa (en metros)
-margen_seguridad = 0.03  # 3 cm de margen ← NUEVO
+margen_seguridad = 0.02  # 3 cm de margen ← NUEVO
 println("\n--- Margen de seguridad ---")
 println("Margen: $(margen_seguridad*100) cm")
 println("(El robot NO llegará totalmente estirado al punto más lejano)")
@@ -115,8 +115,8 @@ function optimizar_robot(x_init, y_init; verbose=false)
     @constraint(model, L1 + L2 >= d_base_center + R_trebol + margen_seguridad)
     
     # Alcanzar punto más cercano
-    @constraint(model, L1 - L2 <= d_base_center - R_trebol)
-    @constraint(model, L2 - L1 <= d_base_center - R_trebol)
+    @constraint(model, L1 - L2 <= d_base_center - R_trebol - margen_seguridad)
+    @constraint(model, L2 - L1 <= d_base_center - R_trebol - margen_seguridad)
     
     # Resolver
     optimize!(model)
@@ -229,127 +229,3 @@ println("\nAlcance máximo: $(round((mejor.L1+mejor.L2)*100, digits=2)) cm")
 println("Alcance mínimo: $(round(abs(mejor.L1-mejor.L2)*100, digits=2)) cm")
 println("Punto más lejano requiere: $(round(d_max_requerida*100, digits=2)) cm")
 println("Margen de seguridad: $(round(margen_real*100, digits=2)) cm ✓")
-
-# ============ VISUALIZACIÓN ============
-
-println("\n--- Generando visualización ---")
-
-θ = range(0, 2π, length=100)
-
-# Trébol
-x_trebol = x_trebol_center .+ R_trebol .* cos.(θ)
-y_trebol = y_trebol_center .+ R_trebol .* sin.(θ)
-
-# Workspace
-alcance_max = mejor.L1 + mejor.L2
-alcance_min = abs(mejor.L1 - mejor.L2)
-
-x_max = mejor.x_base .+ alcance_max .* cos.(θ)
-y_max = mejor.y_base .+ alcance_max .* sin.(θ)
-
-x_min = mejor.x_base .+ alcance_min .* cos.(θ)
-y_min = mejor.y_base .+ alcance_min .* sin.(θ)
-
-# Región factible para la base
-x_region = [-0.30, x_base_max, x_base_max, -0.30, -0.30]
-y_region = [-0.20, -0.20, y_base_max, y_base_max, -0.20]
-
-# Líneas de referencia
-x_line_x = [x_base_max, x_base_max]
-y_line_x = [-0.22, 0.22]
-
-x_line_y = [-0.32, 0.25]
-y_line_y = [y_base_max, y_base_max]
-
-# Plot
-p = plot(aspect_ratio=:equal, size=(1000, 1000))
-
-# Región factible
-plot!(p, x_region, y_region,
-      fillalpha=0.1, fillcolor=:green,
-      linewidth=0, label="Región factible base")
-
-# Líneas de restricción
-plot!(p, x_line_x, y_line_x, 
-      label="x_base ≤ $(round(x_base_max*100,digits=1)) cm", 
-      linewidth=2, linestyle=:dash, color=:orange)
-plot!(p, x_line_y, y_line_y,
-      label="y_base ≤ $(round(y_base_max*100,digits=1)) cm",
-      linewidth=2, linestyle=:dash, color=:purple)
-
-# Trébol
-plot!(p, x_trebol, y_trebol, 
-      label="Trébol (centro: 10,10cm)", 
-      linewidth=4, color=:blue)
-
-# Workspace
-plot!(p, x_max, y_max, 
-      label="Alcance máx: $(round(alcance_max*100,digits=1)) cm", 
-      linewidth=2.5, linestyle=:dashdot, color=:red)
-
-if alcance_min > 0.001
-    plot!(p, x_min, y_min, 
-          label="Alcance mín: $(round(alcance_min*100,digits=1)) cm", 
-          linewidth=2.5, linestyle=:dashdot, color=:green)
-end
-
-# Círculo que representa distancia exacta al punto más lejano (sin margen)
-x_exacto = mejor.x_base .+ d_max_requerida .* cos.(θ)
-y_exacto = mejor.y_base .+ d_max_requerida .* sin.(θ)
-plot!(p, x_exacto, y_exacto,
-      label="Distancia exacta (sin margen)",
-      linewidth=1.5, linestyle=:dot, color=:gray, alpha=0.5)
-
-# Puntos importantes
-scatter!(p, [mejor.x_base], [mejor.y_base], 
-         label="Base ÓPTIMA ($(round(mejor.x_base*100,digits=1)), $(round(mejor.y_base*100,digits=1))) cm", 
-         markersize=16, color=:red, markershape=:star5,
-         markerstrokewidth=2, markerstrokecolor=:black)
-
-scatter!(p, [x_trebol_center], [y_trebol_center], 
-         label="Centro trébol (10, 10) cm", 
-         markersize=12, color=:blue, markershape=:circle,
-         markerstrokewidth=2, markerstrokecolor=:white)
-
-# Otras soluciones encontradas
-if length(resultados) > 1
-    x_otras = [r.x_base for r in resultados[2:end]]
-    y_otras = [r.y_base for r in resultados[2:end]]
-    scatter!(p, x_otras, y_otras,
-             label="Otras soluciones locales",
-             markersize=8, color=:gray, alpha=0.5,
-             markershape=:circle)
-end
-
-xlabel!(p, "x [m]")
-ylabel!(p, "y [m]")
-title!(p, "Centro (10,10)cm | Margen $(margen_seguridad*100)cm\nBase: ($(round(mejor.x_base*100,digits=1)),$(round(mejor.y_base*100,digits=1)))cm | L1=$(round(mejor.L1*100,digits=1))cm, L2=$(round(mejor.L2*100,digits=1))cm",
-       fontsize=11)
-grid!(p, true, alpha=0.3)
-xlims!(p, -0.25, 0.25)
-ylims!(p, -0.15, 0.25)
-
-display(p)
-savefig(p, "optimizacion_centro_10_10.png")
-println("✓ Gráfica guardada como 'optimizacion_centro_10_10.png'")
-
-# ============ RESUMEN FINAL ============
-
-println("\n" * "=" ^ 70)
-println("RESUMEN PARA IMPLEMENTACIÓN")
-println("=" ^ 70)
-println("\nCENTRO DEL TRÉBOL:")
-println("  ($(x_trebol_center*100), $(y_trebol_center*100)) cm")
-println("\nPOSICIÓN DE LA BASE:")
-println("  x = $(round(mejor.x_base*100, digits=2)) cm")
-println("  y = $(round(mejor.y_base*100, digits=2)) cm")
-println("  ($(round(dist_horizontal*100, digits=1)) cm a la izquierda del centro)")
-println("  ($(round((y_trebol_center - mejor.y_base)*100, digits=1)) cm abajo del centro)")
-println("\nLONGITUDES DE ESLABONES:")
-println("  L1 = $(round(mejor.L1*100, digits=2)) cm")
-println("  L2 = $(round(mejor.L2*100, digits=2)) cm")
-println("\nMARGEN DE SEGURIDAD:")
-println("  Especificado: $(margen_seguridad*100) cm")
-println("  Obtenido: $(round(margen_real*100, digits=2)) cm")
-println("  El robot NO llegará totalmente estirado ✓")
-println("\n" * "=" ^ 70)
