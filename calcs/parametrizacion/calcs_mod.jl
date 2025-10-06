@@ -5,15 +5,36 @@ using Printf
 using LinearAlgebra
 using DataFrames
 using Dates
+using CSV
 
 # ---------- Configuración de tema visual ----------
-set_theme!(theme_light())
-update_theme!(
+set_theme!(
     fontsize = 14,
     Label = (textcolor = :black,),
-    Slider = (color_active = RGBf(0.2, 0.6, 0.8), color_inactive = RGBf(0.7, 0.7, 0.7)),
-    Button = (buttoncolor = RGBf(0.2, 0.6, 0.8), labelcolor = :white),
-    Toggle = (buttoncolor = RGBf(0.2, 0.6, 0.8), labelcolor = :white)
+    Slider = (
+        color_active = RGBf(0.2, 0.6, 0.8), 
+        color_inactive = RGBf(0.7, 0.7, 0.7),
+        markersize = 12
+    ),
+    Button = (
+        buttoncolor = RGBf(0.2, 0.6, 0.8), 
+        labelcolor = :white,
+        buttoncolor_hover = RGBf(0.3, 0.7, 0.9)
+    ),
+    Toggle = (
+        buttoncolor = RGBf(0.2, 0.6, 0.8), 
+        labelcolor = :white,
+        buttoncolor_active = RGBf(0.3, 0.7, 0.9)
+    ),
+    Axis = (
+        backgroundcolor = :white,
+        topspinecolor = RGBf(0.8, 0.8, 0.8),
+        bottomspinecolor = RGBf(0.8, 0.8, 0.8),
+        leftspinecolor = RGBf(0.8, 0.8, 0.8),
+        rightspinecolor = RGBf(0.8, 0.8, 0.8),
+        xgridcolor = RGBf(0.9, 0.9, 0.9),
+        ygridcolor = RGBf(0.9, 0.9, 0.9)
+    )
 )
 
 # ---------- Estructura del Robot ----------
@@ -92,6 +113,9 @@ rm = Observable(10.0)      # radio máximo objetivo
 s  = Observable(1.0)       # escala global (0.75..1.25)
 c  = Observable(0.0)       # rotación (rad)
 
+# Nuevo observable para número de puntos
+n_puntos_obs = Observable(1000)  # Valor predeterminado cambiado a 1000
+
 # animación
 progress   = Observable(0.0)   # 0..1 progreso del trazo
 θt         = Observable(0.0)   # ángulo del cursor
@@ -100,7 +124,10 @@ progress   = Observable(0.0)   # 0..1 progreso del trazo
 robot = Robot2R(16.0, 12.0, 15.0)  # L1=16cm, L2=12cm, offset=15cm
 
 # ---------- Funciones del Trébol ----------
-θg = range(0, 2π; length=2001)
+# θg ahora depende del número de puntos
+θg = lift(n_puntos_obs) do n_puntos
+    range(0, 2π; length=n_puntos)
+end
 
 a = lift(a0, n) do a0_val, n_val
     a0_val / n_val
@@ -114,30 +141,30 @@ function trebol_function(θ, n_val, a_val, d_val, c_val)
     return 1 .+ a_val .* cos.(n_val .* (θ .- c_val .- pi)) .- d_val .* cos.(2n_val .* (θ .- c_val .- pi))
 end 
 
-rgrid = lift(n, a, d, rm, s, c) do n_val, a_val, d_val, rm_val, s_val, c_val
-    f_vals = trebol_function(θg, n_val, a_val, d_val, c_val)
+rgrid = lift(n, a, d, rm, s, c, θg) do n_val, a_val, d_val, rm_val, s_val, c_val, θg_val
+    f_vals = trebol_function(θg_val, n_val, a_val, d_val, c_val)
     f_max = maximum(f_vals)
     
     if f_max ≈ 0.0
-        fill(s_val * rm_val, length(θg))
+        fill(s_val * rm_val, length(θg_val))
     else
         s_val * rm_val .* (f_vals ./ f_max)
     end
 end
 
-xygrid = lift(rgrid) do rg
-    points = [Point2f(r * cos(θ), r * sin(θ)) for (r, θ) in zip(rg, θg)]
+xygrid = lift(rgrid, θg) do rg, θg_val
+    points = [Point2f(r * cos(θ), r * sin(θ)) for (r, θ) in zip(rg, θg_val)]
     points
 end
 
-θpartial = lift(progress) do p_val
-    m = max(2, Int(round(clamp(p_val, 0, 1) * length(θg))))
-    θg[1:m]
+θpartial = lift(progress, θg) do p_val, θg_val
+    m = max(2, Int(round(clamp(p_val, 0, 1) * length(θg_val))))
+    θg_val[1:m]
 end
 
-rpartial = lift(n, a, d, rm, s, c, θpartial) do n_val, a_val, d_val, rm_val, s_val, c_val, θv
+rpartial = lift(n, a, d, rm, s, c, θpartial, θg) do n_val, a_val, d_val, rm_val, s_val, c_val, θv, θg_full
     f_vals = trebol_function(θv, n_val, a_val, d_val, c_val)
-    f_max = maximum(trebol_function(θg, n_val, a_val, d_val, c_val))
+    f_max = maximum(trebol_function(θg_full, n_val, a_val, d_val, c_val))
     
     if f_max ≈ 0.0
         fill(s_val * rm_val, length(θv))
@@ -151,9 +178,9 @@ xypartial = lift(rpartial, θpartial) do rg, θv
     points
 end
 
-rcur = lift(n, a, d, rm, s, c, θt) do n_val, a_val, d_val, rm_val, s_val, c_val, θt_val
+rcur = lift(n, a, d, rm, s, c, θt, θg) do n_val, a_val, d_val, rm_val, s_val, c_val, θt_val, θg_val
     f_val = trebol_function([θt_val], n_val, a_val, d_val, c_val)[1]
-    f_vals = trebol_function(θg, n_val, a_val, d_val, c_val)
+    f_vals = trebol_function(θg_val, n_val, a_val, d_val, c_val)
     f_max = maximum(f_vals)
     
     if f_max ≈ 0.0
@@ -168,15 +195,14 @@ xycurrent = lift(θt, rcur) do θt_val, rcur_val
 end
 
 # ---------- Cálculo en vivo de Cinemática Inversa ----------
-# Observables para datos de cinemática
-n_points = length(θg)
-theta1_data = Observable(zeros(n_points))
-theta2_data = Observable(zeros(n_points))
-alcanzable_data = Observable(fill(false, n_points))
-indices = Observable(collect(1:n_points))
+# Observables para datos de cinemática (ahora dependen del número de puntos)
+theta1_data = Observable(Float64[])
+theta2_data = Observable(Float64[])
+alcanzable_data = Observable(Bool[])
+indices = Observable(Int[])
 
 configuracion = Observable("arriba")
-usar_grados = Observable(false)
+unidad_angulos = Observable("radianes")
 
 # Estadísticas en vivo
 n_total = Observable(0)
@@ -202,7 +228,7 @@ function actualizar_cinematica_en_vivo()
     )
     
     # Aplicar conversión a grados si es necesario
-    if usar_grados[]
+    if unidad_angulos[] == "grados"
         theta1 = rad2deg.(theta1)
         theta2 = rad2deg.(theta2)
     end
@@ -211,6 +237,7 @@ function actualizar_cinematica_en_vivo()
     theta1_data[] = theta1
     theta2_data[] = theta2
     alcanzable_data[] = alcanzable
+    indices[] = collect(1:length(puntos_x))
 
     # Calcular estadísticas (siempre en radianes para consistencia)
     theta1_rad, theta2_rad, _ = calcular_cinematica_completa(
@@ -225,7 +252,7 @@ function actualizar_cinematica_en_vivo()
     
     n_total[] = length(alcanzable)
     n_alcanzables[] = sum(alcanzable)
-    porcentaje_alcanzable[] = (n_alcanzables[] / n_total[]) * 100
+    porcentaje_alcanzable[] = n_total[] > 0 ? (n_alcanzables[] / n_total[]) * 100 : 0.0
     
     theta1_min[] = isempty(valid_theta1) ? 0.0 : minimum(valid_theta1)
     theta1_max[] = isempty(valid_theta1) ? 0.0 : maximum(valid_theta1)
@@ -242,7 +269,7 @@ end
 
 # ---------- Expresión matemática ----------
 math_expression = lift(n, a, d, rm, s, c) do n_val, a_val, d_val, rm_val, s_val, c_val
-    f_vals = trebol_function(θg, n_val, a_val, d_val, c_val)
+    f_vals = trebol_function(θg[], n_val, a_val, d_val, c_val)
     f_max = maximum(f_vals)
     
     if f_max ≈ 0.0
@@ -252,27 +279,76 @@ math_expression = lift(n, a, d, rm, s, c) do n_val, a_val, d_val, rm_val, s_val,
     end
 end
 
-# ---------- Crear Figura Combinada ----------
+# ---------- Función de Exportación a CSV ----------
+function exportar_a_csv()
+    try
+        # Crear carpeta Data si no existe
+        if !isdir("Data")
+            mkdir("Data")
+        end
+        
+        # Obtener datos actuales
+        puntos_trebol = xygrid[]
+        x_tray = [p[1] for p in puntos_trebol]
+        y_tray = [p[2] for p in puntos_trebol]
+        
+        # Calcular ángulos para exportación
+        theta1_export, theta2_export, alcanzable_export = calcular_cinematica_completa(
+            robot, x_tray, y_tray; configuracion = configuracion[]
+        )
+        
+        # Convertir a grados si es necesario
+        if unidad_angulos[] == "grados"
+            theta1_export = rad2deg.(theta1_export)
+            theta2_export = rad2deg.(theta2_export)
+            unidad_str = "grados"
+        else
+            unidad_str = "radianes"
+        end
+        
+        # Crear DataFrame
+        df = DataFrame(
+            indice = 1:length(x_tray),
+            x_cm = round.(x_tray, digits=4),
+            y_cm = round.(y_tray, digits=4),
+            theta1 = round.(theta1_export, digits=4),
+            theta2 = round.(theta2_export, digits=4),
+            alcanzable = alcanzable_export,
+            configuracion = fill(configuracion[], length(x_tray)),
+            unidad_angulos = fill(unidad_str, length(x_tray))
+        )
+        
+        # Generar nombre de archivo con timestamp
+        timestamp = Dates.format(now(), "yyyy-mm-dd_HH-MM-SS")
+        filename = "Data/trayectoria_trebol_$(timestamp).csv"
+        
+        # Exportar a CSV
+        CSV.write(filename, df)
+        
+        return true, filename
+    catch e
+        return false, "Error: $e"
+    end
+end
+
+# ---------- Crear Figura ----------
 fig = Figure(
-    size = (1800, 1200),
+    size = (1800 * 0.95, 1200 * 0.95),  # Escalado al 95%
     backgroundcolor = RGBf(0.98, 0.98, 0.98)
 )
 
 # Crear GridLayout principal
 main_layout = GridLayout(fig[1, 1])
 
-# Panel superior: Trébol (50% alto)
-trebol_panel = main_layout[1, 1] = GridLayout()
+# Panel izquierdo: Trébol y ángulos
+left_panel = main_layout[1, 1] = GridLayout()
 
-# Panel inferior izquierdo: Ángulos theta1 y theta2 (25% alto)
-angulos_panel = main_layout[2, 1] = GridLayout()
-
-# Panel derecho: Controles (50% ancho)
-control_panel = main_layout[1:2, 2] = GridLayout()
+# Panel derecho: Controles
+right_panel = main_layout[1, 2] = GridLayout()
 
 # ---------- Gráfica del Trébol ----------
 ax_trebol = Axis(
-    trebol_panel[1, 1], 
+    left_panel[1, 1], 
     xlabel = "Coordenada X (cm)",
     ylabel = "Coordenada Y (cm)", 
     title = "TRÉBOL ESTILIZADO - FORMA ACTUAL",
@@ -304,19 +380,21 @@ current_point = scatter!(ax_trebol, xycurrent;
 on(xygrid) do points
     xs = [p[1] for p in points]
     ys = [p[2] for p in points]
-    padding = 0.15 * maximum(abs.(vcat(xs, ys)))
-    xlims!(ax_trebol, minimum(xs) - padding, maximum(xs) + padding)
-    ylims!(ax_trebol, minimum(ys) - padding, maximum(ys) + padding)
+    if !isempty(xs) && !isempty(ys)
+        padding = 0.15 * maximum(abs.(vcat(xs, ys)))
+        xlims!(ax_trebol, minimum(xs) - padding, maximum(xs) + padding)
+        ylims!(ax_trebol, minimum(ys) - padding, maximum(ys) + padding)
+    end
 end
 
 # Ecuación del trébol
-equation_title = Label(trebol_panel[2, 1], "ECUACIÓN MATEMÁTICA ACTUAL:",
+equation_title = Label(left_panel[2, 1], "ECUACIÓN MATEMÁTICA ACTUAL:",
     fontsize = 16,
     color = :black,
     font = :bold,
     tellwidth = false)
 
-equation_label = Label(trebol_panel[3, 1], math_expression,
+equation_label = Label(left_panel[3, 1], math_expression,
     fontsize = 14,
     color = RGBf(0.1, 0.1, 0.5),
     font = :italic,
@@ -325,7 +403,7 @@ equation_label = Label(trebol_panel[3, 1], math_expression,
 # ---------- Gráficas de Ángulos ----------
 # Gráfica theta1
 ax_theta1 = Axis(
-    angulos_panel[1, 1],
+    left_panel[4, 1],
     xlabel = "Índice de punto",
     ylabel = "θ₁ [rad]",
     title = "ÁNGULO θ₁ - CINEMÁTICA INVERSA EN VIVO",
@@ -337,13 +415,12 @@ ax_theta1 = Axis(
 
 theta1_line = lines!(ax_theta1, indices, theta1_data,
     color = RGBf(0.2, 0.4, 0.8),
-    linewidth = 2,
-    label = "θ₁"
+    linewidth = 2
 )
 
 # Gráfica theta2
 ax_theta2 = Axis(
-    angulos_panel[2, 1],
+    left_panel[5, 1],
     xlabel = "Índice de punto",
     ylabel = "θ₂ [rad]",
     title = "ÁNGULO θ₂ - CINEMÁTICA INVERSA EN VIVO",
@@ -355,88 +432,128 @@ ax_theta2 = Axis(
 
 theta2_line = lines!(ax_theta2, indices, theta2_data,
     color = RGBf(0.8, 0.2, 0.2),
-    linewidth = 2,
-    label = "θ₂"
+    linewidth = 2
 )
 
-# ---------- Panel de Control Completo ----------
+# ---------- Panel de Control ----------
 
 # Título principal
-Label(control_panel[1, 1:2], "CONTROL INTEGRADO", 
+Label(right_panel[1, 1], "CONTROL INTEGRADO", 
       fontsize = 20, 
       font = :bold,
       color = RGBf(0.1, 0.1, 0.4))
 
-# Grupo 1: Parámetros del Trébol
-Label(control_panel[2, 1:2], "PARÁMETROS DEL TRÉBOL", 
+# Separador
+Label(right_panel[2, 1], "─"^50, 
       fontsize = 16, 
-      color = RGBf(0.2, 0.4, 0.6))
+      color = RGBf(0.7, 0.7, 0.7))
+
+# Grupo 1: Parámetros del Trébol
+Label(right_panel[3, 1], "PARÁMETROS DEL TRÉBOL", 
+      fontsize = 16, 
+      color = RGBf(0.2, 0.4, 0.6),
+      font = :bold)
 
 # Sliders del trébol
-s_n    = Slider(control_panel[3, 2], range = 2:1:12, startvalue = n[])
-n_label = Label(control_panel[3, 1], "Número de hojas (n): $(Int(n[]))", tellwidth = false)
+s_n    = Slider(right_panel[4, 1], range = 2:1:12, startvalue = n[])
+n_label = Label(right_panel[5, 1], "Número de hojas (n): $(Int(n[]))", tellwidth = false)
 
-s_a0   = Slider(control_panel[4, 2], range = 0:0.01:2, startvalue = a0[])
-a0_label = Label(control_panel[4, 1], "Forma base (a₀): $(round(a0[]; digits=3))", tellwidth = false)
+s_a0   = Slider(right_panel[6, 1], range = 0:0.01:2, startvalue = a0[])
+a0_label = Label(right_panel[7, 1], "Forma base (a₀): $(round(a0[]; digits=3))", tellwidth = false)
 
-s_d0   = Slider(control_panel[5, 2], range = 0.0:0.001:0.5, startvalue = d0[])
-d0_label = Label(control_panel[5, 1], "Profundidad (d₀): $(round(d0[]; digits=4))", tellwidth = false)
+s_d0   = Slider(right_panel[8, 1], range = 0.0:0.001:0.5, startvalue = d0[])
+d0_label = Label(right_panel[9, 1], "Profundidad (d₀): $(round(d0[]; digits=4))", tellwidth = false)
 
-s_rm   = Slider(control_panel[6, 2], range = 1:0.5:80, startvalue = rm[])
-rm_label = Label(control_panel[6, 1], "Radio máximo (rm): $(round(rm[]; digits=1))", tellwidth = false)
+s_rm   = Slider(right_panel[10, 1], range = 1:0.5:80, startvalue = rm[])
+rm_label = Label(right_panel[11, 1], "Radio máximo (rm): $(round(rm[]; digits=1))", tellwidth = false)
 
-s_s    = Slider(control_panel[7, 2], range = 0.5:0.01:1.5, startvalue = s[])
-s_label = Label(control_panel[7, 1], "Factor escala (s): $(round(s[]; digits=2))", tellwidth = false)
+s_s    = Slider(right_panel[12, 1], range = 0.5:0.01:1.5, startvalue = s[])
+s_label = Label(right_panel[13, 1], "Factor escala (s): $(round(s[]; digits=2))", tellwidth = false)
 
-s_c    = Slider(control_panel[8, 2], range = -π:0.01:π, startvalue = c[])
-c_label = Label(control_panel[8, 1], "Rotación (c): $(round(c[]; digits=3)) rad", tellwidth = false)
+s_c    = Slider(right_panel[14, 1], range = -π:0.01:π, startvalue = c[])
+c_label = Label(right_panel[15, 1], "Rotación (c): $(round(c[]; digits=3)) rad", tellwidth = false)
+
+# Nuevo slider para número de puntos
+s_n_puntos = Slider(right_panel[16, 1], range = 100:100:5000, startvalue = n_puntos_obs[])
+n_puntos_label = Label(right_panel[17, 1], "Número de puntos: $(n_puntos_obs[])", tellwidth = false)
+
+# Separador
+Label(right_panel[18, 1], "─"^50, 
+      fontsize = 16, 
+      color = RGBf(0.7, 0.7, 0.7))
 
 # Grupo 2: Parámetros del Robot
-Label(control_panel[9, 1:2], "PARÁMETROS DEL ROBOT", 
+Label(right_panel[19, 1], "PARÁMETROS DEL ROBOT", 
       fontsize = 16, 
-      color = RGBf(0.2, 0.4, 0.6))
+      color = RGBf(0.2, 0.4, 0.6),
+      font = :bold)
 
-Label(control_panel[10, 1], "L1:", tellwidth = false)
-Label(control_panel[10, 2], "16.0 cm", tellwidth = false, font = :bold)
+robot_info_layout = GridLayout(right_panel[20, 1])
+Label(robot_info_layout[1, 1], "• Longitud L1: 16.0 cm", tellwidth = false, fontsize = 13)
+Label(robot_info_layout[2, 1], "• Longitud L2: 12.0 cm", tellwidth = false, fontsize = 13)
+Label(robot_info_layout[3, 1], "• Offset Base X: +15.0 cm", tellwidth = false, fontsize = 13)
 
-Label(control_panel[11, 1], "L2:", tellwidth = false)
-Label(control_panel[11, 2], "12.0 cm", tellwidth = false, font = :bold)
-
-Label(control_panel[12, 1], "Offset Base X:", tellwidth = false)
-Label(control_panel[12, 2], "+15.0 cm", tellwidth = false, font = :bold)
+# Separador
+Label(right_panel[21, 1], "─"^50, 
+      fontsize = 16, 
+      color = RGBf(0.7, 0.7, 0.7))
 
 # Grupo 3: Configuración de Cinemática
-Label(control_panel[13, 1:2], "CONFIGURACIÓN CINEMÁTICA", 
+Label(right_panel[22, 1], "CONFIGURACIÓN CINEMÁTICA", 
       fontsize = 16, 
-      color = RGBf(0.2, 0.4, 0.6))
+      color = RGBf(0.2, 0.4, 0.6),
+      font = :bold)
 
-# CORREGIDO: Reemplazar Menu con ToggleButtons
-config_layout = GridLayout(control_panel[14, 1:2])
-Label(config_layout[1, 1], "Configuración:", tellwidth = false)
-toggle_config = Toggle(config_layout[1, 2])
-Label(config_layout[1, 3], "arriba", tellwidth = false)
-Label(config_layout[1, 4], "abajo", tellwidth = false)
+# Selector de configuración usando Menu (dropdown)
+config_layout = GridLayout(right_panel[23, 1])
+Label(config_layout[1, 1], "Configuración del brazo:", tellwidth = false, fontsize = 13)
+config_dropdown = Menu(config_layout[2, 1], options = ["arriba", "abajo"])
 
-toggle_grados = Toggle(control_panel[15, 1], active = usar_grados[])
-Label(control_panel[15, 2], "Mostrar en grados", tellwidth = false)
+# Selector de unidades usando Menu (dropdown)
+units_layout = GridLayout(right_panel[24, 1])
+Label(units_layout[1, 1], "Unidades angulares:", tellwidth = false, fontsize = 13)
+units_dropdown = Menu(units_layout[2, 1], options = ["radianes", "grados"])
+
+# Separador
+Label(right_panel[25, 1], "─"^50, 
+      fontsize = 16, 
+      color = RGBf(0.7, 0.7, 0.7))
 
 # Grupo 4: Estadísticas en Vivo
-Label(control_panel[16, 1:2], "ESTADÍSTICAS EN VIVO", 
+Label(right_panel[26, 1], "ESTADÍSTICAS EN VIVO", 
       fontsize = 16, 
-      color = RGBf(0.2, 0.4, 0.6))
+      color = RGBf(0.2, 0.4, 0.6),
+      font = :bold)
 
-stats_label = Label(control_panel[17, 1:2], "Calculando...",
+stats_label = Label(right_panel[27, 1], "Calculando...",
       fontsize = 13,
       tellwidth = false,
       justification = :left)
 
-rango_label = Label(control_panel[18, 1:2], "---",
+rango_label = Label(right_panel[28, 1], "---",
       fontsize = 13,
       tellwidth = false,
       justification = :left)
 
-# Botón para actualizar cinemática
-btn_actualizar = Button(control_panel[19, 1:2], label = "Actualizar Cinemática en Vivo")
+# Separador
+Label(right_panel[29, 1], "─"^50, 
+      fontsize = 16, 
+      color = RGBf(0.7, 0.7, 0.7))
+
+# Grupo 5: Exportación de Datos
+Label(right_panel[30, 1], "EXPORTACIÓN DE DATOS", 
+      fontsize = 16, 
+      color = RGBf(0.2, 0.4, 0.6),
+      font = :bold)
+
+btn_exportar = Button(right_panel[31, 1], 
+    label = "EXPORTAR DATOS A CSV",
+    buttoncolor = RGBf(0.3, 0.7, 0.3))
+
+export_status = Label(right_panel[32, 1], "Presione para exportar trayectoria y ángulos",
+    fontsize = 12,
+    color = RGBf(0.3, 0.3, 0.3),
+    tellwidth = false)
 
 # ---------- Funciones de Actualización ----------
 function update_trebol_labels()
@@ -446,17 +563,11 @@ function update_trebol_labels()
     rm_label.text[] = "Radio máximo (rm): $(round(rm[]; digits=1))"
     s_label.text[] = "Factor escala (s): $(round(s[]; digits=2))"
     c_label.text[] = "Rotación (c): $(round(c[]; digits=3)) rad"
+    n_puntos_label.text[] = "Número de puntos: $(n_puntos_obs[])"
 end
 
 function actualizar_stats_labels()
-    stats_text = """
-    Puntos totales: $(n_total[])
-    Alcanzables: $(n_alcanzables[]) $(@sprintf("%.2f", porcentaje_alcanzable[]))%
-    No alcanzables: $(n_total[] - n_alcanzables[])
-    """
-    stats_label.text[] = stats_text
-    
-    if usar_grados[]
+    if unidad_angulos[] == "grados"
         θ1_min_val = rad2deg(theta1_min[])
         θ1_max_val = rad2deg(theta1_max[])
         θ2_min_val = rad2deg(theta2_min[])
@@ -470,15 +581,22 @@ function actualizar_stats_labels()
         unit = "rad"
     end
     
+    stats_text = """
+    Puntos totales: $(n_total[])
+    Puntos alcanzables: $(n_alcanzables[]) ($(@sprintf("%.1f", porcentaje_alcanzable[]))%)
+    Puntos no alcanzables: $(n_total[] - n_alcanzables[])
+    """
+    stats_label.text[] = stats_text
+    
     rango_text = """
-    θ₁: [$(@sprintf("%.3f", θ1_min_val)), $(@sprintf("%.3f", θ1_max_val))] $unit
-    θ₂: [$(@sprintf("%.3f", θ2_min_val)), $(@sprintf("%.3f", θ2_max_val))] $unit
+    Rango θ₁: [$(@sprintf("%.3f", θ1_min_val)), $(@sprintf("%.3f", θ1_max_val))] $unit
+    Rango θ₂: [$(@sprintf("%.3f", θ2_min_val)), $(@sprintf("%.3f", θ2_max_val))] $unit
     """
     rango_label.text[] = rango_text
 end
 
 function actualizar_unidades_graficas()
-    if usar_grados[]
+    if unidad_angulos[] == "grados"
         ax_theta1.ylabel = "θ₁ [°]"
         ax_theta2.ylabel = "θ₂ [°]"
     else
@@ -525,20 +643,36 @@ on(s_c.value) do v
     actualizar_cinematica_en_vivo()
 end
 
-# Conectar configuración de cinemática - CORREGIDO
-on(toggle_config.active) do active
-    configuracion[] = active ? "arriba" : "abajo"
+# Conectar slider de número de puntos
+on(s_n_puntos.value) do v
+    n_puntos_obs[] = Int(round(v))
+    update_trebol_labels()
     actualizar_cinematica_en_vivo()
 end
 
-on(toggle_grados.active) do val
-    usar_grados[] = val
+# Conectar selectores de cinemática (usando Menu/dropdown)
+on(config_dropdown.selection) do selected
+    configuracion[] = selected
+    actualizar_cinematica_en_vivo()
+end
+
+on(units_dropdown.selection) do selected
+    unidad_angulos[] = selected
     actualizar_unidades_graficas()
     actualizar_cinematica_en_vivo()
 end
 
-on(btn_actualizar.clicks) do _
-    actualizar_cinematica_en_vivo()
+# Conectar botón de exportación
+on(btn_exportar.clicks) do _
+    export_status.text[] = "Exportando datos..."
+    success, result = exportar_a_csv()
+    if success
+        export_status.text[] = "✓ Datos exportados: $result"
+        export_status.color[] = RGBf(0.0, 0.5, 0.0)
+    else
+        export_status.text[] = "✗ Error: $result"
+        export_status.color[] = RGBf(0.8, 0.0, 0.0)
+    end
 end
 
 # ---------- Animación del Trébol ----------
@@ -568,17 +702,19 @@ end
 
 # Ejecutar primera actualización
 actualizar_cinematica_en_vivo()
+update_trebol_labels()
 
 # Ajustar espaciado
 colgap!(main_layout, 20)
 rowgap!(main_layout, 20)
-colgap!(control_panel, 10)
-rowgap!(control_panel, 8)
-rowgap!(trebol_panel, 10)
-rowgap!(angulos_panel, 15)
+colgap!(left_panel, 10)
+rowgap!(left_panel, 15)
+colgap!(right_panel, 10)
+rowgap!(right_panel, 8)
 
 # Bloquear si no es interactivo
 if !isinteractive()
+    println("Visualización iniciada. Presione Ctrl+C para terminar.")
     while isopen(screen)
         sleep(0.1)
     end
