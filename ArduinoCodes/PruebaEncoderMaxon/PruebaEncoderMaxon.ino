@@ -1,40 +1,34 @@
 // === Pines ===
-const int pinA = 2;   // Canal A
-const int pinB = 3;   // Canal B
+const int pinA = 2;   // Canal A (INT0)
+const int pinB = 3;   // Canal B (INT1, solo lectura para dirección)
 
-// === Datos del encoder y reducción ===
-const long PPR = 500;                 // Pulsos por revolución del encoder
-const long CPR = 4 * PPR;             // 4x -> 2000 counts/vuelta de motor
-const double REDUCCION = 26.0 / 7.0;  // ≈ 3.714:1 (motor:salida)
+// === Encoder y reducción ===
+const long PPR = 500;                 // Pulsos por vuelta (por canal)
+const int  DECODE_X = 1;              // 1x (rápido). Opcional: 2 para 2x (ver notas)
+long CPR_eff = PPR * DECODE_X;        // Cuentas por vuelta de motor efectivas
+const double REDUCCION = 5.42;        // motor:salida
 
 // === Variables globales ===
-volatile long counts = 0;      // cuentas acumuladas
-volatile bool dirCCW = true;   // dirección (true = CCW)
+volatile long counts = 0;     // cuentas acumuladas a 1x
+volatile bool dirCCW = true;  // CCW positivo
 
-// === ISR para canal A (4×) ===
-void isrA() {
-  bool A = bitRead(PIND, 2);   // D2
-  bool B = bitRead(PIND, 3);   // D3
-  if (A == B) { counts--; dirCCW = false; }  // CW -> negativo
-  else        { counts++; dirCCW = true;  }  // CCW -> positivo
-}
-
-// === ISR para canal B (4×) ===
-void isrB() {
-  bool A = bitRead(PIND, 2);
-  bool B = bitRead(PIND, 3);
-  if (A != B) { counts--; dirCCW = false; }  // CW
-  else        { counts++; dirCCW = true;  }  // CCW
+// === ISR 1×: solo flanco RISING de A; dirección con B ===
+void isrA_RISING() {
+  bool B = bitRead(PIND, 3);         // leer canal B rápido
+  if (!B) { counts++; dirCCW = true; }   // CCW
+  else    { counts--; dirCCW = false;}   // CW
 }
 
 void setup() {
-  pinMode(pinA, INPUT);
+  pinMode(pinA, INPUT);  // usa INPUT_PULLUP si tu encoder es colector abierto
   pinMode(pinB, INPUT);
-  attachInterrupt(digitalPinToInterrupt(pinA), isrA, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(pinB), isrB, CHANGE);
 
-  Serial.begin(115200);
-  Serial.println("Velocidad y posicion del EJE DE SALIDA (CCW = +, CW = -)");
+  // 1×: solo un interrupt en A (flancos ascendentes)
+  attachInterrupt(digitalPinToInterrupt(pinA), isrA_RISING, RISING);
+
+  Serial.begin(250000);
+  while(!Serial) {}
+  Serial.println("Medicion 1x: CCW=+ , CW=- (salida)");
 }
 
 void loop() {
@@ -42,56 +36,41 @@ void loop() {
   static long countsPrev = 0;
 
   unsigned long t = millis();
-  if (t - tPrev >= 100) {                // cada 100 ms
+  if (t - tPrev >= 100) {               // cada 100 ms
     noInterrupts();
     long c = counts;
     interrupts();
 
-    long dc = c - countsPrev;            // delta de cuentas
+    long dc = c - countsPrev;
     countsPrev = c;
     double dt = (t - tPrev) / 1000.0;
     tPrev = t;
 
-    // =============================
-    // === VELOCIDAD DEL EJE DE SALIDA ===
-    // =============================
-    // Velocidad motor en RPM (con signo según dirección)
-    double rpm_motor = ((double)dc / (double)CPR) * (60.0 / dt);
-    // Aplica reducción
+    // === Velocidad eje de salida ===
+    double rpm_motor  = (double)dc / (double)CPR_eff * (60.0 / dt);
     double rpm_salida = rpm_motor / REDUCCION;
+    double w_salida   = rpm_salida * (TWO_PI / 60.0);
 
-    // En rad/s (signo incluido)
-    double w_salida = rpm_salida * (TWO_PI / 60.0);
+    // === Posicion eje de salida ===
+    double ang_rad_salida = (double)c / (double)CPR_eff * (TWO_PI / REDUCCION);
+    double ang_deg_salida = ang_rad_salida * 180.0 / PI;
 
-    // =============================
-    // === POSICIÓN ANGULAR DEL EJE DE SALIDA ===
-    // =============================
-    // Ángulo acumulado del eje de salida
-    double ang_rad_salida = ((double)c / (double)CPR) * (TWO_PI / REDUCCION);
-    double ang_deg_salida = ang_rad_salida * (180.0 / PI);
+    // Vueltas completas (floor para negativos correcto)
+    long vueltas = (long)floor(ang_rad_salida / (2.0*PI));
+    double resto_rad = ang_rad_salida - (double)vueltas * (2.0*PI);
+    double resto_deg = resto_rad * 180.0 / PI;
 
-    // Calcular vueltas completas y residuo
-    long vueltas_completas = (long)(ang_rad_salida / (2.0 * PI));
-    double resto_rad = ang_rad_salida - (vueltas_completas * 2.0 * PI);
-    double resto_deg = resto_rad * (180.0 / PI);
-
-    // Corrige el signo del resto si CCW es positivo, CW negativo
-    // (ya lo está implícito porque counts tiene signo)
-
-    // =============================
-    // === IMPRESIÓN ===
-    // =============================
-    Serial.print("ω = ");
+    // === Salida compacta ===
+    Serial.print("w=");
     Serial.print(w_salida, 3);
-    Serial.print(" rad/s  |  ");
-    Serial.print(rpm_salida, 2);
-    Serial.print(" RPM   ||   θ = ");
-
-    Serial.print(vueltas_completas);
-    Serial.print(" vueltas + ");
+    Serial.print(" rad/s | ");
+    Serial.print(rpm_salida, 1);
+    Serial.print(" rpm || theta=");
+    Serial.print(vueltas);
+    Serial.print("v + ");
     Serial.print(resto_rad, 4);
     Serial.print(" rad (");
-    Serial.print(resto_deg, 2);
-    Serial.println(" °)");
+    Serial.print(resto_deg, 1);
+    Serial.println("°)");
   }
 }
