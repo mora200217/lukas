@@ -1,18 +1,22 @@
-# Modulo IK - Inverse Kinematics 
+module MainModule
 
-module IK
-include("../robot/robot2R.jl")
-using .Robot
+using LinearAlgebra
 
-export ik
+export Robot2R, aplicar_offset_base, cinematica_inversa_punto, calcular_cinematica_completa
 
+struct Robot2R
+    L1::Float64
+    L2::Float64
+    base_offset_x::Float64
+end
 
-
+# Aplicar offset a los puntos
 function aplicar_offset_base(x, y, offset)
     return x .+ offset, y
 end
 
-function cinematica_inversa_punto(robot::Main.Robot.Robot2R, x, y)
+# Cinemática inversa de un punto
+function cinematica_inversa_punto(robot::Robot2R, x, y)
     d = sqrt(x^2 + y^2)
     d_max = robot.L1 + robot.L2
     d_min = abs(robot.L1 - robot.L2)
@@ -21,9 +25,7 @@ function cinematica_inversa_punto(robot::Main.Robot.Robot2R, x, y)
         return nothing, nothing, false
     end
     
-    c2 = (x^2 + y^2 - robot.L1^2 - robot.L2^2) / (2 * robot.L1 * robot.L2)
-    c2 = clamp(c2, -1.0, 1.0)
-    
+    c2 = clamp((x^2 + y^2 - robot.L1^2 - robot.L2^2) / (2 * robot.L1 * robot.L2), -1.0, 1.0)
     s2_pos = sqrt(1 - c2^2)
     s2_neg = -sqrt(1 - c2^2)
     
@@ -40,7 +42,8 @@ function cinematica_inversa_punto(robot::Main.Robot.Robot2R, x, y)
     return [theta1_pos, theta2_pos], [theta1_neg, theta2_neg], true
 end
 
-function ik(robot::Main.Robot.Robot2R, puntos_x, puntos_y; configuracion="arriba")
+# Cinemática inversa para toda la trayectoria
+function calcular_cinematica_completa(robot::Robot2R, puntos_x, puntos_y; configuracion="arriba")
     n_puntos = length(puntos_x)
     x_robot, y_robot = aplicar_offset_base(puntos_x, puntos_y, robot.base_offset_x)
     
@@ -53,6 +56,7 @@ function ik(robot::Main.Robot.Robot2R, puntos_x, puntos_y; configuracion="arriba
         sol_arriba, sol_abajo, es_alcanzable = cinematica_inversa_punto(robot, x, y)
         
         alcanzable[i] = es_alcanzable
+        
         if es_alcanzable
             if configuracion == "arriba"
                 theta1_tray[i], theta2_tray[i] = sol_arriba
