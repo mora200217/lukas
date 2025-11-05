@@ -6,7 +6,7 @@ const int pinB = 3;   // Canal B (INT1, solo lectura para dirección)
 const long PPR = 500;                 // Pulsos por vuelta (por canal)
 const int  DECODE_X = 1;              // 1x (rápido). Opcional: 2 para 2x (ver notas)
 long CPR_eff = PPR * DECODE_X;        // Cuentas por vuelta de motor efectivas
-const double REDUCCION = 5.42;        // motor:salida
+const double REDUCCION = 5.42;        // motor:salida 5.42 Faulhaber y 3.714 MAXON
 
 // === Variables globales ===
 volatile long counts = 0;     // cuentas acumuladas a 1x
@@ -26,7 +26,7 @@ void setup() {
   // 1×: solo un interrupt en A (flancos ascendentes)
   attachInterrupt(digitalPinToInterrupt(pinA), isrA_RISING, RISING);
 
-  Serial.begin(250000);
+  Serial.begin(9600);
   while(!Serial) {}
   Serial.println("Medicion 1x: CCW=+ , CW=- (salida)");
 }
@@ -36,7 +36,7 @@ void loop() {
   static long countsPrev = 0;
 
   unsigned long t = millis();
-  if (t - tPrev >= 100) {               // cada 100 ms
+  if (t - tPrev >= 1) {               // cada 1 ms
     noInterrupts();
     long c = counts;
     interrupts();
@@ -72,5 +72,6 @@ void loop() {
     Serial.print(" rad (");
     Serial.print(resto_deg, 1);
     Serial.println("°)");
+    Serial.println(ang_rad_salida);
   }
 }
