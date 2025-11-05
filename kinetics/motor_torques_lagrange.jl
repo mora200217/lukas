@@ -25,10 +25,22 @@
 
 # Definición de Lagrangiano ================================= 
 module Torque
+    using Symbolics
+    # Definicion de T y V 
+    @variables t
+    @variables m1 m2 l1 l2 I1 I2 θ1(t) θ2(t)
+
+    D = Differential(t)
+    
+    T = m1/2 * l1 * I1 * D(θ1) + D(θ1)
+
     export torque_calculator    
     function torque_calculator(θ_1,θ_2)
         # Definicion de theta1 y theta2 
+
         
+
+
         return 1
 
     end

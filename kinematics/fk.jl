@@ -1,9 +1,8 @@
 # Forward Kinematics
 module FK
-include("../robot/robot2R.jl")
-using .Robot
 
     export fk
+    using ..Robot
 
     function fk(robot::Robot.Robot2R, θ1, θ2)
         # 2R - Robot Forward kinematics  =========

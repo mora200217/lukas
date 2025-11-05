@@ -1,1 +1,4 @@
 calcs/parametrizacion/main_local_backup_*.jl
+
+# macOS
+.DS_Store
