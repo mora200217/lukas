@@ -61,7 +61,7 @@ void loop() {
     double resto_deg = resto_rad * 180.0 / PI;
 
     // === Salida compacta ===
-    Serial.print("w=");
+    /*Serial.print("w=");
     Serial.print(w_salida, 3);
     Serial.print(" rad/s | ");
     Serial.print(rpm_salida, 1);
@@ -71,7 +71,7 @@ void loop() {
     Serial.print(resto_rad, 4);
     Serial.print(" rad (");
     Serial.print(resto_deg, 1);
-    Serial.println("°)");
+    Serial.println("°)");*/
     Serial.println(ang_rad_salida);
   }
 }
