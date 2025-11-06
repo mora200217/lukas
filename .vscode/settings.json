@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "name": "ROS2-Humble-Conda",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${env:CONDA_PREFIX}/include/**"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}",
+          "${env:CONDA_PREFIX}/include"
+        ]
+      },
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c17",
+      "cppStandard": "gnu++17",
+      "intelliSenseMode": "macos-clang-arm64"
+    }
+  ],
+  "version": 4
+}
