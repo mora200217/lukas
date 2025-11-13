@@ -1,0 +1,38 @@
+# lukas_controllers.yaml
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+    thread_priority: 0
+    use_rt: false
+    use_realtime_threads: false
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    position_controller:
+      type: position_controllers/JointGroupPositionController
+
+position_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+    # PID parameters for each joint
+    gains:
+      joint1:
+        p: 10.0
+        i: 0.1
+        d: 0.01
+      joint2:
+        p: 8.0
+        i: 0.1
+        d: 0.01
+      joint3:
+        p: 12.0
+        i: 0.2
+        d: 0.02

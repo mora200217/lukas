@@ -38,6 +38,7 @@ private:
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr topic_based_joint_states_subscriber_;
   rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr topic_based_joint_commands_publisher_;
   rclcpp::Node::SharedPtr node_;
+  int uart_fd_ = -1;  // <-- 🔧 ADD THIS LINE
   sensor_msgs::msg::JointState latest_joint_state_;
   bool sum_wrapped_joint_states_{ false };
 

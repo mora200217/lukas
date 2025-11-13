@@ -330,7 +330,7 @@ end
         # Validar coherencia de dimensiones
         validar_dimensiones([θ1_vec, θ2_vec, dθ1_vec, dθ2_vec, ddθ1_vec, ddθ2_vec], N)
         
-        # Validar datos numéricos
+        # Validar datos numéricos 
         validar_datos_numericos(θ1_vec, θ2_vec, dθ1_vec, dθ2_vec, ddθ1_vec, ddθ2_vec)
         
         # ============================ ============================ ============================ 
@@ -403,7 +403,7 @@ end
         detectar_discontinuidades(tau1, tau2, t)
         
         # ============================ ============================ ============================ 
-        # 5. GENERACIÓN DE GRÁFICAS
+        # 5. GENERACIÓN DE GRÁFICAear 
         # ============================ ============================ ============================ 
         
         println("\nGenerando gráficas...")

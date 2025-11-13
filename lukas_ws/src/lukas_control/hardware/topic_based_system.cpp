@@ -5,6 +5,9 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <fcntl.h>
+#include <termios.h>
+#include <unistd.h>
 
 #include <angles/angles.h>
 #include <rclcpp/executors.hpp>
@@ -25,7 +28,7 @@ namespace lukas_control
 
 static constexpr std::size_t POSITION_INTERFACE_INDEX = 0;
 static constexpr std::size_t VELOCITY_INTERFACE_INDEX = 1;
-static constexpr std::size_t EFFORT_INTERFACE_INDEX = 3;
+static constexpr std::size_t EFFORT_INTERFACE_INDEX = 2;
 
 CallbackReturn TopicBasedSystem::on_init(const hardware_interface::HardwareInfo& info)
 {
@@ -34,92 +37,56 @@ CallbackReturn TopicBasedSystem::on_init(const hardware_interface::HardwareInfo&
     return CallbackReturn::ERROR;
   }
 
-  joint_commands_.resize(standard_interfaces_.size());
-  joint_states_.resize(standard_interfaces_.size());
-  for (auto i = 0u; i < standard_interfaces_.size(); i++)
+  joint_commands_.resize(3);
+  joint_states_.resize(3);
+  for (auto i = 0u; i < 3; i++)
   {
     joint_commands_[i].resize(info_.joints.size(), 0.0);
     joint_states_[i].resize(info_.joints.size(), 0.0);
   }
 
-  for (auto i = 0u; i < info_.joints.size(); i++)
+  // === UART CONFIG ===
+  std::string device = "/dev/tty.usbserial-0001";
+  if (auto it = info_.hardware_parameters.find("uart_device"); it != info_.hardware_parameters.end())
   {
-    const auto& component = info_.joints[i];
-    for (const auto& interface : component.state_interfaces)
-    {
-      auto it = std::find(standard_interfaces_.begin(), standard_interfaces_.end(), interface.name);
-      if (it != standard_interfaces_.end())
-      {
-        auto index = static_cast<std::size_t>(std::distance(standard_interfaces_.begin(), it));
-        if (!interface.initial_value.empty())
-        {
-          joint_commands_[index][i] = std::stod(interface.initial_value);
-        }
-      }
-    }
+    device = it->second;
   }
 
-  for (auto i = 0u; i < info_.joints.size(); ++i)
+  uart_fd_ = ::open(device.c_str(), O_RDWR | O_NOCTTY);
+  if (uart_fd_ < 0)
   {
-    const auto& joint = info_.joints.at(i);
-    if (joint.parameters.find("mimic") != joint.parameters.cend())
-    {
-      const auto mimicked_joint_it = std::find_if(
-          info_.joints.begin(), info_.joints.end(),
-          [&mimicked_joint = joint.parameters.at("mimic")](const hardware_interface::ComponentInfo& joint_info) {
-            return joint_info.name == mimicked_joint;
-          });
-
-      if (mimicked_joint_it == info_.joints.cend())
-      {
-        throw std::runtime_error(std::string("Mimicked joint '") + joint.parameters.at("mimic") + "' not found");
-      }
-
-      MimicJoint mimic_joint;
-      mimic_joint.joint_index = i;
-      mimic_joint.mimicked_joint_index =
-          static_cast<std::size_t>(std::distance(info_.joints.begin(), mimicked_joint_it));
-
-      auto param_it = joint.parameters.find("multiplier");
-      if (param_it != joint.parameters.end())
-      {
-        mimic_joint.multiplier = std::stod(joint.parameters.at("multiplier"));
-      }
-      mimic_joints_.push_back(mimic_joint);
-    }
+    RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to open UART device: %s", device.c_str());
+    return CallbackReturn::ERROR;
   }
 
-  const auto get_hardware_parameter = [this](const std::string& parameter_name, const std::string& default_value) {
-    if (auto it = info_.hardware_parameters.find(parameter_name); it != info_.hardware_parameters.end())
-    {
-      return it->second;
-    }
-    return default_value;
-  };
-
-  rclcpp::NodeOptions options;
-  options.arguments({ "--ros-args", "-r", "__node:=lukas_control_" + info_.name });
-
-  node_ = rclcpp::Node::make_shared("_", options);
-
-  if (auto it = info_.hardware_parameters.find("trigger_joint_command_threshold"); it != info_.hardware_parameters.end())
+  struct termios tty{};
+  if (tcgetattr(uart_fd_, &tty) != 0)
   {
-    trigger_joint_command_threshold_ = std::stod(it->second);
+    RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to get UART attributes");
+    return CallbackReturn::ERROR;
   }
 
-  topic_based_joint_commands_publisher_ = node_->create_publisher<sensor_msgs::msg::JointState>(
-      get_hardware_parameter("joint_commands_topic", "/robot_joint_commands"), rclcpp::QoS(1));
+  cfsetospeed(&tty, B115200);
+  cfsetispeed(&tty, B115200);
 
-  topic_based_joint_states_subscriber_ = node_->create_subscription<sensor_msgs::msg::JointState>(
-      get_hardware_parameter("joint_states_topic", "/topic_based_joint_commands"),
-      rclcpp::SensorDataQoS(),
-      [this](const sensor_msgs::msg::JointState::SharedPtr joint_state) { latest_joint_state_ = *joint_state; });
+  tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;
+  tty.c_iflag = 0;
+  tty.c_oflag = 0;
+  tty.c_lflag = 0;
+  tty.c_cc[VMIN] = 0;
+  tty.c_cc[VTIME] = 10;
 
-  if (get_hardware_parameter("sum_wrapped_joint_states", "false") == "true")
+  tty.c_iflag &= ~(IXON | IXOFF | IXANY);
+  tty.c_cflag |= (CLOCAL | CREAD);
+  tty.c_cflag &= ~(PARENB | PARODD | CSTOPB | CRTSCTS);
+
+  if (tcsetattr(uart_fd_, TCSANOW, &tty) != 0)
   {
-    sum_wrapped_joint_states_ = true;
+    RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to set UART attributes");
+    return CallbackReturn::ERROR;
   }
 
+  RCLCPP_INFO(rclcpp::get_logger("TopicBasedSystem"), "UART connected on %s", device.c_str());
   return CallbackReturn::SUCCESS;
 }
 
@@ -133,7 +100,7 @@ std::vector<hardware_interface::StateInterface> TopicBasedSystem::export_state_i
     {
       if (!getInterface(joint.name, interface.name, i, joint_states_, state_interfaces))
       {
-        throw std::runtime_error("Interface is not found in the standard list.");
+        throw std::runtime_error("Interface not found in standard list.");
       }
     }
   }
@@ -150,7 +117,7 @@ std::vector<hardware_interface::CommandInterface> TopicBasedSystem::export_comma
     {
       if (!getInterface(joint.name, interface.name, i, joint_commands_, command_interfaces))
       {
-        throw std::runtime_error("Interface is not found in the standard list.");
+        throw std::runtime_error("Interface not found in standard list.");
       }
     }
   }
@@ -159,45 +126,28 @@ std::vector<hardware_interface::CommandInterface> TopicBasedSystem::export_comma
 
 hardware_interface::return_type TopicBasedSystem::read(const rclcpp::Time&, const rclcpp::Duration&)
 {
-  if (rclcpp::ok())
+  char buffer[256];
+  int n = ::read(uart_fd_, buffer, sizeof(buffer) - 1);
+  if (n > 0)
   {
-    rclcpp::spin_some(node_);
-  }
-
-  for (std::size_t i = 0; i < latest_joint_state_.name.size(); ++i)
-  {
-    const auto& joints = info_.joints;
-    auto it = std::find_if(joints.begin(), joints.end(),
-      [&joint_name = std::as_const(latest_joint_state_.name[i])](const hardware_interface::ComponentInfo& info) {
-        return joint_name == info.name;
-      });
-
-    if (it != joints.end())
+    buffer[n] = '\0';
+    double pos1, pos2;
+    if (sscanf(buffer, "%lf,%lf", &pos1, &pos2) == 2)
     {
-      auto j = static_cast<std::size_t>(std::distance(joints.begin(), it));
-      if (sum_wrapped_joint_states_)
-      {
-        sumRotationFromMinus2PiTo2Pi(latest_joint_state_.position[i], joint_states_[POSITION_INTERFACE_INDEX][j]);
-      }
-      else
-      {
-        joint_states_[POSITION_INTERFACE_INDEX][j] = latest_joint_state_.position[i];
-      }
-      if (!latest_joint_state_.velocity.empty())
-        joint_states_[VELOCITY_INTERFACE_INDEX][j] = latest_joint_state_.velocity[i];
-      if (!latest_joint_state_.effort.empty())
-        joint_states_[EFFORT_INTERFACE_INDEX][j] = latest_joint_state_.effort[i];
+      joint_states_[POSITION_INTERFACE_INDEX][0] = pos1;
+      joint_states_[POSITION_INTERFACE_INDEX][1] = pos2;
     }
   }
+  return hardware_interface::return_type::OK;
+}
 
-  for (const auto& mimic_joint : mimic_joints_)
-  {
-    for (auto& joint_state : joint_states_)
-    {
-      joint_state[mimic_joint.joint_index] =
-          mimic_joint.multiplier * joint_state[mimic_joint.mimicked_joint_index];
-    }
-  }
+hardware_interface::return_type TopicBasedSystem::write(const rclcpp::Time&, const rclcpp::Duration&)
+{
+  char cmd[128];
+  snprintf(cmd, sizeof(cmd), "%.3f,%.3f\n",
+           joint_commands_[POSITION_INTERFACE_INDEX][0],
+           joint_commands_[POSITION_INTERFACE_INDEX][1]);
+  ::write(uart_fd_, cmd, strlen(cmd));
   return hardware_interface::return_type::OK;
 }
 
@@ -215,43 +165,6 @@ bool TopicBasedSystem::getInterface(
     return true;
   }
   return false;
-}
-
-hardware_interface::return_type TopicBasedSystem::write(const rclcpp::Time&, const rclcpp::Duration&)
-{
-  const auto diff = std::transform_reduce(
-      joint_states_[POSITION_INTERFACE_INDEX].cbegin(), joint_states_[POSITION_INTERFACE_INDEX].cend(),
-      joint_commands_[POSITION_INTERFACE_INDEX].cbegin(), 0.0,
-      [](const auto d1, const auto d2) { return std::abs(d1) + std::abs(d2); }, std::minus<double>{});
-
-  if (diff <= trigger_joint_command_threshold_)
-  {
-    return hardware_interface::return_type::OK;
-  }
-
-  sensor_msgs::msg::JointState joint_state;
-  for (std::size_t i = 0; i < info_.joints.size(); ++i)
-  {
-    joint_state.name.push_back(info_.joints[i].name);
-    joint_state.header.stamp = node_->now();
-
-    for (const auto& interface : info_.joints[i].command_interfaces)
-    {
-      if (interface.name == hardware_interface::HW_IF_POSITION)
-        joint_state.position.push_back(joint_commands_[POSITION_INTERFACE_INDEX][i]);
-      else if (interface.name == hardware_interface::HW_IF_VELOCITY)
-        joint_state.velocity.push_back(joint_commands_[VELOCITY_INTERFACE_INDEX][i]);
-      else if (interface.name == hardware_interface::HW_IF_EFFORT)
-        joint_state.effort.push_back(joint_commands_[EFFORT_INTERFACE_INDEX][i]);
-    }
-  }
-
-  if (rclcpp::ok())
-  {
-    topic_based_joint_commands_publisher_->publish(joint_state);
-  }
-
-  return hardware_interface::return_type::OK;
 }
 
 }  // namespace lukas_control

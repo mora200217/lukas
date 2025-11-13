@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, RegisterEventHandler
+from launch.actions import DeclareLaunchArgument, RegisterEventHandler, TimerAction
 from launch.event_handlers import OnProcessExit
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -16,6 +16,7 @@ def generate_launch_description():
         package="controller_manager",
         executable="ros2_control_node",
         parameters=[
+             {"use_realtime_threads": False},
             {"robot_description": robot_description},
             PathJoinSubstitution([FindPackageShare("lukas_control"), "config", "controllers.yaml"])
         ],
@@ -33,16 +34,14 @@ def generate_launch_description():
     example_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["forward_position_controller"],
+        arguments=["position_controller"],
         output="screen"
     )
 
     # Spawn controllers after manager is up
-    delay_spawners = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=controller_manager,
-            on_exit=[joint_broadcaster_spawner, example_controller_spawner]
-        )
+    delay_spawners = TimerAction(
+    period=3.0,
+    actions=[joint_broadcaster_spawner]
     )
 
     return LaunchDescription([
