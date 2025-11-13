@@ -654,7 +654,8 @@ ddθ1 = -sin.(t)
 ddθ2 = -cos.(t)
 
 trayectoria = (t, θ1, θ2, dθ1, dθ2, ddθ1, ddθ2)
-
+using GLMakie
+f = Figure()
 # 3. Calcular perfil de torques
 resultados = torque_profile_from_Q(Q1_num, Q2_num, trayectoria, 
                                   τ_max=15.0, 
@@ -664,3 +665,5 @@ resultados = torque_profile_from_Q(Q1_num, Q2_num, trayectoria,
 # 4. Probar punto individual
 tau1_punto, tau2_punto = evaluar_torque_punto(Q1_num, Q2_num, π/4, π/6, 0.5, -0.3, 0.1, -0.2)
 println("Torque en punto específico: τ1 = $tau1_punto, τ2 = $tau2_punto")
+
+f

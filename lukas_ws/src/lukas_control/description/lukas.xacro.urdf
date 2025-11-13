@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="two_link_arm_xz">
+
+  <!-- ===== PARAMETERS ===== -->
+  <xacro:property name="l1" value="0.3"/>
+  <xacro:property name="l2" value="0.25"/>
+  <xacro:property name="r"  value="0.02"/>
+  <xacro:property name="mass" value="0.5"/>
+
+  <material name="gray">
+    <color rgba="0.7 0.7 0.7 1"/>
+  </material>
+
+  <!-- ===== BASE ===== -->
+  <link name="base_link"/>
+
+  <!-- ===== LINK 1 ===== -->
+  <link name="link1">
+    <visual>
+      <geometry>
+        <cylinder radius="${r}" length="${l1}"/>
+      </geometry>
+      <!-- Orientado en X (plano XZ) -->
+      <origin xyz="${l1/2} 0 0" rpy="0 0 1.5708"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${r}" length="${l1}"/>
+      </geometry>
+      <origin xyz="${l1/2} 0 0" rpy="0 0 1.5708"/>
+    </collision>
+    <inertial>
+      <mass value="${mass}"/>
+      <origin xyz="${l1/2} 0 0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child  link="link1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <!-- Rotación sobre Y para moverse en el plano XZ -->
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="5"/>
+  </joint>
+
+  <!-- ===== LINK 2 ===== -->
+  <link name="link2">
+    <visual>
+      <geometry>
+        <cylinder radius="${r}" length="${l2}"/>
+      </geometry>
+      <origin xyz="${l2/2} 0 0" rpy="0 0 1.5708"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${r}" length="${l2}"/>
+      </geometry>
+      <origin xyz="${l2/2} 0 0" rpy="0 0 1.5708"/>
+    </collision>
+    <inertial>
+      <mass value="${mass}"/>
+      <origin xyz="${l2/2} 0 0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child  link="link2"/>
+    <!-- La junta 2 empieza al final del link1 sobre X -->
+    <origin xyz="${l1} 0 0" rpy="0 0 0"/>
+    <!-- Rotación sobre Y para mantener movimiento en XZ -->
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="5"/>
+  </joint>
+
+  <!-- ===== ROS2 CONTROL ===== -->
+  <ros2_control name="TwoLinkArmXZ" type="system">
+    <hardware>
+      <plugin>ros2_control_demo_hardware/GenericSystem</plugin>
+    </hardware>
+
+    <joint name="joint1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+</robot>

@@ -6,7 +6,7 @@ module Torque
     using Symbolics
     using Latexify
     using DataFrames
-    using Plots
+    using CairoMakie
     using LinearAlgebra
     using Statistics
     using CSV
@@ -46,7 +46,7 @@ module Torque
         dx21 = ∂θ1.(X2) ; dx22 = ∂θ2.(X2)
 
 
-        # 2. Construcción del jacoviano
+        # 2. Construcción del jacobiano
         Jc1 = Symbolics.jacobian(X1, [θ1, θ2]);   Jc2 = Symbolics.jacobian(X2, [θ1, θ2])
 
         # 3. Cálculo de theta punto o q_{dot} 
@@ -62,7 +62,7 @@ module Torque
         # CÁLCULO DE ENERGÍA CINÉTICA DE LOS BRAZOS
         # ============================ ============================ ============================ ============================
 
-        I1 = (m1/12) * (L1^2 + W1^2) + m1*(L1/2)^2
+        I1 = (m1/12) * (L1^2 + W1^2) + m1*(L1/2)^2 * 0.6
         I2 = (m2/12) * (L2^2 + W2^2) 
 
         T1 = (I1/2) * dθ1^2
@@ -256,34 +256,43 @@ module Torque
         end
     end
 
-    function generar_graficas(t, tau1, tau2, τ_max)
-        # Configuración de plots
-        default(size=(800, 600), grid=true, legend=:topright, 
-                titlefontsize=12, guidefontsize=11, tickfontsize=10)
-        
-        # Plot para tau1
-        p1 = plot(t, tau1, linewidth=2, label="τ₁(t)", color=:blue,
-                xlabel="Tiempo [s]", ylabel="Torque [N·m]", 
-                title="Torque en articulación 1")
-        
-        if τ_max !== nothing
-            hline!([τ_max, -τ_max], linestyle=:dash, color=:red, 
-                label="Límite ±$(τ_max) N·m", linewidth=1.5)
-        end
-        
-        # Plot para tau2
-        p2 = plot(t, tau2, linewidth=2, label="τ₂(t)", color=:green,
-                xlabel="Tiempo [s]", ylabel="Torque [N·m]",
-                title="Torque en articulación 2")
-        
-        if τ_max !== nothing
-            hline!([τ_max, -τ_max], linestyle=:dash, color=:red, 
-                label="Límite ±$(τ_max) N·m", linewidth=1.5)
-        end
-        
-        # Display plots
-        display(plot(p1, p2, layout=(2,1), size=(800, 800)))
+    using GLMakie
+
+function generar_graficas(t, tau1, tau2, τ_max)
+    # Crear figura con 2 subplots
+    fig = Figure(size = (800, 600))
+
+    # ---------------- Plot τ1 ----------------
+    ax1 = Axis(fig[1, 1],
+        title = "Torque en articulación 1",
+        xlabel = "Tiempo [s]",
+        ylabel = "Torque [mN·m]"
+    )
+    lines!(ax1, t, tau1, linewidth = 2, label = "τ₁(t)")
+
+    if τ_max !== nothing
+        lines!(ax1, t,  fill( τ_max, length(t)), linestyle = :dash)
+        lines!(ax1, t,  fill(-τ_max, length(t)), linestyle = :dash)
     end
+    axislegend(ax1, position = :rt)
+
+    # ---------------- Plot τ2 ----------------
+    ax2 = Axis(fig[2, 1],
+        title = "Torque en articulación 2",
+        xlabel = "Tiempo [s]",
+        ylabel = "Torque [mN·m]"
+    )
+    lines!(ax2, t, tau2, linewidth = 2, label = "τ₂(t)")
+
+    if τ_max !== nothing
+        lines!(ax2, t,  fill( τ_max, length(t)), linestyle = :dash)
+        lines!(ax2, t,  fill(-τ_max, length(t)), linestyle = :dash)
+    end
+    axislegend(ax2, position = :rt)
+
+    display(fig)
+end
+
 
     # ============================ ============================ ============================ 
     # FUNCIÓN PRINCIPAL CORREGIDA
@@ -362,8 +371,9 @@ module Torque
             tau2_val = substitute(Q2_simple, config)
             
             # Convertir de Num a Float64
-            tau1[i] = Symbolics.value(tau1_val)
-            tau2[i] = Symbolics.value(tau2_val)
+            τ_lim = 400; 
+            tau1[i] = -clamp(Symbolics.value(tau1_val)*1000, -τ_lim, τ_lim)
+            tau2[i] = -clamp(Symbolics.value(tau2_val)*1000, -τ_lim/2, τ_lim/2)
             
             # Mostrar progreso para trayectorias largas
             if debug && (i % 100 == 0 || i == N)

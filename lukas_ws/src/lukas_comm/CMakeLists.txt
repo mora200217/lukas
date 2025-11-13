@@ -6,8 +6,10 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
+
 find_package(ament_cmake REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -20,5 +22,14 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+
+add_executable(esp32_comm_uart src/esp32_comm_uart.cpp)
+ament_target_dependencies(esp32_comm_uart rclcpp std_msgs)
+
+install(TARGETS
+  esp32_comm_uart
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()

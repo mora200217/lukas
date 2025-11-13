@@ -1,103 +1,77 @@
 <?xml version="1.0"?>
-<robot name="robot_2R" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="planar_2r" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- ===================================================== -->
-  <!-- PARAMS -->
-  <!-- ===================================================== -->
-  <xacro:property name="L1" value="0.20"/>  <!-- length of link1 -->
-  <xacro:property name="L2" value="0.15"/>  <!-- length of link2 -->
-  <xacro:property name="radius" value="0.015"/> <!-- cylinder radius -->
-  <xacro:property name="alpha" value="1.57079632679"/> <!-- pi/2 -->
-  
-  <!-- ===================================================== -->
-  <!-- MACRO: LINK WITH VISUAL, COLLISION AND INERTIA -->
-  <!-- ===================================================== -->
-  <xacro:macro name="cylindrical_link" params="name length radius">
-    <link name="${name}">
+  <!-- ===== Parameters ===== -->
+  <xacro:property name="L1" value="0.25" />   <!-- link 1 length -->
+  <xacro:property name="L2" value="0.15" />   <!-- link 2 length -->
+  <xacro:property name="d1" value="0" />     <!-- offset from base -->
+  <xacro:property name="d2" value="0" />     <!-- offset from joint1 -->
+  <xacro:property name="m" value="0.5" />    <!-- mass of each link -->
+  <xacro:property name="r" value="0.02" />   <!-- link radius -->
 
-      <!-- Visual -->
-      <visual>
-        <geometry>
-          <cylinder length="${length}" radius="${radius}"/>
-        </geometry>
-        <material name="blue">
-          <color rgba="0.0 0.3 0.7 1.0"/>
-        </material>
-        <!-- Center visual at midpoint -->
-        <origin xyz="${length/2} 0 0" rpy="0 0 1.5707"/>
-      </visual>
-
-      <!-- Collision -->
-      <collision>
-        <geometry>
-          <cylinder length="${length}" radius="${radius}"/>
-        </geometry>
-        <origin xyz="${length/2} 0 0" rpy="0 0 1.5707"/>
-      </collision>
-
-      <!-- Inertia (cylinder mass uniformly distributed) -->
-      <inertial>
-        <mass value="${length * 0.5}"/> <!-- 0.5 kg per meter (example density) -->
-        <origin xyz="${length/2} 0 0" rpy="0 0 0"/>
-        <inertia  ixx="${(1/12.0) * (length*length)}"
-                  iyy="${(1/12.0) * (length*length)}"
-                  izz="${(radius*radius)/2.0}"/>
-      </inertial>
-    </link>
-  </xacro:macro>
-
-  <!-- BASE -->
+  <!-- ===== Base Frame ===== -->
   <link name="base_link"/>
 
-  <!-- ===================================================== -->
-  <!-- FIXED DH transform (theta=0, d=0, a=0, alpha=pi/2) -->
-  <!-- ===================================================== -->
-  <joint name="base_to_link1" type="fixed">
-      <parent link="base_link"/>
-      <child link="link1"/>
-      <origin xyz="0 0 0" rpy="${alpha} 0 0"/>
+  <joint name="base_to_fix" type="fixed">
+    <parent link="base_link"/>
+    <child link="fix"/>
+    <origin xyz="0 0 0." rpy="1.5708 0 0"/> <!-- 90° sobre X -->
   </joint>
 
-  <!-- ===================================================== -->
-  <!-- LINK1 + JOINT1 (DH: theta=q1, d=2cm, a=L1, alpha) -->
-  <!-- ===================================================== -->
-  <xacro:cylindrical_link name="link1" length="${L1}" radius="${radius}"/>
-
-  <joint name="joint1" type="revolute">
-    <parent link="link1"/>
-    <child link="link2"/>
-    <origin xyz="${L1} 0 0.02" rpy="${alpha} 0 0"/> <!-- 2 cm offset -->
-    <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" effort="10" velocity="2"/>
-  </joint>
-
-  <!-- ===================================================== -->
-  <!-- LINK2 + JOINT2 (DH: theta=q2, d=0, a=L2, alpha) -->
-  <!-- ===================================================== -->
-  <xacro:cylindrical_link name="link2" length="${L2}" radius="${radius}"/>
-
-  <joint name="joint2" type="revolute">
-    <parent link="link2"/>
-    <child link="ee"/>
-    <origin xyz="${L2} 0 0" rpy="${alpha} 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" effort="10" velocity="2"/>
-  </joint>
-
-  <!-- END EFFECTOR -->
-  <link name="ee">
+  <!-- ===== Fix Link ===== -->
+  <link name="fix">
     <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <sphere radius="0.03"/>
+        <cylinder radius="0.02" length="0.02"/>
       </geometry>
-      <material name="green">
-        <color rgba="0.1 1.0 0.1 1.0"/>
+      <material name="gray_light">
+        <color rgba="0.7 0.7 0.7 1.0"/>
       </material>
     </visual>
-    <inertial>
-      <mass value="0.1"/>
-      <inertia ixx="1e-6" iyy="1e-6" izz="1e-6"/>
-    </inertial>
   </link>
+
+  <!-- ===== Link 1 ===== -->
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 -1.57"/>
+      <geometry>
+        <mesh filename="package://lukas_description/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray_medium">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- ===== Link 2 ===== -->
+  <link name="link2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://lukas_description/meshes/link_2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray_dark">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- ===== Joint 1 ===== -->
+  <joint name="joint1" type="revolute">
+    <parent link="fix"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="5" velocity="2.0"/>
+  </joint>
+
+  <!-- ===== Joint 2 ===== -->
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="${L1} 0 ${d2}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="5" velocity="2.0"/>
+  </joint>
 
 </robot>

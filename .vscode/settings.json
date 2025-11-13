@@ -1,22 +1,52 @@
 {
-  "configurations": [
-    {
-      "name": "ROS2-Humble-Conda",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "${env:CONDA_PREFIX}/include/**"
-      ],
-      "browse": {
-        "path": [
-          "${workspaceFolder}",
-          "${env:CONDA_PREFIX}/include"
-        ]
-      },
-      "compilerPath": "/usr/bin/clang++",
-      "cStandard": "c17",
-      "cppStandard": "gnu++17",
-      "intelliSenseMode": "macos-clang-arm64"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": [
+        "-l",
+        "-c",
+        "source ~/mambaforge/etc/profile.d/conda.sh && mamba activate ros2_env && zsh"
+      ]
     }
+  },
+
+  "cmake.configureSettings": {
+    "CMAKE_C_COMPILER": "${env:CONDA_PREFIX}/bin/clang",
+    "CMAKE_CXX_COMPILER": "${env:CONDA_PREFIX}/bin/clang++",
+    "CMAKE_PREFIX_PATH": "${env:CONDA_PREFIX}"
+  },
+
+  "cmake.environment": {
+    "AMENT_PREFIX_PATH": "${env:CONDA_PREFIX}",
+    "COLCON_CURRENT_PREFIX": "${env:CONDA_PREFIX}",
+    "LD_LIBRARY_PATH": "${env:CONDA_PREFIX}/lib:${env:LD_LIBRARY_PATH}",
+    "DYLD_LIBRARY_PATH": "${env:CONDA_PREFIX}/lib:${env:DYLD_LIBRARY_PATH}",
+    "PYTHONPATH": "${env:CONDA_PREFIX}/lib/python3.10/site-packages:${env:PYTHONPATH}"
+  },
+
+  "python.defaultInterpreterPath": "${env:CONDA_PREFIX}/bin/python",
+
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "C_Cpp.default.compilerPath": "${env:CONDA_PREFIX}/bin/clang++",
+  "C_Cpp.default.includePath": [
+    "${env:CONDA_PREFIX}/include/**"
   ],
-  "version": 4
+  "files.associations": {
+    "*.urdf": "xml",
+    "*.xacro": "xml",
+    "fstream": "cpp",
+    "ostream": "cpp",
+    "iostream": "cpp"
+  },
+
+  "clangd.arguments": [
+    "--compile-commands-dir=build",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed"
+  ]
 }

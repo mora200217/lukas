@@ -1,0 +1,9 @@
+<library path="lukas_control">
+  <class name="lukas_control/TopicBasedSystem"
+         type="lukas_control::TopicBasedSystem"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      The lukas_control hardware plugin implementing the SystemInterface.
+    </description>
+  </class>
+</library>

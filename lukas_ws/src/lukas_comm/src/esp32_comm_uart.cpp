@@ -1,55 +1,92 @@
 #include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/u_int8.hpp"
 
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
+#include <thread>
+#include <atomic>
 
-class UARTNode : public rclcpp::Node {
+class UartNode : public rclcpp::Node {
 public:
-    UARTNode() : Node("uart_node") {
-        serial_port_ = open("/dev/ttyUSB0", O_RDWR);
-        if (serial_port_ < 0) {
-            RCLCPP_ERROR(this->get_logger(), "Failed to open UART");
+    UartNode() : Node("uart_node"), run_thread_(true) {
+
+        // ---- Publica bytes recibidos ----
+        pub_rx_ = this->create_publisher<std_msgs::msg::UInt8>("esp32/uart_rx", 100);
+
+        // ---- Recibe bytes para enviar ----
+        sub_tx_ = this->create_subscription<std_msgs::msg::UInt8>(
+            "esp32/uart_tx", 100,
+            std::bind(&UartNode::onTx, this, std::placeholders::_1)
+        );
+
+        // ---- Abrir UART ----
+        fd_ = open("/dev/tty.usbserial-1130", O_RDWR | O_NOCTTY | O_NONBLOCK);
+        if (fd_ < 0) {
+            RCLCPP_ERROR(get_logger(), "No se pudo abrir el puerto UART");
+            rclcpp::shutdown();
             return;
         }
 
-        struct termios tty;
-        tcgetattr(serial_port_, &tty);
-        tty.c_cflag = B115200 | CS8 | CLOCAL | CREAD;
-        tty.c_iflag = IGNPAR;
-        tty.c_oflag = 0;
+        // ---- Configuración UART 115200 8N1 ----
+        termios tty{};
+        tcgetattr(fd_, &tty);
+        cfsetispeed(&tty, B115200);
+        cfsetospeed(&tty, B115200);
+        tty.c_cflag = CREAD | CLOCAL | CS8;
         tty.c_lflag = 0;
-        tcflush(serial_port_, TCIFLUSH);
-        tcsetattr(serial_port_, TCSANOW, &tty);
+        tty.c_oflag = 0;
+        tty.c_iflag = 0;
+        tty.c_cc[VMIN]  = 1;
+        tty.c_cc[VTIME] = 0;
+        tcsetattr(fd_, TCSANOW, &tty);
+        tcflush(fd_, TCIOFLUSH);
 
-        timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(100),
-            std::bind(&UARTNode::loop, this)
-        );
+        // ---- Hilo lector a MAX velocidad ----
+        reader_thread_ = std::thread(&UartNode::readLoop, this);
+
+        RCLCPP_INFO(get_logger(), "🔥 UART Node listo a 115200!");
+    }
+
+    ~UartNode() {
+        run_thread_ = false;
+        if (reader_thread_.joinable())
+            reader_thread_.join();
+        close(fd_);
     }
 
 private:
-    void loop() {
-        // ---- SEND ----
-        std::string msg = "Hello UART\n";
-        write(serial_port_, msg.c_str(), msg.size());
+    void readLoop() {
+        uint8_t buf[256];
 
-        // ---- RECEIVE ----
-        char buffer[256];
-        int n = read(serial_port_, &buffer, sizeof(buffer));
-        if (n > 0) {
-            std::string received(buffer, n);
-            RCLCPP_INFO(this->get_logger(), "RX: %s", received.c_str());
+        while (rclcpp::ok() && run_thread_) {
+            int n = read(fd_, buf, sizeof(buf));
+            if (n > 0) {
+                for (int i = 0; i < n; i++) {
+                    auto msg = std_msgs::msg::UInt8();
+                    msg.data = buf[i];
+                    pub_rx_->publish(msg);
+                }
+            }
         }
     }
 
-    int serial_port_;
-    rclcpp::TimerBase::SharedPtr timer_;
+    void onTx(const std_msgs::msg::UInt8::SharedPtr msg) {
+        uint8_t b = msg->data;
+        write(fd_, &b, 1);
+    }
+
+    int fd_;
+    std::atomic<bool> run_thread_;
+    std::thread reader_thread_;
+
+    rclcpp::Publisher<std_msgs::msg::UInt8>::SharedPtr pub_rx_;
+    rclcpp::Subscription<std_msgs::msg::UInt8>::SharedPtr sub_tx_;
 };
 
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<UARTNode>());
+    rclcpp::spin(std::make_shared<UartNode>());
     rclcpp::shutdown();
     return 0;
 }
