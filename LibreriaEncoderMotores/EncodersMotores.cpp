@@ -38,23 +38,41 @@ static const ledc_channel_t EM_LEDC_CH_M2_L = LEDC_CHANNEL_3;
 
 static uint32_t em_pwmMax = 0;
 
-// ==================== ESTADO ENCODER 1 (AS5600) ====================
-static double        em_prevAngle1_deg  = 0.0;
-static unsigned long em_prevTime1_us    = 0;
-static bool          em_init1           = false;
-static const double EM_REDUCCION_1 = 26.0/7.0;  // Reduccion MAXON 3.714:1 
+// ==================== REDUCCIONES ====================
+// Motor 1: MAXON con imán AS5600 en el eje del motor
+// Reducción motor : salida = 26/7 ≈ 3.714:1
+static const double EM_REDUCCION_1 = 20;
+
+// Motor 2: Faulhaber (5.42:1) * transmisión externa 2:1
+static const double EM_REDUCCION_2 = 5.42 * 2.0;
+
+// ---- FACTORES DE CORRECCIÓN DEL ENCODER 1 (AJUSTE MANUAL) ----
+// Se aplican SOBRE EL ÁNGULO DE SALIDA (no sobre los pasos).
+// Si el ángulo de salida es >= 0 -> se multiplica por EM_K_POS_1.
+// Si es < 0 -> por EM_K_NEG_1.
+static const double EM_K_POS_1 = (2*PI)/(5.742*2);   // escala para ángulos de salida positivos
+static const double EM_K_NEG_1 = (2*PI)/(5.742*8);   // escala para ángulos de salida negativos
+
+// (Opcional) pequeña zona muerta en cuentas para evitar drift muy lento
+static const int16_t EM_ENC1_DEADBAND = 1;  // ignora diffs -1..+1 (puedes dejarlo en 0 si quieres)
+
+// ==================== ESTADO ENCODER 1 (AS5600, EJE DEL MOTOR) ====================
+// Integramos solo con cuentas "crudas" (sin K), como en la versión que sí te funcionaba.
+
+static bool          em_init1         = false;
+static uint16_t      em_prevRaw1      = 0;      // última lectura cruda 0..4095
+static int32_t       em_rawMulti1     = 0;      // cuentas acumuladas (multi-vuelta motor)
+static unsigned long em_prevTime1_us  = 0;      // opcional, para velocidad luego
 
 // ==================== ESTADO ENCODER 2 (incremental) ====================
-// Encoder parameters (ajusta según tu encoder / reducción)
-static const long   EM_PPR_2       = 500;      // pulsos por vuelta por canal
-static const int    EM_DECODE_X_2  = 1;        // 1x
+static const long   EM_PPR_2       = 500;          // pulsos por vuelta por canal
+static const int    EM_DECODE_X_2  = 1;            // 1x
 static long         EM_CPR_eff_2   = EM_PPR_2 * EM_DECODE_X_2;
-static const double EM_REDUCCION_2 = 5.42*2;      // Faulhaber 5.42 en la caja y 2 de la transmision
 
 static volatile long em_counts2    = 0;
 static volatile bool em_dir2_ccw   = true;
 
-static long         em_prevCounts2 = 0;
+static long          em_prevCounts2  = 0;
 static unsigned long em_prevTime2_us = 0;
 static bool          em_init2        = false;
 
@@ -67,7 +85,6 @@ static void IRAM_ATTR em_isr_enc2_a_rising();
 // ==================== IMPLEMENTACIÓN INTERNOS ====================
 
 static void em_configPWM() {
-  // Calcula resolución de PWM a partir de APB_FREQ y frecuencia deseada
   double ratio   = (double)EM_APB_FREQ / (double)EM_REQUESTED_PWM_FREQ;
   double bits_d  = floor(log2(ratio));
   int    maxBits = (int)bits_d;
@@ -104,7 +121,7 @@ static void em_configPWM() {
   ch.gpio_num = EM_M2_LPWM_PIN; ch.channel = EM_LEDC_CH_M2_L;
   ledc_channel_config(&ch);
 
-  // Asegurar que todos arrancan apagados
+  // Apagar todos
   ledc_set_duty(EM_LEDC_MODE, EM_LEDC_CH_M1_R, 0); ledc_update_duty(EM_LEDC_MODE, EM_LEDC_CH_M1_R);
   ledc_set_duty(EM_LEDC_MODE, EM_LEDC_CH_M1_L, 0); ledc_update_duty(EM_LEDC_MODE, EM_LEDC_CH_M1_L);
   ledc_set_duty(EM_LEDC_MODE, EM_LEDC_CH_M2_R, 0); ledc_update_duty(EM_LEDC_MODE, EM_LEDC_CH_M2_R);
@@ -126,11 +143,9 @@ static void em_applyPWM(int motor, float percentage) {
   }
 
   if (percentage >= 0.0f) {
-    // Adelante
     ledc_set_duty(EM_LEDC_MODE, chR, val);
     ledc_set_duty(EM_LEDC_MODE, chL, 0);
   } else {
-    // Atrás
     ledc_set_duty(EM_LEDC_MODE, chR, 0);
     ledc_set_duty(EM_LEDC_MODE, chL, val);
   }
@@ -146,7 +161,7 @@ static uint16_t em_readAS5600Raw() {
   if (Wire.available() >= 2) {
     uint8_t hi = Wire.read();
     uint8_t lo = Wire.read();
-    return (uint16_t)(((hi << 8) | lo) & 0x0FFF);
+    return (uint16_t)(((hi << 8) | lo) & 0x0FFF);  // 12 bits -> 0..4095
   }
   return 0;
 }
@@ -164,8 +179,7 @@ static void IRAM_ATTR em_isr_enc2_a_rising() {
 
 // ==================== API PÚBLICA ====================
 
-// Llamar una vez en setup (después de Serial.begin)
-inline void EM_begin() {
+void EM_begin() {
   em_configPWM();
 
   // EN pins BTS7960
@@ -188,72 +202,85 @@ inline void EM_begin() {
   pinMode(EM_ENC2_B_PIN, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(EM_ENC2_A_PIN), em_isr_enc2_a_rising, RISING);
 
-  // Inicializar estados
+  // Estado encoder 1
+  em_init1        = false;
+  em_prevRaw1     = 0;
+  em_rawMulti1    = 0;
   em_prevTime1_us = micros();
-  em_prevAngle1_deg = 0.0;
-  em_init1 = true;
 
+  // Estado encoder 2
   em_prevTime2_us = micros();
-  em_prevCounts2 = 0;
-  em_init2 = true;
+  em_prevCounts2  = 0;
+  em_init2        = false;
 
-  // Mensaje opcional
   Serial.println(F("[EM] EM_begin() listo."));
 }
 
-// Control motor 1 (porcentaje -100 a 100)
-inline void EM_controlMotor1(float percentage) {
+void EM_controlMotor1(float percentage) {
   em_applyPWM(1, percentage);
 }
 
-// Control motor 2 (porcentaje -100 a 100)
-inline void EM_controlMotor2(float percentage) {
+void EM_controlMotor2(float percentage) {
   em_applyPWM(2, percentage);
 }
 
-// Imprime datos del encoder 1 (AS5600) en CSV:
-// M1,angle_deg,vel_deg_s,raw
-inline void EM_printEncoder1() {
-    if (!em_init1) {
-        em_prevTime1_us   = micros();
-        em_prevAngle1_deg = 0.0;
-        em_init1          = true;
-    }
+// ==================== ENCODER 1 (AS5600) ====================
+// Lee el ángulo de salida (después de la reducción EM_REDUCCION_1)
+// en radianes, multi-vuelta, y aplica una escala distinta a cada lado
+// sin tocar la integración interna (no debe derivar por cambiar K).
 
-    unsigned long t_us = micros();
-    uint16_t raw = em_readAS5600Raw();
+void EM_printEncoder1() {
+  if (!em_init1) {
+    em_prevTime1_us = micros();
+    em_prevRaw1     = em_readAS5600Raw();  // referencia inicial
+    em_rawMulti1    = 0;
+    em_init1        = true;
+  }
 
-    // Ángulo del motor (donde está el AS5600)
-    double angle_motor_deg = (raw * 360.0) / 4096.0;
+  // 1) Leer crudo y hacer unwrap
+  unsigned long t_us = micros();
+  uint16_t raw = em_readAS5600Raw();   // 0..4095
 
-    // Pasar a ángulo de salida teniendo en cuenta la reducción
-    double angle = angle_motor_deg / EM_REDUCCION_1;
-    double anlge_rad = angle * (PI / 180.0);
+  int16_t diff = (int16_t)raw - (int16_t)em_prevRaw1;
+  if (diff >  2048) diff -= 4096;
+  if (diff < -2048) diff += 4096;
 
+  // Deadband para no integrar ruido fino
+  if (diff > -EM_ENC1_DEADBAND && diff < EM_ENC1_DEADBAND) {
+    diff = 0;
+  }
 
-    unsigned long dt = t_us - em_prevTime1_us;
-    double vel = 0.0;
-    if (dt > 0) {
-        double dAng = angle - em_prevAngle1_deg;
-        if (dAng > 180.0)       dAng -= 360.0;
-        else if (dAng < -180.0) dAng += 360.0;
-        vel = (dAng * 1e6) / (double)dt;
-    }
+  em_prevRaw1  = raw;
+  em_rawMulti1 += diff;  // cuentas multi-vuelta del MOTOR
 
-    em_prevAngle1_deg = angle;
-    em_prevTime1_us   = t_us;
+  // 2) Convertir a ángulo del motor [rad]
+  const double K_RAD_PER_COUNT = (2.0 * PI) / 4096.0;
+  double angle_motor_rad = (double)em_rawMulti1 * K_RAD_PER_COUNT;
 
-    /*Serial.print(F("M1,"));
-    Serial.print(angle, 3);  Serial.print(F(","));
-    Serial.print(vel,   3);  Serial.print(F(","));
-    Serial.println(raw);*/
-    Serial.println(angle_rad, 6);
+  // 3) Pasar a ángulo de SALIDA (después de la caja)
+  double angle_out_raw = angle_motor_rad / EM_REDUCCION_1;
 
+  // 4) Aplicar corrección distinta a cada lado (NO afecta integración)
+  double angle_out_corr;
+  if (angle_out_raw >= 0.0) {
+    angle_out_corr = angle_out_raw * EM_K_POS_1;
+  } else {
+    angle_out_corr = angle_out_raw * EM_K_NEG_1;
+  }
+
+  // (Opcional) puedes “snapear” cerca de cero si quieres:
+  /*
+  if (fabs(angle_out_corr) < 1e-4) {
+    angle_out_corr = 0.0;
+  }
+  */
+
+  Serial.println(angle_out_corr, 6);
 }
 
-// Imprime datos del encoder 2 (incremental) en CSV:
-// M2,angle_deg,vel_deg_s,counts
-inline void EM_printEncoder2() {
+// ==================== ENCODER 2 (incremental) ====================
+
+void EM_printEncoder2() {
   if (!em_init2) {
     em_prevTime2_us = micros();
     em_prevCounts2  = 0;
@@ -266,26 +293,9 @@ inline void EM_printEncoder2() {
   long c = em_counts2;
   interrupts();
 
-  double angle = ((double)c / (double)EM_CPR_eff_2) * (360.0 / EM_REDUCCION_2);
-  double angle_rad = angle * (PI / 180.0);
+  double angle_deg = ((double)c / (double)EM_CPR_eff_2) * (360.0 / EM_REDUCCION_2);
+  double angle_rad = angle_deg * (PI / 180.0);
 
-  unsigned long dt = t_us - em_prevTime2_us;
-  double vel = 0.0;
-  if (dt > 0) {
-    long dc = c - em_prevCounts2;
-    double dt_s = (double)dt / 1e6;
-    vel = (double)dc *
-          (360.0 / ((double)EM_CPR_eff_2 * EM_REDUCCION_2)) /
-          dt_s;
-  }
-
-  em_prevCounts2  = c;
-  em_prevTime2_us = t_us;
-
-  /* Serial.print(F("M2,"));
-  Serial.print(angle, 3);  Serial.print(F(","));
-  Serial.print(vel,   3);  Serial.print(F(","));
-  Serial.println(c);*/ 
   Serial.println(angle_rad, 6);
 }
 
