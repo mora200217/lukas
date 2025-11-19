@@ -8,20 +8,21 @@ using LinearAlgebra
 #  Parametrización del trébol
 # ---------------------------
 function trebol_r(θ, n, a, d, c)
-    1 + a*cos(n*(θ - c - π)) - d*cos(2n*(θ - c - π))
+    1 + a*cos(n*(θ - c - π)) - d*cos(2n*(θ - c - π))    # Parametrización trébol estilizado
 end
 
 function trebol_xy(θ)
     # Parámetros del trébol
-    n  = 5
-    a  = 0.7/n
-    d  = 0.007/n
-    c  = 0.0
-    rm = 0.10   # 10 cm
-    s  = 1.0
 
-    r = rm * s * trebol_r(θ, n, a, d, c)
-    return (r*cos(θ), r*sin(θ))
+    n  = 5              # Número de hojas del trébol
+    a  = 0.7/n          # 
+    d  = 0.007/n        # Ondulación secundaria (suavizado fino)
+    c  = 0.0            # Desfase angular (rotación del trébol)
+    rm = 0.10           # Radio base o escala física = 10 cm
+    s  = 1.0            # Factor de escala dinámico
+
+    r = rm * s * trebol_r(θ, n, a, d, c)  # rm convierte la forma adimensional en centímetros.
+    return (r*cos(θ), r*sin(θ))           # Regresa las coordenadas en (x,y) 
 end
 
 # ---------------------------
@@ -30,8 +31,8 @@ end
 function curva_parametrizada(N=2000, v=0.05)
     # v = velocidad constante en m/s  (0.01 a 0.1)
 
-    θs = collect(range(0, 2π, length=N))
-    pts = [trebol_xy(θ) for θ in θs]
+    θs = collect(range(0, 2π, length=N))    # Conunto de
+    pts = [trebol_xy(θ) for θ in θs]        #
 
     # Longitud de arco acumulada
     s = zeros(Float64, N)
