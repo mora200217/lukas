@@ -1,87 +1,66 @@
 #include <algorithm>
 #include <cmath>
-#include <iterator>
-#include <limits>
-#include <set>
-#include <string>
 #include <vector>
+#include <string>
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
 
 #include <angles/angles.h>
-#include <rclcpp/executors.hpp>
+#include <rclcpp/rclcpp.hpp>
 #include <lukas_control/topic_based_system.hpp>
-
-namespace
-{
-void sumRotationFromMinus2PiTo2Pi(const double current_wrapped_rad, double& total_rotation)
-{
-  double delta = 0;
-  angles::shortest_angular_distance_with_large_limits(total_rotation, current_wrapped_rad, 2 * M_PI, -2 * M_PI, delta);
-  total_rotation += delta;
-}
-}  // namespace
 
 namespace lukas_control
 {
 
 static constexpr std::size_t POSITION_INTERFACE_INDEX = 0;
-static constexpr std::size_t VELOCITY_INTERFACE_INDEX = 1;
-static constexpr std::size_t EFFORT_INTERFACE_INDEX = 2;
 
 CallbackReturn TopicBasedSystem::on_init(const hardware_interface::HardwareInfo& info)
 {
   if (hardware_interface::SystemInterface::on_init(info) != CallbackReturn::SUCCESS)
-  {
     return CallbackReturn::ERROR;
+
+  RCLCPP_INFO(rclcpp::get_logger("TopicBasedSystem"), "Initializing hardware...");
+
+  // --- Inicializar vectores ---
+  size_t njoints = info.joints.size();
+  joint_states_.resize(njoints);
+  joint_commands_.resize(njoints);
+  for (size_t i = 0; i < njoints; i++) {
+    joint_states_[i].resize(1, 0.0);   // solo position
+    joint_commands_[i].resize(1, 0.0);
   }
 
-  joint_commands_.resize(3);
-  joint_states_.resize(3);
-  for (auto i = 0u; i < 3; i++)
-  {
-    joint_commands_[i].resize(info_.joints.size(), 0.0);
-    joint_states_[i].resize(info_.joints.size(), 0.0);
-  }
+  // --- UART ---
+  std::string device = "/dev/ttyUSB0";
+  auto it = info_.hardware_parameters.find("uart_device");
+  if (it != info_.hardware_parameters.end()) device = it->second;
 
-  // === UART CONFIG ===
-  std::string device = "/dev/tty.usbserial-0001";
-  if (auto it = info_.hardware_parameters.find("uart_device"); it != info_.hardware_parameters.end())
-  {
-    device = it->second;
-  }
-
-  uart_fd_ = ::open(device.c_str(), O_RDWR | O_NOCTTY);
-  if (uart_fd_ < 0)
-  {
-    RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to open UART device: %s", device.c_str());
+  uart_fd_ = ::open(device.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
+  if (uart_fd_ < 0) {
+    RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to open UART device %s", device.c_str());
     return CallbackReturn::ERROR;
   }
 
   struct termios tty{};
-  if (tcgetattr(uart_fd_, &tty) != 0)
-  {
+  if (tcgetattr(uart_fd_, &tty) != 0) {
     RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to get UART attributes");
     return CallbackReturn::ERROR;
   }
 
   cfsetospeed(&tty, B115200);
   cfsetispeed(&tty, B115200);
-
   tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;
   tty.c_iflag = 0;
   tty.c_oflag = 0;
   tty.c_lflag = 0;
   tty.c_cc[VMIN] = 0;
   tty.c_cc[VTIME] = 10;
-
   tty.c_iflag &= ~(IXON | IXOFF | IXANY);
   tty.c_cflag |= (CLOCAL | CREAD);
   tty.c_cflag &= ~(PARENB | PARODD | CSTOPB | CRTSCTS);
 
-  if (tcsetattr(uart_fd_, TCSANOW, &tty) != 0)
-  {
+  if (tcsetattr(uart_fd_, TCSANOW, &tty) != 0) {
     RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to set UART attributes");
     return CallbackReturn::ERROR;
   }
@@ -90,19 +69,27 @@ CallbackReturn TopicBasedSystem::on_init(const hardware_interface::HardwareInfo&
   return CallbackReturn::SUCCESS;
 }
 
+CallbackReturn TopicBasedSystem::on_activate(const rclcpp_lifecycle::State&)
+{
+  RCLCPP_INFO(rclcpp::get_logger("TopicBasedSystem"), "Hardware ACTIVATED");
+  return CallbackReturn::SUCCESS;
+}
+
+CallbackReturn TopicBasedSystem::on_deactivate(const rclcpp_lifecycle::State&)
+{
+  RCLCPP_INFO(rclcpp::get_logger("TopicBasedSystem"), "Hardware DEACTIVATED");
+  return CallbackReturn::SUCCESS;
+}
+
+// ------------------------- STATE INTERFACES -------------------------
 std::vector<hardware_interface::StateInterface> TopicBasedSystem::export_state_interfaces()
 {
   std::vector<hardware_interface::StateInterface> state_interfaces;
-  for (auto i = 0u; i < info_.joints.size(); i++)
-  {
-    const auto& joint = info_.joints[i];
-    for (const auto& interface : joint.state_interfaces)
-    {
-      if (!getInterface(joint.name, interface.name, i, joint_states_, state_interfaces))
-      {
-        throw std::runtime_error("Interface not found in standard list.");
-      }
-    }
+  for (size_t i = 0; i < info_.joints.size(); i++) {
+    state_interfaces.emplace_back(
+      hardware_interface::StateInterface(
+        info_.joints[i].name, "position", &joint_states_[i][POSITION_INTERFACE_INDEX])
+    );
   }
   return state_interfaces;
 }
@@ -110,61 +97,57 @@ std::vector<hardware_interface::StateInterface> TopicBasedSystem::export_state_i
 std::vector<hardware_interface::CommandInterface> TopicBasedSystem::export_command_interfaces()
 {
   std::vector<hardware_interface::CommandInterface> command_interfaces;
-  for (auto i = 0u; i < info_.joints.size(); i++)
-  {
-    const auto& joint = info_.joints[i];
-    for (const auto& interface : joint.command_interfaces)
-    {
-      if (!getInterface(joint.name, interface.name, i, joint_commands_, command_interfaces))
-      {
-        throw std::runtime_error("Interface not found in standard list.");
-      }
-    }
+  for (size_t i = 0; i < info_.joints.size(); i++) {
+    command_interfaces.emplace_back(
+      hardware_interface::CommandInterface(
+        info_.joints[i].name, "position", &joint_commands_[i][POSITION_INTERFACE_INDEX])
+    );
   }
   return command_interfaces;
 }
 
-hardware_interface::return_type TopicBasedSystem::read(const rclcpp::Time&, const rclcpp::Duration&)
+// ------------------------- READ -------------------------
+hardware_interface::return_type TopicBasedSystem::read(
+    const rclcpp::Time&, const rclcpp::Duration&)
 {
-  char buffer[256];
-  int n = ::read(uart_fd_, buffer, sizeof(buffer) - 1);
-  if (n > 0)
-  {
-    buffer[n] = '\0';
-    double pos1, pos2;
-    if (sscanf(buffer, "%lf,%lf", &pos1, &pos2) == 2)
-    {
-      joint_states_[POSITION_INTERFACE_INDEX][0] = pos1;
-      joint_states_[POSITION_INTERFACE_INDEX][1] = pos2;
-    }
+  uint8_t rx[4];
+  int n = ::read(uart_fd_, rx, sizeof(rx));
+
+  if (n == 4) {
+    uint8_t header = rx[0];
+    uint8_t ang_h  = rx[1];
+    uint8_t ang_l  = rx[2];
+    uint8_t id     = header & 0x0F;
+
+    uint16_t angle_raw = (ang_h << 8) | ang_l;
+
+    // --- Convertir a radianes (ajustar según resolución encoder) ---
+    double angle_rad = static_cast<double>(angle_raw) * (2.0 * M_PI / 4096.0);
+
+    if (id > 0 && id <= joint_states_.size())
+      joint_states_[id - 1][POSITION_INTERFACE_INDEX] = angle_rad;
   }
+
   return hardware_interface::return_type::OK;
 }
 
-hardware_interface::return_type TopicBasedSystem::write(const rclcpp::Time&, const rclcpp::Duration&)
+// ------------------------- WRITE -------------------------
+hardware_interface::return_type TopicBasedSystem::write(
+    const rclcpp::Time&, const rclcpp::Duration&)
 {
-  char cmd[128];
-  snprintf(cmd, sizeof(cmd), "%.3f,%.3f\n",
-           joint_commands_[POSITION_INTERFACE_INDEX][0],
-           joint_commands_[POSITION_INTERFACE_INDEX][1]);
-  ::write(uart_fd_, cmd, strlen(cmd));
-  return hardware_interface::return_type::OK;
-}
+  char cmd[64];
 
-template <typename HandleType>
-bool TopicBasedSystem::getInterface(
-  const std::string& name, const std::string& interface_name,
-  const size_t vector_index, std::vector<std::vector<double>>& values,
-  std::vector<HandleType>& interfaces)
-{
-  auto it = std::find(standard_interfaces_.begin(), standard_interfaces_.end(), interface_name);
-  if (it != standard_interfaces_.end())
-  {
-    auto j = static_cast<std::size_t>(std::distance(standard_interfaces_.begin(), it));
-    interfaces.emplace_back(name, *it, &values[j][vector_index]);
-    return true;
+  for (size_t i = 0; i < joint_commands_.size(); i++) {
+    // Convertir radianes a unidad MCU (0-4095)
+    int16_t value = static_cast<int16_t>(joint_commands_[i][POSITION_INTERFACE_INDEX] * (4096.0 / (2.0 * M_PI)));
+    if (value < 0) value = 0;
+    if (value > 4095) value = 4095;
+
+    snprintf(cmd, sizeof(cmd), "%d\n", value);
+    ::write(uart_fd_, cmd, strlen(cmd));
   }
-  return false;
+
+  return hardware_interface::return_type::OK;
 }
 
 }  // namespace lukas_control

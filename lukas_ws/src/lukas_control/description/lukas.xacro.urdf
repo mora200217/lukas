@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="lukas" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Include the robot structure from lukas_description -->
+  <!-- Primero incluir tu robot -->
   <xacro:include filename="$(find lukas_description)/urdf/lukas.xacro"/>
 
   <!-- ===================================================== -->
@@ -10,23 +10,21 @@
   <ros2_control name="LukasSystem" type="system">
     <hardware>
       <plugin>lukas_control/TopicBasedSystem</plugin>
-      <!-- Example parameters for your hardware node -->
-      <param name="uart_device">/dev/ttyUSB0</param>
+      <param name="uart_device">/dev/tty.usbmodem1301</param>
       <param name="baud_rate">115200</param>
       <param name="use_realtime">false</param>
     </hardware>
 
-    <!-- Example joints -->
     <joint name="joint1">
       <command_interface name="position"/>
       <state_interface name="position"/>
-      <!-- <state_interface name="velocity"/> -->
     </joint>
 
     <joint name="joint2">
       <command_interface name="position"/>
       <state_interface name="position"/>
-      <!-- <state_interface name="velocity"/> -->
     </joint>
+
   </ros2_control>
+
 </robot>

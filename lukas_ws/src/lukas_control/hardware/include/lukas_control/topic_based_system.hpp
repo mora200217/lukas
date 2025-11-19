@@ -25,7 +25,8 @@ class TopicBasedSystem : public hardware_interface::SystemInterface
 {
 public:
   CallbackReturn on_init(const hardware_interface::HardwareInfo& info) override;
-
+  CallbackReturn on_activate(const rclcpp_lifecycle::State & previous_state) override;
+  CallbackReturn on_deactivate(const rclcpp_lifecycle::State & previous_state) override;
   std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
 
   std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;

@@ -1,50 +1,64 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, RegisterEventHandler, TimerAction
-from launch.event_handlers import OnProcessExit
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch.actions import TimerAction
 from launch_ros.actions import Node
+from launch.substitutions import Command, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
     robot_description = Command([
         "xacro ",
-        PathJoinSubstitution([FindPackageShare("lukas_control"), "description", "lukas.xacro.urdf"])
+        PathJoinSubstitution([
+            FindPackageShare("lukas_control"),
+            "description",
+            "lukas.xacro.urdf"
+        ])
     ])
+
+    controllers_yaml = PathJoinSubstitution([
+        FindPackageShare("lukas_control"),
+        "config",
+        "controllers.yaml"
+    ])
+
+    robot_state_pub = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        parameters=[{"robot_description": robot_description}],
+        output="screen"
+    )
 
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
+        name="controller_manager",
         parameters=[
-             {"use_realtime_threads": False},
             {"robot_description": robot_description},
-            PathJoinSubstitution([FindPackageShare("lukas_control"), "config", "controllers.yaml"])
+            controllers_yaml
         ],
-        output="screen"
+        remappings=[
+            ("~/robot_description", "/robot_description"),
+        ],
+        output="both"
     )
 
-    # Spawners (ejemplos)
     joint_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_state_broadcaster"],
+        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
         output="screen"
     )
 
-    example_controller_spawner = Node(
+    trajectory_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["position_controller"],
+        arguments=["joint_trajectory_controller", "--controller-manager", "/controller_manager"],
         output="screen"
-    )
-
-    # Spawn controllers after manager is up
-    delay_spawners = TimerAction(
-    period=3.0,
-    actions=[joint_broadcaster_spawner]
     )
 
     return LaunchDescription([
+        robot_state_pub,
         controller_manager,
-        delay_spawners
+        TimerAction(period=2.0, actions=[joint_broadcaster_spawner]),
+        TimerAction(period=3.0, actions=[trajectory_controller_spawner]),
     ])
