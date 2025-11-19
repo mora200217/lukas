@@ -41,17 +41,12 @@ static uint32_t em_pwmMax = 0;
 // ==================== REDUCCIONES ====================
 // Motor 1: MAXON con imán AS5600 en el eje del motor
 // Reducción motor : salida = 26/7 ≈ 3.714:1
-static const double EM_REDUCCION_1 = 20;
+static const double EM_REDUCCION_1 = (26.0/7.0)*60.0;
 
 // Motor 2: Faulhaber (5.42:1) * transmisión externa 2:1
 static const double EM_REDUCCION_2 = 5.42 * 2.0;
 
-// ---- FACTORES DE CORRECCIÓN DEL ENCODER 1 (AJUSTE MANUAL) ----
-// Se aplican SOBRE EL ÁNGULO DE SALIDA (no sobre los pasos).
-// Si el ángulo de salida es >= 0 -> se multiplica por EM_K_POS_1.
-// Si es < 0 -> por EM_K_NEG_1.
-static const double EM_K_POS_1 = (2*PI)/(5.742*2);   // escala para ángulos de salida positivos
-static const double EM_K_NEG_1 = (2*PI)/(5.742*8);   // escala para ángulos de salida negativos
+
 
 // (Opcional) pequeña zona muerta en cuentas para evitar drift muy lento
 static const int16_t EM_ENC1_DEADBAND = 1;  // ignora diffs -1..+1 (puedes dejarlo en 0 si quieres)
@@ -177,6 +172,53 @@ static void IRAM_ATTR em_isr_enc2_a_rising() {
   }
 }
 
+
+// ==================== HELPERS INTERNOS PARA ÁNGULOS ====================
+
+// Actualiza el estado del encoder 1 (AS5600) y devuelve ángulo de SALIDA [rad] multi-vuelta
+static double em_updateAngle1Rad() {
+  if (!em_init1) {
+    em_prevTime1_us = micros();
+    em_prevRaw1     = em_readAS5600Raw();  // referencia inicial
+    em_rawMulti1    = 0;
+    em_init1        = true;
+  }
+
+  uint16_t raw = em_readAS5600Raw();   // 0..4095
+
+  int16_t diff = (int16_t)raw - (int16_t)em_prevRaw1;
+  if (diff >  2048) diff -= 4096;
+  if (diff < -2048) diff += 4096;
+
+  // zona muerta opcional para evitar integrar ruido muy pequeño
+  if (EM_ENC1_DEADBAND > 0) {
+    if (diff > -EM_ENC1_DEADBAND && diff < EM_ENC1_DEADBAND) {
+      diff = 0;
+    }
+  }
+
+  em_rawMulti1 += diff;
+  em_prevRaw1   = raw;
+
+  const double K_RAD_PER_COUNT = (2.0 * PI) / 4096.0;
+  double angle_motor_rad = (double)em_rawMulti1 * K_RAD_PER_COUNT;
+  double angle_out_rad   = angle_motor_rad / EM_REDUCCION_1;
+
+  return angle_out_rad;
+}
+
+// Devuelve ángulo de SALIDA del motor 2 [rad] multi-vuelta
+static double em_getAngle2Rad() {
+  noInterrupts();
+  long c = em_counts2;
+  interrupts();
+
+  double angle_deg = ((double)c / (double)EM_CPR_eff_2) * (360.0 / EM_REDUCCION_2);
+  double angle_rad = angle_deg * (PI / 180.0);
+  return angle_rad;
+}
+
+
 // ==================== API PÚBLICA ====================
 
 void EM_begin() {
@@ -228,55 +270,11 @@ void EM_controlMotor2(float percentage) {
 // Lee el ángulo de salida (después de la reducción EM_REDUCCION_1)
 // en radianes, multi-vuelta, y aplica una escala distinta a cada lado
 // sin tocar la integración interna (no debe derivar por cambiar K).
-
 void EM_printEncoder1() {
-  if (!em_init1) {
-    em_prevTime1_us = micros();
-    em_prevRaw1     = em_readAS5600Raw();  // referencia inicial
-    em_rawMulti1    = 0;
-    em_init1        = true;
-  }
-
-  // 1) Leer crudo y hacer unwrap
-  unsigned long t_us = micros();
-  uint16_t raw = em_readAS5600Raw();   // 0..4095
-
-  int16_t diff = (int16_t)raw - (int16_t)em_prevRaw1;
-  if (diff >  2048) diff -= 4096;
-  if (diff < -2048) diff += 4096;
-
-  // Deadband para no integrar ruido fino
-  if (diff > -EM_ENC1_DEADBAND && diff < EM_ENC1_DEADBAND) {
-    diff = 0;
-  }
-
-  em_prevRaw1  = raw;
-  em_rawMulti1 += diff;  // cuentas multi-vuelta del MOTOR
-
-  // 2) Convertir a ángulo del motor [rad]
-  const double K_RAD_PER_COUNT = (2.0 * PI) / 4096.0;
-  double angle_motor_rad = (double)em_rawMulti1 * K_RAD_PER_COUNT;
-
-  // 3) Pasar a ángulo de SALIDA (después de la caja)
-  double angle_out_raw = angle_motor_rad / EM_REDUCCION_1;
-
-  // 4) Aplicar corrección distinta a cada lado (NO afecta integración)
-  double angle_out_corr;
-  if (angle_out_raw >= 0.0) {
-    angle_out_corr = angle_out_raw * EM_K_POS_1;
-  } else {
-    angle_out_corr = angle_out_raw * EM_K_NEG_1;
-  }
-
-  // (Opcional) puedes “snapear” cerca de cero si quieres:
-  /*
-  if (fabs(angle_out_corr) < 1e-4) {
-    angle_out_corr = 0.0;
-  }
-  */
-
-  Serial.println(angle_out_corr, 6);
+  double angle_out_rad = em_updateAngle1Rad();
+  Serial.println(angle_out_rad, 6);
 }
+
 
 // ==================== ENCODER 2 (incremental) ====================
 
@@ -287,16 +285,174 @@ void EM_printEncoder2() {
     em_init2        = true;
   }
 
-  unsigned long t_us = micros();
-
-  noInterrupts();
-  long c = em_counts2;
-  interrupts();
-
-  double angle_deg = ((double)c / (double)EM_CPR_eff_2) * (360.0 / EM_REDUCCION_2);
-  double angle_rad = angle_deg * (PI / 180.0);
-
+  double angle_rad = em_getAngle2Rad();
   Serial.println(angle_rad, 6);
 }
+
+
+
+// ==================== TEST DE PICOS DE PWM - MOTOR 1 ====================
+//
+// Envía una serie de pulsos de PWM (duty fijo, ancho creciente),
+// alternando la dirección (+/-), y mide:
+//  - tiempo de inicio
+//  - tiempo hasta que el ángulo se estabiliza
+//  - ángulo inicial y final
+//
+// IMPORTANTE: esta función es bloqueante; llama una sola vez desde loop().
+
+void EM_testPicosMotor1() {
+  const float duty        = 30.0f;   // % de PWM que se aplicará en cada pulso
+  const uint32_t base_ms  = 30;      // ancho del primer pulso [ms]
+  const uint32_t step_ms  = 20;      // incremento de ancho por pulso [ms]
+  const int nPulses       = 10;      // número total de pulsos
+  const double eps_rad    = 0.002;   // ~0.1°: umbral para considerar cambio de ángulo
+  const uint32_t quiet_ms = 80;      // ventana sin cambios para decir "se estabilizó"
+  const uint32_t max_ms   = 4000;    // timeout de seguridad por pulso
+
+  Serial.println(F("#TEST PULSOS M1"));
+  Serial.println(F("#pulso,dir,width_ms,t_start_ms,t_settle_ms,angle_ini_rad,angle_fin_rad"));
+
+  for (int i = 0; i < nPulses; ++i) {
+    int dir = (i % 2 == 0) ? +1 : -1;   // alterna +, -, +, -, ...
+    uint32_t width_ms = base_ms + (uint32_t)i * step_ms;
+
+    // Lee ángulo inicial y tiempo de inicio
+    double angle_ini = em_updateAngle1Rad();
+    unsigned long t0 = millis();
+
+    // Imprime info del pulso
+    Serial.print(i);
+    Serial.print(",");
+    Serial.print(dir);
+    Serial.print(",");
+    Serial.print(width_ms);
+    Serial.print(",");
+    Serial.print(t0);
+    Serial.print(",");
+
+    // Aplica PWM en la dirección dada
+    EM_controlMotor1(dir * duty);
+    delay(width_ms);   // mantener el pulso
+    EM_controlMotor1(0.0f);  // cortar PWM
+
+    // Ahora esperar a que el motor se detenga (ángulo deje de cambiar)
+    unsigned long t_lastChange = millis();
+    double lastAngle = em_updateAngle1Rad();
+
+    while (true) {
+      delay(5);
+      double currentAngle = em_updateAngle1Rad();
+
+      if (fabs(currentAngle - lastAngle) > eps_rad) {
+        lastAngle = currentAngle;
+        t_lastChange = millis();
+      }
+
+      unsigned long now = millis();
+      if (now - t_lastChange > quiet_ms) {
+        // llevamos quiet_ms sin cambios significativos -> consideramos posición final
+        break;
+      }
+
+      if (now - t0 > max_ms) {
+        // timeout de seguridad
+        break;
+      }
+    }
+
+    unsigned long t_settle = millis();
+    double angle_fin = em_updateAngle1Rad();
+
+    // Completar la línea con t_settle y ángulos
+    Serial.print(t_settle);
+    Serial.print(",");
+    Serial.print(angle_ini, 6);
+    Serial.print(",");
+    Serial.println(angle_fin, 6);
+  }
+
+  Serial.println(F("#FIN TEST M1"));
+}
+
+
+// ==================== TEST DE PICOS DE PWM - MOTOR 2 ====================
+//
+// Misma idea que M1, pero usando el encoder incremental (em_counts2).
+// Ángulos de salida teniendo en cuenta EM_REDUCCION_2.
+
+void EM_testPicosMotor2() {
+  const float duty        = 30.0f;   // % de PWM
+  const uint32_t base_ms  = 30;      // ancho inicial [ms]
+  const uint32_t step_ms  = 20;      // incremento por pulso [ms]
+  const int nPulses       = 10;      // cantidad de pulsos
+  const double eps_rad    = 0.002;   // umbral de cambio de ángulo
+  const uint32_t quiet_ms = 80;      // ventana sin cambios
+  const uint32_t max_ms   = 4000;    // timeout
+
+  Serial.println(F("#TEST PULSOS M2"));
+  Serial.println(F("#pulso,dir,width_ms,t_start_ms,t_settle_ms,angle_ini_rad,angle_fin_rad"));
+
+  for (int i = 0; i < nPulses; ++i) {
+    int dir = (i % 2 == 0) ? +1 : -1;
+    uint32_t width_ms = base_ms + (uint32_t)i * step_ms;
+
+    // Asegurar init2 si aún no se había usado
+    if (!em_init2) {
+      em_prevTime2_us = micros();
+      em_prevCounts2  = 0;
+      em_init2        = true;
+    }
+
+    double angle_ini = em_getAngle2Rad();
+    unsigned long t0 = millis();
+
+    Serial.print(i);
+    Serial.print(",");
+    Serial.print(dir);
+    Serial.print(",");
+    Serial.print(width_ms);
+    Serial.print(",");
+    Serial.print(t0);
+    Serial.print(",");
+
+    EM_controlMotor2(dir * duty);
+    delay(width_ms);
+    EM_controlMotor2(0.0f);
+
+    unsigned long t_lastChange = millis();
+    double lastAngle = em_getAngle2Rad();
+
+    while (true) {
+      delay(5);
+      double currentAngle = em_getAngle2Rad();
+
+      if (fabs(currentAngle - lastAngle) > eps_rad) {
+        lastAngle = currentAngle;
+        t_lastChange = millis();
+      }
+
+      unsigned long now = millis();
+      if (now - t_lastChange > quiet_ms) {
+        break;
+      }
+      if (now - t0 > max_ms) {
+        break;
+      }
+    }
+
+    unsigned long t_settle = millis();
+    double angle_fin = em_getAngle2Rad();
+
+    Serial.print(t_settle);
+    Serial.print(",");
+    Serial.print(angle_ini, 6);
+    Serial.print(",");
+    Serial.println(angle_fin, 6);
+  }
+
+  Serial.println(F("#FIN TEST M2"));
+}
+
 
 #endif // ENCODERSMOTORES_H
