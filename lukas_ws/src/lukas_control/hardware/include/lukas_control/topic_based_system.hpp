@@ -3,6 +3,11 @@
 // C++
 #include <memory>
 #include <string>
+#include <array>
+#include <vector>
+#include <thread>
+#include <mutex>
+#include <atomic>
 
 // ROS
 #include <hardware_interface/handle.hpp>
@@ -13,7 +18,7 @@
 #include <rclcpp/node.hpp>
 #include <rclcpp/publisher.hpp>
 #include <rclcpp/subscription.hpp>
-
+#include <rclcpp_lifecycle/state.hpp>
 
 #include <sensor_msgs/msg/joint_state.hpp>
 
@@ -27,27 +32,39 @@ public:
   CallbackReturn on_init(const hardware_interface::HardwareInfo& info) override;
   CallbackReturn on_activate(const rclcpp_lifecycle::State & previous_state) override;
   CallbackReturn on_deactivate(const rclcpp_lifecycle::State & previous_state) override;
-  std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
 
+  std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
   std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;
 
   hardware_interface::return_type read(const rclcpp::Time& time, const rclcpp::Duration& period) override;
-
-  hardware_interface::return_type write(const rclcpp::Time& /*time*/, const rclcpp::Duration& /*period*/) override;
+  hardware_interface::return_type write(const rclcpp::Time& time, const rclcpp::Duration& period) override;
 
 private:
+  // ROS topic interfaces
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr topic_based_joint_states_subscriber_;
   rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr topic_based_joint_commands_publisher_;
   rclcpp::Node::SharedPtr node_;
-  int uart_fd_ = -1;  // <-- 🔧 ADD THIS LINE
+
+  // UART
+  int uart_fd_ = -1;
+  std::thread uart_thread_;
+  std::mutex uart_mutex_;
+  std::atomic<bool> running_{false};
+
+  void uart_loop();  // Hilo de lectura UART
+
+  // Joint state buffers
   sensor_msgs::msg::JointState latest_joint_state_;
+  std::vector<double> latest_positions_;  // Buffer seguro de posiciones
   bool sum_wrapped_joint_states_{ false };
 
-  /// Use standard interfaces for joints because they are relevant for dynamic behavior
-  std::array<std::string, 4> standard_interfaces_ = { hardware_interface::HW_IF_POSITION,
-                                                      hardware_interface::HW_IF_VELOCITY,
-                                                      hardware_interface::HW_IF_ACCELERATION,
-                                                      hardware_interface::HW_IF_EFFORT };
+  // Standard hardware interfaces
+  std::array<std::string, 4> standard_interfaces_ = {
+      hardware_interface::HW_IF_POSITION,
+      hardware_interface::HW_IF_VELOCITY,
+      hardware_interface::HW_IF_ACCELERATION,
+      hardware_interface::HW_IF_EFFORT
+  };
 
   struct MimicJoint
   {
@@ -57,12 +74,9 @@ private:
   };
   std::vector<MimicJoint> mimic_joints_;
 
-  /// The size of this vector is (standard_interfaces_.size() x nr_joints)
   std::vector<std::vector<double>> joint_commands_;
   std::vector<std::vector<double>> joint_states_;
 
-  // If the difference between the current joint state and joint command is less than this value,
-  // the joint command will not be published.
   double trigger_joint_command_threshold_ = 1e-5;
 
   template <typename HandleType>

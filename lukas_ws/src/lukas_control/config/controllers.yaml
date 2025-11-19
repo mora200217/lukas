@@ -1,49 +1,41 @@
+# ===========================================================
+# ROS2 Control Configuration for macOS
+# Hardware: TopicBasedSystem
+# Author: Andres Mauricio Morales
+# ===========================================================
+
 controller_manager:
   ros__parameters:
-    update_rate: 100  # Hz
-
+    # -------------------- General --------------------
+    update_rate: 100                  # Controller update rate (Hz)
+    use_rt_thread: false              # Disable real-time threads (macOS safe)
+    use_multithread_executor: true    # Allow multiple threads for executor
+    realtime_priority: 0              # Normal priority (no RT)
+    
+    # -------------------- Joint State Broadcaster --------------------
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
+      joints:
+        - joint1                     # Names must match hardware plugin
+        - joint2
+      allow_non_realtime: true        # Required if not using RT threads
 
-#     # joint_trajectory_controller:
-#     #   type: joint_trajectory_controller/JointTrajectoryController
-    
+    # -------------------- Trajectory Controller (Optional) --------------------
+    # Uncomment and configure if you want trajectory control
+    # joint_trajectory_controller:
+    #   type: joint_trajectory_controller/JointTrajectoryController
+    #   joints:
+    #     - joint1
+    #     - joint2
+    #   command_interfaces:
+    #     - position
+    #   state_interfaces:
+    #     - position
+    #   allow_non_realtime: true
 
-joint_state_broadcaster:
-  ros__parameters:
-    joints:
-      - joint1
-      - joint2
-    extra_joints:
-      - base_link
-
-    interface_name: position
-
-
-# joint_trajectory_controller:
-#   ros__parameters:
-#     joints:
-#       - arm_shoulder_pan_joint
-#       - arm_shoulder_lift_joint
-#       - arm_elbow_flex_joint
-#       - arm_wrist_flex_joint
-
-#     command_interfaces:
-#       - position
-
-#     state_interfaces:
-#       - position
-
-#     action_monitor_rate: 20.0
-
-#     allow_partial_joints_goal: false
-#     open_loop_control: false
-#     set_last_command_interface_value_as_state_on_activation: true
-
-# position_controller:
-#   ros__parameters:
-#     joints:
-#       - waist
-#       - shoulder
-#       - elbow
-#       - wrist_angle
+# ===========================================================
+# Notes:
+# 1. This YAML is macOS-safe: no RT threads, no priority conflicts.
+# 2. Ensure joint names exactly match those in your TopicBasedSystem plugin.
+# 3. Use only this YAML when launching ros2_control_node on macOS.
+# ===========================================================

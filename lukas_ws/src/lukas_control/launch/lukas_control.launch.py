@@ -34,6 +34,8 @@ def generate_launch_description():
         name="controller_manager",
         parameters=[
             {"robot_description": robot_description},
+               {'use_rt_thread': False}  ,
+                       {'use_multithread_executor': True} , # usa executor normal,
             controllers_yaml
         ],
         remappings=[
@@ -60,5 +62,5 @@ def generate_launch_description():
         robot_state_pub,
         controller_manager,
         TimerAction(period=2.0, actions=[joint_broadcaster_spawner]),
-        TimerAction(period=3.0, actions=[trajectory_controller_spawner]),
+        # TimerAction(period=3.0, actions=[trajectory_controller_spawner]),
     ])
