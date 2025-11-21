@@ -1,68 +1,12 @@
-# ===========================================================
-# ROS2 Control Configuration for macOS
-# Hardware: TopicBasedSystem
-# Author: Andres Mauricio Morales
-# ===========================================================
-
 controller_manager:
   ros__parameters:
-    # -------------------- General --------------------
-    update_rate: 50                # Controller update rate (Hz)
-          # Normal priority (no RT)
-    
-    # -------------------- Joint State Broadcaster --------------------
+    update_rate: 50
+    use_rt_thread: false
+    use_multithread_executor: true
+
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
       joints:
         - joint1
         - joint2
-<<<<<<< HEAD
-      allow_non_realtime: true
 
-    # -------------------- Joint Trajectory Controller --------------------
-    joint_trajectory_controller:
-      type: joint_trajectory_controller/JointTrajectoryController
-      joints:
-        - joint1
-        - joint2
-
-      command_interfaces:
-        - position
-
-      state_interfaces:
-        - position
-
-      allow_non_realtime: true
-
-      # Opcional: parámetros típicos para suavizar trayectorias
-      constraints:
-        goal_time: 0.5
-        joint1:
-          trajectory: 0.2
-        joint2:
-          trajectory: 0.2
-
-      gains:
-        joint1:
-          p: 5.0
-          i: 0.0
-          d: 0.1
-        joint2:
-          p: 5.0
-          i: 0.0
-          d: 0.1
-=======
-
-    # -------------------- Trajectory Controller (Optional) --------------------
-    # Uncomment and configure if you want trajectory control
-
->>>>>>> 862525ad47eff247bad355fae5d2ff507621ba28
-
-# ===========================================================
-# Notes:
-# - Compatible con macOS: sin hilos RT y sin prioridad elevada.
-# - Asegúrate que tus joints se llamen exactamente "joint1", "joint2".
-# - El TopicBasedSystem debe exponer interfaces:
-#       command_interfaces: position
-#       state_interfaces:   position
-# ===========================================================

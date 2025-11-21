@@ -21,7 +21,7 @@ public:
         );
 
         // ---- Abrir UART ----
-        fd_ = open("/dev/tty.usbserial-1130", O_RDWR | O_NOCTTY | O_NONBLOCK);
+        fd_ = open("/dev/tty.usbserial-1130", O_RDWR | O_NOCTTY);
         if (fd_ < 0) {
             RCLCPP_ERROR(get_logger(), "No se pudo abrir el puerto UART");
             rclcpp::shutdown();
