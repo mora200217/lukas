@@ -40,11 +40,22 @@ CallbackReturn TopicBasedSystem::on_init(const hardware_interface::HardwareInfo&
     auto it = info_.hardware_parameters.find("uart_device");
     if (it != info_.hardware_parameters.end()) device = it->second;
 
-    uart_fd_ = ::open(device.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
-    if (uart_fd_ < 0) {
-        RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"), "Failed to open UART device %s", device.c_str());
-        return CallbackReturn::ERROR;
-    }
+  // --- UART OPEN WITH RETRY ---
+for (int i = 0; i < 10; i++) {
+    uart_fd_ = ::open(device.c_str(), O_RDWR | O_NOCTTY);
+    if (uart_fd_ >= 0) break;
+
+    RCLCPP_WARN(rclcpp::get_logger("TopicBasedSystem"),
+                "UART %s not ready, retrying (%d/10)...",
+                device.c_str(), i+1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+}
+
+if (uart_fd_ < 0) {
+    RCLCPP_ERROR(rclcpp::get_logger("TopicBasedSystem"),
+                 "Failed to open UART device %s", device.c_str());
+    return CallbackReturn::ERROR;
+}
 
     struct termios tty{};
     if (tcgetattr(uart_fd_, &tty) != 0) {
@@ -143,10 +154,56 @@ std::vector<hardware_interface::CommandInterface> TopicBasedSystem::export_comma
 hardware_interface::return_type TopicBasedSystem::read(
     const rclcpp::Time&, const rclcpp::Duration&)
 {
-    // std::lock_guard<std::mutex> lock(uart_mutex_);
-    // for (size_t i = 0; i < joint_states_.size(); i++) {
-    //     joint_states_[i][POSITION_INTERFACE_INDEX] = latest_positions_[i];
-    // }
+    static uint8_t rx[5];
+    static std::size_t idx = 0;
+
+    uint8_t byte;
+    int n = ::read(uart_fd_, &byte, 1);
+    if (n <= 0) {
+        // Nada nuevo
+        return hardware_interface::return_type::OK;
+    }
+
+    // Máquina de estados muy simple: buscar 0xFF como primer byte
+    if (idx == 0) {
+        if (byte != 0xFF) {
+            // ignorar hasta encontrar sync
+            return hardware_interface::return_type::OK;
+        }
+        rx[0] = byte;
+        idx = 1;
+        return hardware_interface::return_type::OK;
+    }
+
+    // Estamos llenando la trama
+    rx[idx++] = byte;
+
+    if (idx < 5) {
+        // Aún no tenemos trama completa
+        return hardware_interface::return_type::OK;
+    }
+
+    // Aquí idx == 5 => tenemos 0xFF + 4 bytes de payload
+    idx = 0;  // preparar para la siguiente
+
+    // Reconstrucción segura de int16_t
+    int16_t enc1 = static_cast<int16_t>(
+                       (static_cast<uint16_t>(rx[1]) << 8) |
+                        static_cast<uint16_t>(rx[2]));
+
+    int16_t enc2 = static_cast<int16_t>(
+                       (static_cast<uint16_t>(rx[3]) << 8) |
+                        static_cast<uint16_t>(rx[4]));
+
+    double angle1 = static_cast<double>(enc1);
+    double angle2 = static_cast<double>(enc2);
+
+    {
+        std::lock_guard<std::mutex> lock(uart_mutex_);
+        joint_states_[0][POSITION_INTERFACE_INDEX] = angle1;
+        joint_states_[1][POSITION_INTERFACE_INDEX] = angle2;
+    }
+
     return hardware_interface::return_type::OK;
 }
 
@@ -154,14 +211,29 @@ hardware_interface::return_type TopicBasedSystem::read(
 hardware_interface::return_type TopicBasedSystem::write(
     const rclcpp::Time&, const rclcpp::Duration&)
 {
-    char cmd[16];
+    uint8_t packet[4];
+
     for (size_t i = 0; i < joint_commands_.size(); i++) {
-        int16_t value = static_cast<int16_t>(joint_commands_[i][POSITION_INTERFACE_INDEX] * (4096.0 / (2.0 * M_PI)));
-        if (value < 0) value = 0;
+
+        // Convertir comando
+        int16_t value = static_cast<int16_t>(
+            joint_commands_[i][POSITION_INTERFACE_INDEX] * (4096.0 / (2.0 * M_PI))
+        );
+
+        // Saturación
+        if (value < 0)  value = 0;
         if (value > 4095) value = 4095;
-        snprintf(cmd, sizeof(cmd), "%d\n", value);
-        ::write(uart_fd_, cmd, strlen(cmd));
+
+        // ----- Formato -----
+        packet[0] = 0xFF;                 // Identificador
+        packet[1] = (i == 0 ? 0xFA : 0xFB);  // Motor 1:0xFA, Motor 2:0xFB
+        packet[2] = value & 0xFF;         // LOW BYTE
+        packet[3] = (value >> 8) & 0xFF;  // HIGH BYTE
+
+        // Enviar paquete
+        ::write(uart_fd_, packet, sizeof(packet));
     }
+
     return hardware_interface::return_type::OK;
 }
 

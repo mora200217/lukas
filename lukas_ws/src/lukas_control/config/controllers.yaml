@@ -7,10 +7,8 @@
 controller_manager:
   ros__parameters:
     # -------------------- General --------------------
-    update_rate: 100                  # Controller update rate (Hz)
-    use_rt_thread: false              # Disable real-time threads (macOS safe)
-    use_multithread_executor: true    # Allow multiple threads for executor
-    realtime_priority: 0              # Normal priority (no RT)
+    update_rate: 50                # Controller update rate (Hz)
+          # Normal priority (no RT)
     
     # -------------------- Joint State Broadcaster --------------------
     joint_state_broadcaster:
@@ -18,20 +16,10 @@ controller_manager:
       joints:
         - joint1                     # Names must match hardware plugin
         - joint2
-      allow_non_realtime: true        # Required if not using RT threads
 
     # -------------------- Trajectory Controller (Optional) --------------------
     # Uncomment and configure if you want trajectory control
-    # joint_trajectory_controller:
-    #   type: joint_trajectory_controller/JointTrajectoryController
-    #   joints:
-    #     - joint1
-    #     - joint2
-    #   command_interfaces:
-    #     - position
-    #   state_interfaces:
-    #     - position
-    #   allow_non_realtime: true
+
 
 # ===========================================================
 # Notes:
