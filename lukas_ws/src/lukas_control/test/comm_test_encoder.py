@@ -1,37 +1,41 @@
-
-
 import serial
 import struct
 
-PORT = "/dev/tty.usbmodem1301"        # Cambia a COM3 en Windows o /dev/cu.usbmodemXXXX en macOS
+PORT = "/dev/ttyUSB0"   # cámbialo a tu puerto
 BAUD = 115200
-FRAME_SIZE = 4
 
-def parse_frame(frame_bytes):
-    b0, b1, b2, ack = struct.unpack(">BBBB", frame_bytes)
-
-    confirm = (b0 >> 4) & 0x0F
-    id_val  = b0 & 0x0F
-    angle   = (b1 << 8) | b2
-
-    return {
-        "confirm": confirm,
-        "id": id_val,
-        "angle": angle,
-        "ack": ack
-    }
-
-def main():
+def leer_tramas():
     ser = serial.Serial(PORT, BAUD, timeout=0.1)
-    print("Listening on", PORT)
+
+    sync_found = False
 
     while True:
-        if ser.in_waiting >= FRAME_SIZE:
-            data = ser.read(FRAME_SIZE)
-            frame = parse_frame(data)
+        b = ser.read(1)
+        if not b:
+            continue
 
-            print(f"ID {frame['id']:d}  →  angle: {frame['angle']:d}°")
+        # ---- Buscar sincronización ----
+        if not sync_found:
+            if b[0] == 0xFF:
+                sync_found = True
+                buffer = bytearray()
+            else:
+                continue
+        else:
+            buffer.append(b[0])
+
+            if len(buffer) == 4:
+                # Ya tenemos los 4 bytes payload (2 encoders)
+                enc1 = struct.unpack(">h", buffer[0:2])[0]   # int16 big-endian
+                enc2 = struct.unpack(">h", buffer[2:4])[0]
+
+                # Convertir a ángulo como en tu C++ (ya vienen en milésimas de grado)
+                angle1 = enc1 / 1000.0
+                angle2 = enc2 / 1000.0
+
+                print(f"Ángulos → M1: {angle1:.3f}°,  M2: {angle2:.3f}°")
+
+                sync_found = False  # buscar siguiente trama
 
 if __name__ == "__main__":
-    main()
-
+    leer_tramas()

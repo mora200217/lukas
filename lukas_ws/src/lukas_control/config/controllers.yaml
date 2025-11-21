@@ -1,29 +1,35 @@
-# ===========================================================
-# ROS2 Control Configuration for macOS
-# Hardware: TopicBasedSystem
-# Author: Andres Mauricio Morales
-# ===========================================================
-
 controller_manager:
   ros__parameters:
-    # -------------------- General --------------------
-    update_rate: 50                # Controller update rate (Hz)
-          # Normal priority (no RT)
-    
-    # -------------------- Joint State Broadcaster --------------------
+    update_rate: 50
+    use_rt_thread: false
+    use_multithread_executor: true
+
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
       joints:
-        - joint1                     # Names must match hardware plugin
-        - joint2
+        - joint1
 
-    # -------------------- Trajectory Controller (Optional) --------------------
-    # Uncomment and configure if you want trajectory control
+    joint1_pid:
+      type: pid_controller/PidController
 
+      # El PID necesita saber a qué DOF aplica
+      dof_names: ["joint1"]
 
-# ===========================================================
-# Notes:
-# 1. This YAML is macOS-safe: no RT threads, no priority conflicts.
-# 2. Ensure joint names exactly match those in your TopicBasedSystem plugin.
-# 3. Use only this YAML when launching ros2_control_node on macOS.
-# ===========================================================
+      # Interfaces del hardware
+      state_interfaces: ["position"]
+      command_interfaces: ["effort"]
+
+      gains:
+        p: 4.0
+        i: 0.8
+        d: 0.05
+
+      integrator_limits:
+        min: -20.0
+        max: 20.0
+
+      command_limits:
+        min: -255.0
+        max: 255.0
+
+      feedforward: 0.0
