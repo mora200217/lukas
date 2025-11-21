@@ -16,26 +16,48 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
       joints:
-        - joint1                     # Names must match hardware plugin
+        - joint1
         - joint2
-      allow_non_realtime: true        # Required if not using RT threads
+      allow_non_realtime: true
 
-    # -------------------- Trajectory Controller (Optional) --------------------
-    # Uncomment and configure if you want trajectory control
-    # joint_trajectory_controller:
-    #   type: joint_trajectory_controller/JointTrajectoryController
-    #   joints:
-    #     - joint1
-    #     - joint2
-    #   command_interfaces:
-    #     - position
-    #   state_interfaces:
-    #     - position
-    #   allow_non_realtime: true
+    # -------------------- Joint Trajectory Controller --------------------
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+      joints:
+        - joint1
+        - joint2
+
+      command_interfaces:
+        - position
+
+      state_interfaces:
+        - position
+
+      allow_non_realtime: true
+
+      # Opcional: parámetros típicos para suavizar trayectorias
+      constraints:
+        goal_time: 0.5
+        joint1:
+          trajectory: 0.2
+        joint2:
+          trajectory: 0.2
+
+      gains:
+        joint1:
+          p: 5.0
+          i: 0.0
+          d: 0.1
+        joint2:
+          p: 5.0
+          i: 0.0
+          d: 0.1
 
 # ===========================================================
 # Notes:
-# 1. This YAML is macOS-safe: no RT threads, no priority conflicts.
-# 2. Ensure joint names exactly match those in your TopicBasedSystem plugin.
-# 3. Use only this YAML when launching ros2_control_node on macOS.
+# - Compatible con macOS: sin hilos RT y sin prioridad elevada.
+# - Asegúrate que tus joints se llamen exactamente "joint1", "joint2".
+# - El TopicBasedSystem debe exponer interfaces:
+#       command_interfaces: position
+#       state_interfaces:   position
 # ===========================================================
