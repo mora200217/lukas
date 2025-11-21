@@ -10,7 +10,7 @@
   <ros2_control name="LukasSystem" type="system">
     <hardware>
       <plugin>lukas_control/TopicBasedSystem</plugin>
-      <param name="uart_device">/dev/ttyUSB0</param>
+      <param name="uart_device">/dev/tty.usbserial-3130</param>
       <param name="baud_rate">115200</param>
       <param name="use_realtime">true</param>
     </hardware>
