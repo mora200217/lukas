@@ -15,7 +15,7 @@ Cs = Csrl * 0.5
 Cs = pid(Cs)
 
 %%
-Cs = pid(6, 0.8)
+Cs = pid(10, 0.8)
 Gl = Cs * G1tf; 
 
 T1 = feedback(Gl, 1); 

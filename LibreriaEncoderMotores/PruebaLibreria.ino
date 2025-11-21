@@ -2,21 +2,31 @@
 #include "EncodersMotores.h"
 
 void setup() {
-  Serial.begin(2000000);
-  delay(200);
-  Serial.println("\n=== Prueba librería EncodersMotores (simple) ===");
+  setCpuFrequencyMhz(240);
+  Serial.begin(115200);
+  EM_begin();
 
-  EM_begin();  // inicializa PWM, I2C, encoder, etc.
+  // Motor 2 al 30% en un sentido:
+  //EM_controlMotor2(30.0f);
 }
 
 void loop() {
-  // 1) Mandar comandos a los motores (en %)
-  //EM_controlMotor1(30.0f);   // motor 1 al 30% adelante
-  //EM_controlMotor2(-20.0f);  // motor 2 al 20% atrás
+  uint16_t e1 = (uint16_t) EM_printEncoder1();  // función que devuelva el valor en entero
+  uint16_t e2 = (uint16_t) EM_printEncoder2();  // lo mismo para el 2
 
-  // 2) Imprimir lecturas por Serial (CSV)
-  EM_printEncoder1();  // imprime: M1,angle_deg,vel_deg_s,raw
-  //EM_printEncoder2();  // imprime: M2,angle_deg,vel_deg_s,counts
+  enviarFrame(e1, e2);
+  delay(50);
+}
 
-  delay(50);  // ajusta según qué tan rápido quieras imprimir
+void enviarFrame(uint16_t enc1, uint16_t enc2) {
+  // Byte de inicio (header)
+  Serial.write(0xFF);
+
+  // Encoder 1 (MSB primero, luego LSB)
+  Serial.write((uint8_t)(enc1 >> 8));     // parte alta
+  Serial.write((uint8_t)(enc1 & 0xFF));   // parte baja
+
+  // Encoder 2
+  Serial.write((uint8_t)(enc2 >> 8));     
+  Serial.write((uint8_t)(enc2 & 0xFF));
 }

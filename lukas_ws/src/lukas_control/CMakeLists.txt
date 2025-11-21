@@ -44,6 +44,8 @@ add_library(
   hardware/topic_based_system.cpp
 )
 
+#add_executable(observer src/state_observer_lqr.cpp)
+#ament_target_dependencies(observer rclcpp std_msgs)
 
 target_compile_features(lukas_control PUBLIC cxx_std_17)
 target_include_directories(lukas_control PUBLIC
@@ -58,6 +60,9 @@ ament_target_dependencies(
 # Export hardware plugins
 pluginlib_export_plugin_description_file(hardware_interface lukas_control.xml)
 
+install(TARGETS
+ # observer
+  DESTINATION lib/${PROJECT_NAME})
 
 # INSTALL
 install(

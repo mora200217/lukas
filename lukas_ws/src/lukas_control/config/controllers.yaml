@@ -7,10 +7,8 @@
 controller_manager:
   ros__parameters:
     # -------------------- General --------------------
-    update_rate: 100                  # Controller update rate (Hz)
-    use_rt_thread: false              # Disable real-time threads (macOS safe)
-    use_multithread_executor: true    # Allow multiple threads for executor
-    realtime_priority: 0              # Normal priority (no RT)
+    update_rate: 50                # Controller update rate (Hz)
+          # Normal priority (no RT)
     
     # -------------------- Joint State Broadcaster --------------------
     joint_state_broadcaster:
@@ -18,6 +16,7 @@ controller_manager:
       joints:
         - joint1
         - joint2
+<<<<<<< HEAD
       allow_non_realtime: true
 
     # -------------------- Joint Trajectory Controller --------------------
@@ -52,6 +51,12 @@ controller_manager:
           p: 5.0
           i: 0.0
           d: 0.1
+=======
+
+    # -------------------- Trajectory Controller (Optional) --------------------
+    # Uncomment and configure if you want trajectory control
+
+>>>>>>> 862525ad47eff247bad355fae5d2ff507621ba28
 
 # ===========================================================
 # Notes:
